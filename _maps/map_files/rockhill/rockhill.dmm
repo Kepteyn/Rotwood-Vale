@@ -546,6 +546,12 @@
 /obj/item/natural/feather,
 /turf/open/floor/rogue/wood,
 /area/rogue/indoors/town/manor)
+"aIF" = (
+/obj/structure/fluff/walldeco/skullborder{
+	dir = 1
+	},
+/turf/open/floor/rogue/blocks,
+/area/rogue/outdoors/town)
 "aIV" = (
 /obj/structure/roguewindow/openclose{
 	dir = 4
@@ -1973,6 +1979,10 @@
 "cyr" = (
 /turf/open/floor/rogue/dirt,
 /area/rogue/indoors)
+"cyP" = (
+/obj/structure/rack/rogue/cryptshelf/cryptshelf_1,
+/turf/closed/wall/mineral/rogue/craftstone,
+/area/rogue/indoors/town/garrison)
 "czb" = (
 /obj/structure/rack/rogue,
 /obj/item/quiver/arrows,
@@ -4487,6 +4497,15 @@
 	},
 /turf/open/floor/rogue/tile,
 /area/rogue/indoors/town/church)
+"fpK" = (
+/obj/structure/stairs{
+	dir = 8
+	},
+/obj/structure/fluff/walldeco/skullborder{
+	dir = 1
+	},
+/turf/open/floor/rogue/blocks,
+/area/rogue/outdoors/town)
 "fqj" = (
 /obj/structure/rack/rogue,
 /obj/item/flashlight/flare/torch/lantern,
@@ -6270,6 +6289,10 @@
 /obj/item/clothing/suit/roguetown/shirt/dress/silkdress/random,
 /turf/open/floor/rogue/carpet/lord/center,
 /area/rogue/indoors/town/manor)
+"hwl" = (
+/obj/structure/rack/rogue/cryptshelf,
+/turf/closed/wall/mineral/rogue/craftstone,
+/area/rogue/indoors/town/garrison)
 "hxn" = (
 /obj/structure/bookcase/random,
 /turf/open/floor/rogue/carpet,
@@ -10200,6 +10223,10 @@
 /obj/structure/rack/rogue/shelf/big,
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/outdoors/bog)
+"mAa" = (
+/obj/structure/fluff/walldeco/skullborder_flipped,
+/turf/closed/wall/mineral/rogue/craftstone,
+/area/rogue/indoors/town)
 "mCz" = (
 /obj/machinery/light/rogue/torchholder,
 /turf/closed/wall/mineral/rogue/decowood,
@@ -295316,11 +295343,11 @@ wbg
 wbg
 wVI
 wVI
-wVI
-cgq
+oAn
+oAn
 wVI
 wbg
-wbg
+qEa
 wbg
 wVI
 wVI
@@ -295719,7 +295746,7 @@ wbg
 fHw
 tNj
 tNj
-tNj
+hwl
 wVI
 wbg
 wbg
@@ -296121,13 +296148,13 @@ pGD
 tNj
 tNj
 tNj
-tNj
+cyP
 wVI
 wbg
 wbg
 wbg
 wVI
-evo
+mAa
 evo
 hXf
 evo
@@ -296524,12 +296551,12 @@ rBV
 cKj
 tNj
 tNj
-wVI
+aIF
 wbg
 wbg
 wbg
 wVI
-evo
+mAa
 uNX
 rNm
 uNX
@@ -296925,10 +296952,10 @@ rBV
 rBV
 omx
 tNj
-tNj
+hwl
 wVI
 wbg
-wbg
+qEa
 wbg
 wVI
 guP
@@ -297328,7 +297355,7 @@ rBV
 rBV
 tNj
 tNj
-wVI
+aIF
 wbg
 wbg
 wbg
@@ -297729,13 +297756,13 @@ rBV
 kLO
 tOf
 tNj
-tNj
-wVI
+hwl
+aIF
 wbg
 wbg
 wbg
 wVI
-evo
+mAa
 fxf
 rNm
 uNX
@@ -298131,13 +298158,13 @@ pGD
 tNj
 tNj
 tNj
-tNj
-edc
+hwl
+fpK
 dpw
 wbg
 wbg
 wVI
-evo
+mAa
 evo
 evo
 evo
@@ -298532,8 +298559,8 @@ rBV
 rBV
 xHV
 tNj
-wVI
-bht
+oAn
+oAn
 xAt
 dpw
 wbg
@@ -298934,8 +298961,8 @@ rBV
 rBV
 cFa
 tNj
-wVI
-vAB
+oAn
+oAn
 hLP
 oZC
 wbg
@@ -299340,7 +299367,7 @@ wVI
 wbg
 wbg
 wbg
-wbg
+qEa
 wbg
 wbg
 wbg

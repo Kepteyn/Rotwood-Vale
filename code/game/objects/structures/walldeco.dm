@@ -218,3 +218,13 @@
 
 /obj/structure/fluff/walldeco/rpainting/crown
 	icon_state = "painting_3"
+
+/obj/structure/fluff/walldeco/skullborder
+	name = "skull border"
+	desc = ""
+	icon_state = "skullborder"
+
+/obj/structure/fluff/walldeco/skullborder_flipped
+	name = "skull border"
+	desc = ""
+	icon_state = "skullborder_flipped"
