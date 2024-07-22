@@ -125,6 +125,18 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	/// List of bodypart features of this species
 	var/list/bodypart_features
 
+	/// List of descriptor choices this species gets in preferences customization
+	var/list/descriptor_choices = list(
+		/datum/descriptor_choice/body,
+		/datum/descriptor_choice/stature,
+		/datum/descriptor_choice/face,
+		/datum/descriptor_choice/face_exp,
+		/datum/descriptor_choice/skin,
+		/datum/descriptor_choice/voice,
+		/datum/descriptor_choice/prominent_one,
+		/datum/descriptor_choice/prominent_two,
+	)
+
 	var/obj/item/mutanthands
 
 	/// List of organ customizers for preferences to customize organs.
@@ -444,6 +456,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		C.add_bodypart_feature(feature)
 	if(pref_load)
 		pref_load.apply_customizers_to_character(C)
+		pref_load.apply_descriptors(C)
 	
 	for(var/language_type in languages)
 		C.grant_language(language_type)
@@ -538,6 +551,8 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			return "ADJ"
 		if(BODY_FRONT_LAYER)
 			return "FRONT"
+		if(BODY_UNDER_LAYER)
+			return "UNDER"
 
 
 /datum/species/proc/spec_life(mob/living/carbon/human/H)
@@ -2021,7 +2036,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	if(!T)
 		return FALSE
 	T.wagging = TRUE
-	H.update_body()
+	H.update_body_parts(TRUE)
 
 /datum/species/proc/stop_wagging_tail(mob/living/carbon/human/H)
 	if(!H) //Somewhere in the core code we're getting those procs with H being null
@@ -2030,7 +2045,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	if(!T)
 		return
 	T.wagging = FALSE
-	H.update_body()
+	H.update_body_parts(TRUE)
 
 ///////////////
 //FLIGHT SHIT//

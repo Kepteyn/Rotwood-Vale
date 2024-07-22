@@ -103,7 +103,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 			if(O.density && !O.climbable)
 				if(!misting)
 					return
-		for(var/obj/item/reagent_containers/powder/flour/salt/S in T)
+		for(var/obj/item/reagent_containers/powder/salt/S in T)
 //			go2hell()
 //			next_gmove = world.time + 30
 			return
@@ -411,10 +411,6 @@ Works together with spawning an observer, noted above.
 			if(force_respawn)
 				mind.remove_antag_datum(/datum/antagonist/zombie)
 				return ..()
-			else if(!zomble.revived)
-				if(!(world.time % 5))
-					to_chat(src, span_warning("I'm preparing to walk again."))
-				return
 	return ..()
 
 /mob/proc/scry_ghost()

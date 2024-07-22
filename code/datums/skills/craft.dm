@@ -15,9 +15,6 @@
 /datum/skill/craft/blacksmithing
 	name = "Blacksmithing"
 
-/datum/skill/craft/smelting
-	name = "Smelting"
-
 /datum/skill/craft/carpentry
 	name = "Carpentry"
 
@@ -30,23 +27,9 @@
 /datum/skill/craft/cooking
 	name = "Cooking"
 
-/datum/skill/craft/medicine
-	name = "Medicinecraft"
-	desc = ""
-
-/datum/skill/craft/alchemy
-	name = "Alchemy"
-
-/datum/skill/craft/bombs
-	name = "Bombcrafting"
-
 /datum/skill/craft/engineering
 	name = "Engineering"
 
 /datum/skill/craft/tanning
 	name = "Skincrafting"
-	desc = ""
-
-/datum/skill/craft/tailor
-	name = "Clothesmaking"
 	desc = ""
