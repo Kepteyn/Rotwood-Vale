@@ -236,7 +236,8 @@
 	playsound(loc, close_sound, close_sound_volume, FALSE, -3)
 //	climb_time = initial(climb_time)
 	opened = FALSE
-	density = TRUE
+	if(wall_mounted != 1)
+		density = TRUE
 	update_icon()
 	return TRUE
 

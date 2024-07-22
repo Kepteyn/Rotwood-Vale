@@ -126,3 +126,19 @@
 	base_icon_state = "drawer5"
 	dir = SOUTH
 	pixel_y = 16
+
+
+/obj/structure/closet/crate/roguecloset/crypt
+	name = "Crypt Alcove"
+	desc = "A stone wall alcove for corpses."
+	icon = 'icons/roguetown/misc/structure.dmi'
+	icon_state = "crypt_closet"
+	base_icon_state = "crypt_closet"
+	open_sound = 'sound/items/dig_shovel.ogg'
+	close_sound = 'sound/items/dig_shovel.ogg'
+	anchored = TRUE
+	anchorable = FALSE 
+	density = FALSE
+	wall_mounted = TRUE
+	dir = SOUTH
+	pixel_y = 28

@@ -614,6 +614,10 @@
 	},
 /turf/open/floor/rogue/wood,
 /area/rogue/indoors/town/tavern)
+"aMC" = (
+/obj/structure/fluff/statue/knight/interior/r,
+/turf/open/floor/rogue/cobblerock,
+/area/rogue/outdoors/town)
 "aMR" = (
 /turf/closed/wall/mineral/rogue/craftstone,
 /area/rogue/indoors/town/shop)
@@ -791,6 +795,10 @@
 	},
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/basement)
+"aYd" = (
+/obj/structure/fluff/statue/knightalt,
+/turf/open/floor/rogue/grass,
+/area/rogue/outdoors/town)
 "aYi" = (
 /obj/structure/closet/crate/chest{
 	locked = 1;
@@ -979,6 +987,10 @@
 	icon_state = "weird1"
 	},
 /area/rogue/indoors/town)
+"blA" = (
+/obj/structure/fluff/statue/femalestatue,
+/turf/open/floor/rogue/cobblerock,
+/area/rogue/outdoors/town)
 "blP" = (
 /obj/structure/rack/rogue,
 /obj/item/flashlight/flare/torch/lantern,
@@ -1893,6 +1905,10 @@
 /obj/item/rogueweapon/woodstaff,
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/town/basement)
+"ctZ" = (
+/obj/structure/closet/crate/roguecloset/crypt,
+/turf/open/floor/rogue/blocks,
+/area/rogue/outdoors/town)
 "cuw" = (
 /obj/machinery/light/rogue/firebowl/standing,
 /turf/open/floor/rogue/carpet,
@@ -1980,7 +1996,7 @@
 /turf/open/floor/rogue/dirt,
 /area/rogue/indoors)
 "cyP" = (
-/obj/structure/rack/rogue/cryptshelf/cryptshelf_1,
+/obj/structure/rack/rogue/cryptshelf/cryptshelf_bones1,
 /turf/closed/wall/mineral/rogue/craftstone,
 /area/rogue/indoors/town/garrison)
 "czb" = (
@@ -3163,6 +3179,10 @@
 	},
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/indoors)
+"dUJ" = (
+/obj/structure/fluff/statue/spider,
+/turf/open/floor/rogue/cobblerock,
+/area/rogue/outdoors/town)
 "dUY" = (
 /obj/structure/stairs,
 /turf/open/floor/rogue/ruinedwood{
@@ -3745,6 +3765,10 @@
 	},
 /turf/open/floor/rogue/wood,
 /area/rogue/indoors/town/manor)
+"eyQ" = (
+/obj/structure/fluff/statue/astrata,
+/turf/open/floor/rogue/cobblerock,
+/area/rogue/outdoors/town)
 "eyV" = (
 /obj/structure/table/wood/crafted,
 /turf/open/floor/rogue/ruinedwood/spiral,
@@ -4661,6 +4685,10 @@
 	},
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors)
+"fBO" = (
+/obj/structure/fluff/statue/knight,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/town)
 "fBR" = (
 /turf/open/floor/rogue/churchmarble,
 /area/rogue/under/town/basement)
@@ -5135,6 +5163,10 @@
 /obj/item/natural/cloth,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/basement)
+"gjB" = (
+/obj/structure/rack/rogue/cryptshelf/cryptshelf_bones3,
+/turf/closed/wall/mineral/rogue/craftstone,
+/area/rogue/indoors/town/garrison)
 "gjG" = (
 /obj/item/paper/scroll,
 /obj/structure/table/wood{
@@ -5906,6 +5938,10 @@
 "hcW" = (
 /turf/closed/mineral/rogue,
 /area/rogue/indoors/shelter/rtfield)
+"hda" = (
+/obj/structure/fluff/statue/myth,
+/turf/open/floor/rogue/cobblerock,
+/area/rogue/outdoors/town)
 "hdb" = (
 /obj/structure/chair/wood/rogue{
 	dir = 8
@@ -6293,6 +6329,11 @@
 /obj/structure/rack/rogue/cryptshelf,
 /turf/closed/wall/mineral/rogue/craftstone,
 /area/rogue/indoors/town/garrison)
+"hwr" = (
+/obj/structure/flora/roguegrass,
+/obj/structure/fluff/statue/gargoyle,
+/turf/open/floor/rogue/grass,
+/area/rogue/outdoors/town)
 "hxn" = (
 /obj/structure/bookcase/random,
 /turf/open/floor/rogue/carpet,
@@ -8541,6 +8582,10 @@
 "koz" = (
 /turf/open/floor/carpet/red,
 /area/rogue/indoors/town/church)
+"koF" = (
+/obj/structure/fluff/statue/shisha,
+/turf/open/floor/rogue/cobblerock,
+/area/rogue/outdoors/town)
 "koX" = (
 /obj/structure/table/wood{
 	dir = 1;
@@ -9009,6 +9054,11 @@
 /obj/structure/flora/newtree,
 /turf/open/floor/rogue/dirt,
 /area/rogue/outdoors/bog)
+"kXs" = (
+/obj/machinery/light/rogue/wallfire/candle,
+/obj/structure/fluff/statue/astrata/gold,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/town)
 "kXX" = (
 /obj/structure/closet/dirthole/closed,
 /obj/structure/gravemarker,
@@ -9781,6 +9831,10 @@
 	},
 /turf/closed/wall/mineral/rogue/stone,
 /area/rogue/outdoors/town)
+"lUI" = (
+/obj/structure/fluff/statue/pillar,
+/turf/open/floor/rogue/cobblerock,
+/area/rogue/outdoors/town)
 "lVe" = (
 /turf/closed/wall/mineral/rogue/craftstone,
 /area/rogue/indoors)
@@ -10435,6 +10489,10 @@
 /obj/structure/bed/rogue/shit,
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/outdoors/bog)
+"mUU" = (
+/obj/structure/fluff/statue/astrata/gold,
+/turf/open/floor/rogue/cobblerock,
+/area/rogue/outdoors/town)
 "mVa" = (
 /turf/open/floor/rogue/carpet,
 /area/rogue/under/town/basement)
@@ -10987,8 +11045,8 @@
 /turf/open/floor/rogue/woodturned,
 /area/rogue/indoors/town/garrison)
 "nGs" = (
-/obj/structure/fluff/statue,
-/turf/open/floor/rogue/grass,
+/obj/structure/fluff/statue/knight,
+/turf/open/floor/rogue/cobblerock,
 /area/rogue/outdoors/town)
 "nGw" = (
 /obj/structure/table/wood{
@@ -11835,6 +11893,10 @@
 	icon_state = "paving"
 	},
 /area/rogue/under/town/basement)
+"oIo" = (
+/obj/structure/fluff/statue/gargoyle/moss,
+/turf/open/floor/rogue/cobblerock,
+/area/rogue/outdoors/town)
 "oIv" = (
 /obj/structure/stairs,
 /turf/open/floor/rogue/cobble,
@@ -13630,6 +13692,10 @@
 	},
 /turf/open/floor/carpet/inn,
 /area/rogue/indoors/town/manor)
+"rda" = (
+/obj/structure/fluff/statue/psy,
+/turf/open/floor/rogue/cobblerock,
+/area/rogue/outdoors/town)
 "rdc" = (
 /obj/structure/table/wood{
 	dir = 1;
@@ -13774,6 +13840,10 @@
 	},
 /turf/open/floor/rogue/churchbrick,
 /area/rogue/indoors/town/manor)
+"rkz" = (
+/obj/structure/fluff/statue/evil,
+/turf/open/floor/rogue/cobblerock,
+/area/rogue/outdoors/town)
 "rla" = (
 /obj/structure/chair/stool/rogue,
 /turf/open/floor/carpet/royalblack,
@@ -15291,6 +15361,11 @@
 "toN" = (
 /turf/closed/wall/mineral/rogue/decostone,
 /area/rogue/under/town/basement)
+"toU" = (
+/obj/structure/flora/roguegrass,
+/obj/structure/fluff/statue/astrata/gold,
+/turf/open/floor/rogue/grass,
+/area/rogue/outdoors/town)
 "toW" = (
 /turf/closed/wall/mineral/rogue/stonebrick,
 /area/rogue/indoors/town/shop)
@@ -15996,6 +16071,10 @@
 	icon_state = "weird1"
 	},
 /area/rogue/indoors/town/shop)
+"ufq" = (
+/obj/structure/fluff/statue/small,
+/turf/open/floor/rogue/cobblerock,
+/area/rogue/outdoors/town)
 "ugV" = (
 /obj/structure/fluff/grindwheel,
 /turf/open/floor/rogue/blocks,
@@ -17168,6 +17247,10 @@
 	},
 /obj/effect/landmark/start/vagrantlate,
 /turf/open/floor/rogue/cobble,
+/area/rogue/outdoors/town)
+"vFA" = (
+/obj/structure/fluff/statue/gargoyle/candles,
+/turf/open/floor/rogue/cobblerock,
 /area/rogue/outdoors/town)
 "vFU" = (
 /obj/machinery/light/rogue/firebowl,
@@ -18982,6 +19065,10 @@
 /obj/item/burial_shroud,
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/town/church)
+"xZW" = (
+/obj/structure/fluff/statue/knight/interior,
+/turf/open/floor/rogue/cobblerock,
+/area/rogue/outdoors/town)
 "yaQ" = (
 /obj/structure/ladder,
 /turf/open/floor/rogue/ruinedwood{
@@ -295746,8 +295833,8 @@ wbg
 fHw
 tNj
 tNj
-hwl
-wVI
+tNj
+ctZ
 wbg
 wbg
 wbg
@@ -296148,7 +296235,7 @@ pGD
 tNj
 tNj
 tNj
-cyP
+tNj
 wVI
 wbg
 wbg
@@ -296550,7 +296637,7 @@ rBV
 rBV
 cKj
 tNj
-tNj
+gjB
 aIF
 wbg
 wbg
@@ -296952,7 +297039,7 @@ rBV
 rBV
 omx
 tNj
-hwl
+tNj
 wVI
 wbg
 qEa
@@ -297354,7 +297441,7 @@ rBV
 rBV
 rBV
 tNj
-tNj
+cyP
 aIF
 wbg
 wbg
@@ -308599,10 +308686,10 @@ aOn
 aOn
 rfx
 aOv
+koF
 aOv
-aOv
-aOv
-aOv
+vFA
+koF
 aOv
 aOv
 rfx
@@ -309001,9 +309088,9 @@ aOn
 iUB
 axr
 aOv
+rda
 aOv
-aOv
-aOv
+oIo
 aOv
 aOv
 aOv
@@ -309401,14 +309488,14 @@ xGW
 aOv
 aOn
 aOn
-mwE
-aOv
+aYd
+lUI
 aOv
 auT
 mwE
-auT
+hwr
 aOv
-aOv
+xZW
 jHc
 jHc
 jHc
@@ -309802,14 +309889,14 @@ xAt
 xGW
 aOv
 aOn
-aOn
+fBO
 mwE
-aOv
+hda
 aOv
 aOn
 mwE
 auT
-aOv
+aMC
 aOv
 jHc
 jHc
@@ -310206,13 +310293,13 @@ aOv
 aOn
 rDP
 mwE
-aOv
+dUJ
 aOv
 aOn
 irF
 mwE
 aOv
-aOv
+nGs
 jHc
 war
 war
@@ -310608,11 +310695,11 @@ aOv
 mwE
 mwE
 auT
-aOv
+ufq
 aOv
 aOn
 rfx
-nGs
+mwE
 aOv
 aOv
 jHc
@@ -311013,10 +311100,10 @@ aOv
 aOv
 aOv
 aOv
+mUU
 aOv
 aOv
-aOv
-aOv
+rkz
 aOv
 aOv
 aOv
@@ -311416,7 +311503,7 @@ aOv
 aOv
 aOv
 aOv
-aOv
+eyQ
 aOv
 aOv
 aOv
@@ -311817,10 +311904,10 @@ mwE
 aOv
 aOv
 rfx
-tLr
+kXs
 auT
 aOv
-aOv
+blA
 aOn
 aOn
 aOn
@@ -312220,7 +312307,7 @@ aOv
 aOv
 aOn
 war
-auT
+toU
 aOv
 aOv
 aOn
@@ -312623,7 +312710,7 @@ aOv
 aOn
 war
 mwE
-aOv
+eyQ
 aOv
 aOn
 kXX
@@ -313828,9 +313915,9 @@ aOv
 aOv
 auT
 mwE
-auT
+toU
 aOv
-aOv
+eyQ
 aOv
 aOv
 aOv

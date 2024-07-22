@@ -668,28 +668,24 @@
 	icon = 'icons/roguetown/misc/structure.dmi'
 	icon_state = "shelf_crypt"
 	density = FALSE
-	climbable = TRUE
+	climbable = FALSE
 	dir = SOUTH
 	pixel_y = -4
 
 /obj/structure/rack/rogue/cryptshelf/cryptshelf_bones1
 	name = "stone shelf"
-	climbable = FALSE
 	icon_state = "shelf_crypt_1"
 
 /obj/structure/rack/rogue/cryptshelf/cryptshelf_bones2
 	name = "stone shelf"
-	climbable = FALSE
 	icon_state = "shelf_crypt_2"
 
 /obj/structure/rack/rogue/cryptshelf/cryptshelf_bones3
 	name = "stone shelf"
-	climbable = FALSE
 	icon_state = "shelf_crypt_3"
 
 /obj/structure/rack/rogue/cryptshelf/cryptshelf_bones4
 	name = "stone shelf"
-	climbable = FALSE
 	icon_state = "shelf_crypt_4"
 
 /*
