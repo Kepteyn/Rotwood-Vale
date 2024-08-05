@@ -53,7 +53,7 @@
 		ORGAN_SLOT_TAIL = /obj/item/organ/tail/cat,
 		ORGAN_SLOT_SNOUT = /obj/item/organ/snout/cat,
 		ORGAN_SLOT_TESTICLES = /obj/item/organ/testicles,
-		ORGAN_SLOT_PENIS = /obj/item/organ/penis,
+		ORGAN_SLOT_PENIS = /obj/item/organ/penis/barbed,
 		ORGAN_SLOT_BREASTS = /obj/item/organ/breasts,
 		ORGAN_SLOT_VAGINA = /obj/item/organ/vagina,
 		)
@@ -70,7 +70,7 @@
 		/datum/customizer/organ/snout/tabaxi,
 		/datum/customizer/organ/tail/tabaxi,
 		/datum/customizer/organ/testicles/external,
-		/datum/customizer/organ/penis/knotted,
+		/datum/customizer/organ/penis/feline,
 		/datum/customizer/organ/breasts/animal,
 		/datum/customizer/organ/vagina/animal,
 		)
@@ -90,6 +90,7 @@
 		/datum/language/common,
 	)
 	descriptor_choices = list(
+		/datum/descriptor_choice/height,
 		/datum/descriptor_choice/body,
 		/datum/descriptor_choice/stature,
 		/datum/descriptor_choice/face,
@@ -98,6 +99,8 @@
 		/datum/descriptor_choice/voice,
 		/datum/descriptor_choice/prominent_one,
 		/datum/descriptor_choice/prominent_two,
+		/datum/descriptor_choice/prominent_three,
+		/datum/descriptor_choice/prominent_four,
 	)
 
 /datum/species/tabaxi/check_roundstart_eligible()

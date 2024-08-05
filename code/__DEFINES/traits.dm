@@ -6,7 +6,7 @@
 #define TRAIT_NOSEGRAB "Nosey"
 #define TRAIT_NUTCRACKER "Nutcracker"
 #define TRAIT_SEEPRICES "Skilled Appraiser"
-#define TRAIT_SEEPRICES_SHITTY "Merchant-in-training"
+#define TRAIT_SEEPRICES_SHITTY "Appraiser"
 #define TRAIT_STRONGBITE "Strong Bite"
 #define TRAIT_NOBLE "Noble Blooded"
 #define TRAIT_EMPATH "Empath"
@@ -32,8 +32,13 @@
 #define TRAIT_ANTIMAGIC	"Anti-Magic"
 #define TRAIT_SHOCKIMMUNE "Shock Immunity"
 #define TRAIT_NOSLEEP "Fatal Insomnia"
+#define TRAIT_FASTSLEEP "Fast Sleeper"
 #define TRAIT_GOODLOVER "Fabled Lover"
 #define TRAIT_SEEDKNOW "Seed Knower"
+// ROGUEspecialTRAITS (description when rmb skills button)
+#define TRAIT_CIVILIZEDBARBARIAN "Tavern Brawler"
+#define TRAIT_COMICSANS "Annoying Face"
+#define TRAIT_WATERBREATHING "Water Breathing"
 
 // PATRON GOD TRAITS
 #define TRAIT_ROT_EATER "Blessing of Pestra" //can eat rotten food
@@ -49,6 +54,7 @@
 #define TRAIT_SIMPLE_WOUNDS "simple_wounds"
 #define TRAIT_BANDITCAMP "banditcamp"
 #define TRAIT_VAMPMANSION "vampiremansion"
+#define TRAIT_VAMP_DREAMS "vamp_dreams"
 #define TRAIT_LIMPDICK "limp_dick"
 #define TRAIT_SEXPASS "sexpass"
 #define TRAIT_STEELHEARTED "steelhearted" //no bad mood from dismembering or seeing this
@@ -86,7 +92,7 @@ GLOBAL_LIST_INIT(roguetraits, list(
 	TRAIT_CYCLOPS_RIGHT = span_warning("My right eye has been poked out..."),
 	TRAIT_RETARD_ANATOMY = "My anatomy is inhumen, preventing me from wearing hats and shoes.",
 	TRAIT_NASTY_EATER = span_dead("I can eat bad food, and water that would be toxic to humen will not affect me."),
-	TRAIT_WILD_EATER = "I can eat raw food and drink from dirty water.",
+	TRAIT_WILD_EATER = span_info("I can eat raw food and drink from dirty water."),
 	TRAIT_NOFALLDAMAGE1 = span_warning("I can easily handle minor falls."),
 	TRAIT_DISFIGURED = span_warning("No one can recognize me..."),
 	TRAIT_MISSING_NOSE = span_warning("I struggle to breathe."),
@@ -103,6 +109,9 @@ GLOBAL_LIST_INIT(roguetraits, list(
 	TRAIT_NORUN = span_warning("My body has atrophied in my state of decay; my leg joints just don't have the strength or durability for running anymore"),
 	TRAIT_GOODLOVER = span_love("It's a lucky thing to share my bed."),
 	TRAIT_SEEDKNOW = span_info("I know which seeds grow which crops."),
+	TRAIT_CIVILIZEDBARBARIAN = span_info("Your fists are heavier."),
+	TRAIT_COMICSANS = span_sans("I am cursed with a odd voice."),
+	TRAIT_WATERBREATHING = span_info("I do not drown in bodies of water."),
 ))
 
 // trait accessor defines

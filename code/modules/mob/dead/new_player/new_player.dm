@@ -560,6 +560,8 @@ GLOBAL_LIST_INIT(roleplay_readme, world.file2list("strings/rt/rp_prompt.txt"))
 	else
 		GLOB.respawncounts[character.ckey] = 1
 //	add_roundplayed(character.ckey)
+	if(humanc)
+		apply_job_prefs_special(humanc)
 	log_manifest(character.mind.key,character.mind,character,latejoin = TRUE)
 
 /mob/dead/new_player/proc/AddEmploymentContract(mob/living/carbon/human/employee)
@@ -737,6 +739,7 @@ GLOBAL_LIST_INIT(roleplay_readme, world.file2list("strings/rt/rp_prompt.txt"))
 		var/area/joined_area = get_area(new_character.loc)
 		if(joined_area)
 			joined_area.on_joining_game(new_character)
+		new_character.update_fov_angles()
 		new_character = null
 		qdel(src)
 

@@ -182,15 +182,37 @@
 
 	if(m_intent == MOVE_INTENT_RUN && dir == get_dir(src, M))
 		if(isliving(M))
+			var/sprint_distance = sprinted_tiles
+			toggle_rogmove_intent(MOVE_INTENT_WALK, TRUE)
+
 			var/mob/living/L = M
-			if(STACON > L.STACON)
-				if(STASTR > L.STASTR)
-					L.Knockdown(1)
-				else
-					Knockdown(1)
-			if(STACON < L.STACON)
+
+			var/self_points = FLOOR((STACON + STASTR)/2, 1)
+			var/target_points = FLOOR((L.STACON + L.STASTR)/2, 1)
+
+			switch(sprint_distance)
+				// Point blank
+				if(0 to 1)
+					self_points -= 4
+				// One to two tile between the people
+				if(2 to 3)
+					self_points -= 2
+				// Five or above tiles between people
+				if(6 to INFINITY)
+					self_points += 1
+
+			// If charging into the BACK of the enemy (facing away)
+			if(L.dir == get_dir(src, L))
+				self_points += 2
+
+			// Randomize con roll from -1 to +1 to make it less consistent
+			self_points += rand(-1, 1)
+
+			if(self_points > target_points)
+				L.Knockdown(1)
+			if(self_points < target_points)
 				Knockdown(30)
-			if(STACON == L.STACON)
+			if(self_points == target_points)
 				L.Knockdown(1)
 				Knockdown(30)
 			Immobilize(30)
@@ -875,6 +897,9 @@
 	var/old_direction = dir
 	var/turf/T = loc
 
+	if(m_intent == MOVE_INTENT_RUN)
+		sprinted_tiles++
+
 	if(wallpressed)
 		update_wallpress(T, newloc, direct)
 
@@ -1041,6 +1066,7 @@
 		return
 	if(stat)
 		return
+	log_combat(src, null, "surrendered")
 	surrendering = 1
 	changeNext_move(CLICK_CD_EXHAUSTED)
 	var/image/flaggy = image('icons/effects/effects.dmi',src,"surrender_large",ABOVE_MOB_LAYER)
@@ -1053,6 +1079,7 @@
 	playsound(src, 'sound/misc/surrender.ogg', 100, FALSE, -1)
 	sleep(150)
 	surrendering = 0
+	log_combat(src, null, "surrender ended")
 
 
 /mob/proc/stop_attack(message = FALSE)
