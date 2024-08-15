@@ -5,6 +5,7 @@
 	icon = 'icons/roguetown/misc/structure.dmi'
 	icon_state = "ladder11"
 	anchored = TRUE
+	var/click_update = FALSE
 	var/obj/structure/ladder/down   //the ladder below this one
 	var/obj/structure/ladder/up     //the ladder above this one
 	obj_flags = BLOCK_Z_OUT_DOWN
@@ -81,6 +82,8 @@
 
 	if(!is_ghost)
 		playsound(src, 'sound/foley/ladder.ogg', 100, FALSE)
+		if(click_update == TRUE)
+			update_icon()
 		if(!do_after(user, 30, TRUE, src))
 			return
 
@@ -118,6 +121,7 @@
 	if(!is_ghost)
 		add_fingerprint(user)
 
+
 /obj/structure/ladder/attack_hand(mob/user)
 	. = ..()
 	if(.)
@@ -146,7 +150,6 @@
 		user.visible_message(span_notice("[user] climbs up [src]."), span_notice("I climb up [src]."))
 	else
 		user.visible_message(span_notice("[user] climbs down [src]."), span_notice("I climb down [src]."))
-
 
 // Indestructible away mission ladders which link based on a mapped ID and height value rather than X/Y/Z.
 /obj/structure/ladder/unbreakable
@@ -230,3 +233,29 @@
 			pixel_x = -4
 		if(EAST)
 			pixel_x = 4
+
+/obj/structure/ladder/manhole
+	name = "man hole"
+	icon_state = "manhole"
+	click_update = TRUE
+
+/obj/structure/ladder/manhole/update_icon()
+	if(up && down)
+		icon_state = "ladder11"
+
+	else if(up)
+		icon_state = "ladder10"
+
+	else if(down)
+		icon_state = "manholeopen"
+		playsound(src, 'sound/foley/doors/ironclose.ogg', 100, FALSE)
+		addtimer(CALLBACK(src, PROC_REF(manholeclose)), 150)
+
+	else	//wtf make your ladders properly assholes
+		icon_state = "ladder00"
+
+/obj/structure/ladder/manhole/proc/manholeclose()
+	if(icon_state == "manhole")
+		return
+	playsound(src, 'sound/foley/doors/ironclose.ogg', 100, FALSE)
+	icon_state = "manhole"

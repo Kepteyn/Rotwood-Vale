@@ -809,12 +809,6 @@
 /obj/item/storage/box/matches,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/basement)
-"aVy" = (
-/obj/structure/fluff/railing/border{
-	dir = 8
-	},
-/turf/open/floor/rogue/blocks,
-/area/rogue/outdoors/town)
 "aWs" = (
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/rogue/hexstone,
@@ -3499,6 +3493,10 @@
 /obj/item/rogueore/coal,
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town/dwarfin)
+"ebz" = (
+/obj/structure/ladder/manhole,
+/turf/open/floor/rogue/blocks,
+/area/rogue/outdoors/town)
 "ecm" = (
 /obj/machinery/light/rogue/wallfire/candle{
 	pixel_y = -32
@@ -17943,6 +17941,10 @@
 /obj/effect/landmark/map_load_mark/sewers_bottomright,
 /turf/closed/mineral/rogue,
 /area/rogue/under/town/sewer)
+"vfQ" = (
+/obj/structure/ladder,
+/turf/open/floor/rogue/greenstone,
+/area/rogue/under/town/sewer)
 "vgy" = (
 /obj/structure/rack/rogue,
 /obj/machinery/light/rogue/wallfire/candle/blue/l,
@@ -19447,9 +19449,7 @@
 	},
 /area/rogue/indoors/town)
 "xbo" = (
-/obj/structure/stairs{
-	dir = 8
-	},
+/obj/structure/ladder,
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/town/sewer)
 "xbt" = (
@@ -187690,7 +187690,7 @@ gLf
 gLf
 gLf
 gLf
-gLf
+vfQ
 gLf
 gLf
 gLf
@@ -286187,8 +286187,8 @@ cEK
 spR
 sRS
 txa
-edc
-dpw
+wVI
+wbg
 wbg
 wbg
 wVI
@@ -286589,8 +286589,8 @@ spR
 cEK
 cBf
 txa
-xAt
-dpw
+ebz
+wbg
 eEo
 wbg
 wbg
@@ -286991,8 +286991,8 @@ cEK
 spR
 cBf
 txa
-aVy
-oZC
+wVI
+wbg
 wbg
 wbg
 wVI
