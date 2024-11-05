@@ -959,7 +959,6 @@
 	},
 /area/rogue/indoors/town)
 "aTX" = (
-/obj/machinery/light/roguestreet/orange,
 /obj/item/roguebin,
 /turf/open/floor/rogue/blocks,
 /area/rogue/outdoors/town)
@@ -7398,10 +7397,6 @@
 "gJG" = (
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/outdoors/town/roofs)
-"gJT" = (
-/obj/machinery/light/rogue/torchholder/l,
-/turf/open/floor/rogue/blocks,
-/area/rogue/outdoors/town)
 "gKd" = (
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "horzw"
@@ -10217,10 +10212,6 @@
 	},
 /turf/open/floor/carpet/red,
 /area/rogue/indoors/town/tavern)
-"jqJ" = (
-/obj/machinery/light/roguestreet/orange,
-/turf/open/floor/rogue/cobblerock,
-/area/rogue/outdoors/town)
 "jqM" = (
 /obj/machinery/light/rogue/torchholder{
 	dir = 8
@@ -10532,12 +10523,6 @@
 	},
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/indoors/town)
-"jGS" = (
-/obj/machinery/light/roguestreet/orange{
-	dir = 1
-	},
-/turf/open/floor/rogue/cobblerock,
-/area/rogue/outdoors/town)
 "jGU" = (
 /obj/structure/closet/crate/chest{
 	lockid = "keep_armory"
@@ -14230,12 +14215,6 @@
 /obj/item/reagent_containers/glass/cup,
 /turf/open/floor/rogue/blocks/stonered,
 /area/rogue/indoors/town/manor)
-"ncS" = (
-/obj/machinery/light/roguestreet/orange/midlamp{
-	pixel_y = 10
-	},
-/turf/open/floor/rogue/blocks,
-/area/rogue/outdoors/town)
 "nda" = (
 /obj/structure/rack/rogue,
 /obj/item/keyring,
@@ -15577,9 +15556,6 @@
 "okR" = (
 /obj/structure/fluff/railing/border{
 	dir = 10
-	},
-/obj/machinery/light/roguestreet/orange{
-	dir = 1
 	},
 /turf/open/floor/rogue/blocks,
 /area/rogue/outdoors/town)
@@ -286218,11 +286194,11 @@ qkH
 qkH
 qkH
 dHZ
-ylJ
+wVI
 wbg
 wbg
 wbg
-ylJ
+wVI
 wVI
 sco
 uAe
@@ -289858,7 +289834,7 @@ kha
 lfV
 sco
 wVI
-tTh
+wVI
 wbg
 kDH
 xAt
@@ -302698,7 +302674,7 @@ wbg
 wVI
 wVI
 wVI
-gJT
+wVI
 wVI
 wVI
 wVI
@@ -303124,7 +303100,7 @@ ylJ
 wVI
 wVI
 wVI
-ylJ
+wVI
 wVI
 kDH
 xAt
@@ -303507,7 +303483,7 @@ evo
 evo
 evo
 evo
-tTh
+wVI
 wbg
 wbg
 wbg
@@ -303515,7 +303491,7 @@ gJs
 aOv
 aOv
 aOv
-jqJ
+aOv
 tkp
 wbg
 wbg
@@ -304311,7 +304287,7 @@ mxM
 evo
 evo
 evo
-ylJ
+wVI
 wbg
 wbg
 aOv
@@ -305525,7 +305501,7 @@ ppo
 aOv
 aOv
 aOv
-jGS
+aOv
 tkp
 wbg
 wbg
@@ -305939,7 +305915,7 @@ thT
 thT
 dHZ
 aFf
-tTh
+wVI
 kDH
 xAt
 xAt
@@ -309127,7 +309103,7 @@ hpj
 tNj
 wbg
 eEo
-ncS
+wbg
 wbg
 wbg
 qDx
@@ -309546,7 +309522,7 @@ wVI
 wbg
 wbg
 wVI
-tTh
+wVI
 kDH
 xAt
 lia
@@ -312343,7 +312319,7 @@ poR
 tNj
 wbg
 wVI
-ylJ
+wVI
 rfx
 rfx
 rfx
