@@ -5,6 +5,7 @@
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = RACES_TOLERATED_UP
 	show_wanderer_examine = FALSE
+	show_foreign_examine = TRUE
 
 /datum/outfit/job/roguetown/slaver/master/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -13,7 +14,7 @@
 	neck = /obj/item/clothing/neck/roguetown/chaincoif
 	shoes = /obj/item/clothing/shoes/roguetown/armor/shalal
 	pants = /obj/item/clothing/under/roguetown/chainlegs
-	gloves = /obj/item/clothing/gloves/roguetown/angle
+	gloves = /obj/item/clothing/gloves/roguetown/leather/angle
 	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/purple
 	belt = /obj/item/storage/belt/rogue/leather/shalalz
 	armor = /obj/item/clothing/suit/roguetown/armor/plate/scale
@@ -55,6 +56,7 @@
 	allowed_races = RACES_TOLERATED_UP
 	grant_lit_torch = TRUE
 	show_wanderer_examine = FALSE
+	show_foreign_examine = TRUE
 
 /datum/outfit/job/roguetown/slaver/slavemercsword/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -63,7 +65,7 @@
 	neck = /obj/item/storage/belt/rogue/pouch/coins/poor
 	shoes = /obj/item/clothing/shoes/roguetown/armor/shalal
 	pants = /obj/item/clothing/under/roguetown/trou/leather
-	gloves = /obj/item/clothing/gloves/roguetown/angle
+	gloves = /obj/item/clothing/gloves/roguetown/leather/angle
 	belt = /obj/item/storage/belt/rogue/leather/shalalz
 	armor = /obj/item/clothing/suit/roguetown/armor/plate/scale
 	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson
@@ -106,7 +108,7 @@
 	allowed_races = RACES_TOLERATED_UP
 	grant_lit_torch = TRUE
 	show_wanderer_examine = FALSE
-	show_wanderer_examine = FALSE
+	show_foreign_examine = TRUE
 
 /datum/outfit/job/roguetown/slaver/slavemercwhip/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -115,7 +117,7 @@
 	neck = /obj/item/storage/belt/rogue/pouch/coins/poor
 	shoes = /obj/item/clothing/shoes/roguetown/armor/shalal
 	pants = /obj/item/clothing/under/roguetown/trou/leather
-	gloves = /obj/item/clothing/gloves/roguetown/angle
+	gloves = /obj/item/clothing/gloves/roguetown/leather/angle
 	belt = /obj/item/storage/belt/rogue/leather/shalalz
 	armor = /obj/item/clothing/suit/roguetown/armor/plate/scale
 	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson
@@ -158,6 +160,7 @@
 	allowed_races = RACES_TOLERATED_UP
 	grant_lit_torch = TRUE
 	show_wanderer_examine = FALSE
+	show_foreign_examine = TRUE
 
 /datum/outfit/job/roguetown/slaver/slavemercbow/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -166,7 +169,7 @@
 	neck = /obj/item/clothing/neck/roguetown/gorget
 	shoes = /obj/item/clothing/shoes/roguetown/armor/shalal
 	pants = /obj/item/clothing/under/roguetown/trou/leather
-	gloves = /obj/item/clothing/gloves/roguetown/angle
+	gloves = /obj/item/clothing/gloves/roguetown/leather/angle
 	belt = /obj/item/storage/belt/rogue/leather/shalalz
 	armor = /obj/item/clothing/suit/roguetown/armor/chainmail
 	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson
@@ -209,11 +212,12 @@
 	allowed_races = RACES_ALL_KINDS
 	grant_lit_torch = TRUE
 	show_wanderer_examine = FALSE
+	show_foreign_examine = TRUE
 
 /datum/outfit/job/roguetown/slaver/slavez/pre_equip(mob/living/carbon/human/H)
 	..()
 	armor = /obj/item/clothing/suit/roguetown/shirt/rags
-	neck = /obj/item/clothing/neck/roguetown/gorget/prisoner
+	neck = /obj/item/clothing/neck/roguetown/collar/leather/cursed
 	belt = /obj/item/storage/belt/rogue/leather/rope
 	beltl = /obj/item/storage/belt/rogue/pouch
 	beltr = /obj/item/flint

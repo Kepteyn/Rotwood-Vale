@@ -13,7 +13,9 @@
 	var/list/ore = list()
 	var/maxore = 1
 	var/cooking = 0
-	fueluse = 5 MINUTES
+	fueluse = 30 MINUTES
+	start_fuel = 5 MINUTES
+	fuel_modifier = 0.33
 	crossfire = FALSE
 
 /obj/machinery/light/rogue/smelter/attackby(obj/item/W, mob/living/user, params)
@@ -33,8 +35,11 @@
 			return
 		if(on)
 			return
-	if(istype(W, /obj/item/rogueore/coal) && fueluse <= 0)
-		return ..()
+
+	if(W.firefuel)
+		if (..())
+			return
+
 	if((ore.len < maxore) && W.smeltresult)
 		W.forceMove(src)
 		ore += W
@@ -58,7 +63,6 @@
 		user.visible_message(span_info("[user] retrieves [I] from [src]."))
 	else
 		return ..()
-
 
 /obj/machinery/light/rogue/smelter/process()
 	..()
@@ -92,7 +96,6 @@
 	anchored = TRUE
 	density = TRUE
 	maxore = 4
-	fueluse = 10 MINUTES
 	climbable = FALSE
 
 /obj/machinery/light/rogue/smelter/great/process()
@@ -126,6 +129,7 @@
 
 					if(steelalloy == 7)
 						testing("STEEL ALLOYED")
+						maxore = 3 // Coal no longer turns to steel
 						alloy = /obj/item/ingot/steel
 					else if(bronzealloy == 7)
 						testing("BRONZE ALLOYED")
@@ -150,6 +154,7 @@
 								var/obj/item/R = new I.smeltresult(src)
 								ore += R
 								qdel(I)
+					maxore = initial(maxore)
 					playsound(src,'sound/misc/smelter_fin.ogg', 100, FALSE)
 					visible_message(span_notice("[src] is finished."))
 					cooking = 31

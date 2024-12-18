@@ -29,21 +29,20 @@
 
 /datum/outfit/job/roguetown/priest/pre_equip(mob/living/carbon/human/H)
 	..()
-	H.virginity = TRUE
-	neck = /obj/item/clothing/neck/roguetown/psicross/astrata
+	wrists = /obj/item/clothing/neck/roguetown/psicross/astrata
 	head = /obj/item/clothing/head/roguetown/priestmask
 	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/priest
 	pants = /obj/item/clothing/under/roguetown/tights/black
 	shoes = /obj/item/clothing/shoes/roguetown/shortboots
-	beltl = /obj/item/keyring/priest
 	belt = /obj/item/storage/belt/rogue/leather/rope
-	beltr = /obj/item/storage/belt/rogue/pouch/coins/rich
+	neck = /obj/item/storage/belt/rogue/pouch/coins/rich
 	id = /obj/item/clothing/ring/active/nomag
 	armor = /obj/item/clothing/suit/roguetown/shirt/robe/priest
 	backl = /obj/item/storage/backpack/rogue/satchel
 	backpack_contents = list(
 		/obj/item/needle/pestra = 1,
 		/obj/item/natural/worms/leech/cheele = 1, //little buddy
+		/obj/item/storage/keyring/priest = 1,
 	)
 	ADD_TRAIT(H, TRAIT_CHOSEN, TRAIT_GENERIC)
 	if(H.mind)
@@ -73,6 +72,10 @@
 //		H.underwear_color = CLOTHING_BLACK
 //		H.update_body()
 
+/datum/outfit/job/roguetown/priest/post_equip(mob/living/carbon/human/H)
+	..()
+	H.virginity = TRUE
+
 /mob/living/carbon/human/proc/coronate_lord()
 	set name = "Coronate"
 	set category = "Priest"
@@ -94,12 +97,12 @@
 		//Abdicate previous Duke
 		for(var/mob/living/carbon/human/HL in GLOB.human_list)
 			if(HL.mind)
-				if(HL.mind.assigned_role == "Duke" || HL.mind.assigned_role == "Duchess Consort")
+				if(HL.mind.assigned_role == "Duke" || HL.mind.assigned_role == "Duchess")
 					HL.mind.assigned_role = "Towner" //So they don't get the innate traits of the lord
 			//would be better to change their title directly, but that's not possible since the title comes from the job datum
 			if(HL.job == "Duke")
 				HL.job = "Duke Emeritus"
-			if(HL.job == "Duchess Consort")
+			if(HL.job == "Duchess")
 				HL.job = "Duchess Dowager"
 			SSjob.type_occupations[/datum/job/roguetown/lord].remove_spells(HL)
 

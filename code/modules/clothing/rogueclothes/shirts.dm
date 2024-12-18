@@ -181,6 +181,9 @@
 /obj/item/clothing/suit/roguetown/shirt/tunic/ucolored
 	color = COLOR_GRAY
 
+/obj/item/clothing/suit/roguetown/shirt/tunic/newmoon
+	color = "#78a3c9"
+
 /obj/item/clothing/suit/roguetown/shirt/tunic/random/Initialize()
 	color = pick(CLOTHING_PURPLE, CLOTHING_RED, CLOTHING_BLUE, CLOTHING_GREEN)
 	return ..()
@@ -301,6 +304,10 @@
 	. = ..()
 	color = pick("#a90707", "#16239a", "#d68fbd", CLOTHING_BLACK)
 
+/obj/item/clothing/suit/roguetown/shirt/dress/gen/sexy/black/Initialize()
+	. = ..()
+	color = CLOTHING_BLACK
+
 /obj/item/clothing/suit/roguetown/shirt/undershirt/webs
 	name = "webbed shirt"
 	desc = "Exotic silk finely woven into.. this? Might as well be wearing a spiderweb"
@@ -319,6 +326,7 @@
 	desc = ""
 	body_parts_covered = CHEST|GROIN|ARMS|VITALS
 	icon_state = "jestershirt"
+	do_sound_bell = FALSE
 	icon = 'icons/roguetown/clothing/shirts.dmi'
 	mob_overlay_icon = 'icons/roguetown/clothing/onmob/shirts.dmi'
 	sleeved = 'icons/roguetown/clothing/onmob/shirts.dmi'

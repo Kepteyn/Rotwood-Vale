@@ -5,7 +5,7 @@
 	var/required_item
 	var/created_item
 	/// Craft Difficulty here only matters for exp calculation and locking recipes based on skill level
-	var/craftdiff = 0
+	var/skill_level = 0
 	var/obj/item/needed_item
 	/// If tha current item has been hammered all the times it needs to
 	var/hammered = FALSE
@@ -67,51 +67,58 @@
 /datum/artificer_recipe/wood //TNevermind this being silly, I was silly and this needs to be redone proper
 	name = "Wooden Cog"
 	required_item = /obj/item/natural/wood/plank
-	created_item = /obj/item/cart_upgrade/level_1
+	created_item = /obj/item/roguegear/wood/basic
 	hammers_per_item = 5
-	craftdiff = 1
+	skill_level = 1
 	i_type = "General"
 
-/datum/artificer_recipe/wood/upgrade2
-	name = "Advanced Wooden Cog (+1 Essence of Lumber)"
-	created_item = /obj/item/cart_upgrade/level_2
+/datum/artificer_recipe/wood/reliable
+	name = "Reliable Wooden Cog (+1 Essence of Lumber)"
+	created_item = /obj/item/roguegear/wood/reliable
 	additional_items = list(/obj/item/grown/log/tree/small/essence = 1)
 	hammers_per_item = 10
-	craftdiff = 2
+	skill_level = 2
+
+/datum/artificer_recipe/wood/unstable
+	name = "Unstable Wooden Cog (+1 Essence of Wilderness)"
+	created_item = /obj/item/roguegear/wood/unstable
+	additional_items = list(/obj/item/natural/cured/essence = 1)
+	hammers_per_item = 10
+	skill_level = 3
 
 /datum/artificer_recipe/bronze
 	name = "Bronze Cog"
 	required_item = /obj/item/ingot/bronze
-	created_item = /obj/item/roguegear
+	created_item = /obj/item/roguegear/bronze
 	hammers_per_item = 10
-	craftdiff = 1
+	skill_level = 1
 	i_type = "General"
 
 /datum/artificer_recipe/general/copper/cog
 	name = "Copper Cog"
 	required_item = /obj/item/ingot/copper
-	created_item = /obj/item/roguegear
+	created_item = /obj/item/roguegear/bronze
 	hammers_per_item = 10
-	craftdiff = 1
+	skill_level = 1
 
 /datum/artificer_recipe/general/tin/cog
 	name = "Tin Cog"
 	required_item = /obj/item/ingot/tin
-	created_item = /obj/item/roguegear
+	created_item = /obj/item/roguegear/bronze
 	hammers_per_item = 10
-	craftdiff = 1
+	skill_level = 1
 
 /datum/artificer_recipe/bronze/locks
-	name = "Lock"
-	created_item = /obj/item/customlock
+	name = "Locks 5x"
+	created_item = list(/obj/item/customlock, /obj/item/customlock, /obj/item/customlock, /obj/item/customlock, /obj/item/customlock)
 	hammers_per_item = 5
-	craftdiff = 1
+	skill_level = 1
 
 /datum/artificer_recipe/bronze/keys
-	name = "Keys 2x"
-	created_item = list(/obj/item/key_custom_blank, /obj/item/key_custom_blank)
+	name = "Keys 5x"
+	created_item = list(/obj/item/key_custom_blank, /obj/item/key_custom_blank, /obj/item/key_custom_blank, /obj/item/key_custom_blank, /obj/item/key_custom_blank)
 	hammers_per_item = 5
-	craftdiff = 1
+	skill_level = 1
 
 // --------- TOOLS -----------
 
@@ -125,7 +132,7 @@
 	name = "Bronze Lamptern"
 	created_item = /obj/item/flashlight/flare/torch/lantern/bronzelamptern
 	hammers_per_item = 9
-	craftdiff = 3
+	skill_level = 3
 	i_type = "Tools"
 
 // --------- Contraptions -----------
@@ -136,10 +143,10 @@
 /datum/artificer_recipe/contraptions/metalizer
 	name = "Wood Metalizer (+1 Wooden Cog)"
 	required_item = /obj/item/ingot/bronze
-	additional_items = list(/obj/item/cart_upgrade/level_1 = 1)
+	additional_items = list(/obj/item/roguegear/wood/basic = 1)
 	created_item = /obj/item/contraption/wood_metalizer
 	hammers_per_item = 12
-	craftdiff = 4
+	skill_level = 4
 
 /datum/artificer_recipe/contraptions/smelter
 	name = "Portable Smelter (+1 Coal)"
@@ -147,15 +154,15 @@
 	additional_items = list(/obj/item/rogueore/coal = 1)
 	created_item = /obj/item/contraption/smelter
 	hammers_per_item = 10
-	craftdiff = 3
+	skill_level = 3
 
 /datum/artificer_recipe/contraptions/imprinter
-	name = "Lock Imprinter (+1 Advanced Wooden Cog)"
+	name = "Lock Imprinter (+1 Reliable Wooden Cog)"
 	required_item = /obj/item/ingot/bronze
-	additional_items = list(/obj/item/cart_upgrade/level_2 = 1)
+	additional_items = list(/obj/item/roguegear/wood/reliable = 1)
 	created_item = /obj/item/contraption/lock_imprinter
 	hammers_per_item = 12
-	craftdiff = 4
+	skill_level = 4
 	
 // --------- WEAPON -----------
 
@@ -183,7 +190,7 @@
 	created_item = /obj/item/rogueweapon/shield/wood/crafted
 	additional_items = list(/obj/item/natural/wood/plank = 1)
 	hammers_per_item = 6
-	craftdiff = 2
+	skill_level = 2
 
 /obj/item/rogueweapon/shield/wood/crafted
 	sellprice = 6
@@ -193,7 +200,7 @@
 	created_item = /obj/item/rogueweapon/shield/heater/crafted
 	additional_items = list(/obj/item/natural/wood/plank = 1, /obj/item/natural/hide/cured = 1)
 	hammers_per_item = 6
-	craftdiff = 3
+	skill_level = 3
 
 /obj/item/rogueweapon/shield/heater/crafted
 	sellprice = 6
@@ -205,7 +212,7 @@
 	created_item = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow
 	additional_items = list(/obj/item/ingot/steel, /obj/item/natural/fibers)
 	hammers_per_item = 10
-	craftdiff = 4
+	skill_level = 4
 
 // --------- AMMUNITION -----------
 
@@ -218,7 +225,7 @@
 	additional_items = list(/obj/item/ingot/iron)
 	created_item = list(/obj/item/ammo_casing/caseless/rogue/bolt, /obj/item/ammo_casing/caseless/rogue/bolt, /obj/item/ammo_casing/caseless/rogue/bolt, /obj/item/ammo_casing/caseless/rogue/bolt, /obj/item/ammo_casing/caseless/rogue/bolt)
 	hammers_per_item = 6
-	craftdiff = 2
+	skill_level = 2
 
 /datum/artificer_recipe/ammunition/arrows
 	name = "Arrows 5x (+1 Iron)"
@@ -226,7 +233,7 @@
 	additional_items = list(/obj/item/ingot/iron)
 	created_item = list(/obj/item/ammo_casing/caseless/rogue/arrow/iron,/obj/item/ammo_casing/caseless/rogue/arrow/iron,/obj/item/ammo_casing/caseless/rogue/arrow/iron, /obj/item/ammo_casing/caseless/rogue/arrow/iron, /obj/item/ammo_casing/caseless/rogue/arrow/iron)
 	hammers_per_item = 6
-	craftdiff = 2
+	skill_level = 2
 
 // --------- PROSTHETICS -----------
 
@@ -236,41 +243,41 @@
 /datum/artificer_recipe/prosthetics/wood/arm_left
 	name = "Left Wooden Arm (+1 Wooden Cog)"
 	required_item = /obj/item/natural/wood/plank
-	additional_items = list(/obj/item/natural/wood/plank = 2, /obj/item/cart_upgrade/level_1 = 1)
+	additional_items = list(/obj/item/natural/wood/plank = 2, /obj/item/roguegear/wood/basic = 1)
 	created_item = /obj/item/bodypart/l_arm/prosthetic/wood
 	hammers_per_item = 4
-	craftdiff = 2
+	skill_level = 2
 
 /datum/artificer_recipe/prosthetics/wood/arm_right
 	name = "Right Wooden Arm (+1 Wooden Cog)"
 	required_item = /obj/item/natural/wood/plank
-	additional_items = list(/obj/item/natural/wood/plank = 2, /obj/item/cart_upgrade/level_1 = 1)
+	additional_items = list(/obj/item/natural/wood/plank = 2, /obj/item/roguegear/wood/basic = 1)
 	created_item = /obj/item/bodypart/r_arm/prosthetic/wood
 	hammers_per_item = 4
-	craftdiff = 2
+	skill_level = 2
 
 /datum/artificer_recipe/prosthetics/wood/leg_left
 	name = "Left Wooden Leg (+1 Wooden Cog)"
 	required_item = /obj/item/natural/wood/plank
-	additional_items = list(/obj/item/natural/wood/plank = 2, /obj/item/cart_upgrade/level_1 = 1)
+	additional_items = list(/obj/item/natural/wood/plank = 2, /obj/item/roguegear/wood/basic = 1)
 	created_item = /obj/item/bodypart/l_leg/prosthetic/wood
 	hammers_per_item = 4
-	craftdiff = 2
+	skill_level = 2
 
 /datum/artificer_recipe/prosthetics/wood/leg_right
 	name = "Right Wooden Leg (+1 Wooden Cog)"
 	required_item = /obj/item/natural/wood/plank
-	additional_items = list(/obj/item/natural/wood/plank = 2, /obj/item/cart_upgrade/level_1 = 1)
+	additional_items = list(/obj/item/natural/wood/plank = 2, /obj/item/roguegear/wood/basic = 1)
 	created_item = /obj/item/bodypart/r_leg/prosthetic/wood
 	hammers_per_item = 4
-	craftdiff = 2
+	skill_level = 2
 
 /datum/artificer_recipe/prosthetics/wood/eye
 	name = "Wooden Eyeball"
 	required_item = /obj/item/natural/wood/plank
 	created_item = /obj/item/organ/eyes/robotic/wooden
 	hammers_per_item = 5
-	craftdiff = 2
+	skill_level = 2
 
 // --------- BRONZE -----------
 
@@ -278,8 +285,8 @@
 	name = "Bronze Left Arm (+1 Cog)"
 	created_item = /obj/item/bodypart/l_arm/prosthetic/bronze
 	hammers_per_item = 15
-	craftdiff = 4
-	additional_items = list(/obj/item/roguegear = 1)
+	skill_level = 4
+	additional_items = list(/obj/item/roguegear/bronze = 1)
 	i_type = "Prosthetics"
 
 /datum/artificer_recipe/bronze/prosthetic/arm_right
@@ -292,9 +299,9 @@
 	name = "Gold Left Arm (+2 Cog)"
 	required_item = /obj/item/ingot/gold
 	created_item = /obj/item/bodypart/l_arm/prosthetic/gold
-	additional_items = list(/obj/item/roguegear = 2)
+	additional_items = list(/obj/item/roguegear/bronze = 2)
 	hammers_per_item = 20
-	craftdiff = 5
+	skill_level = 5
 	i_type = "Prosthetics"
 
 /datum/artificer_recipe/gold/prosthetic/arm_right
@@ -315,9 +322,9 @@
 	name = "Steel Left Arm (+1 Steel, +1 Cog)"
 	created_item = /obj/item/bodypart/l_arm/prosthetic/steel
 	required_item = /obj/item/ingot/steel
-	additional_items = list(/obj/item/ingot/steel = 1, /obj/item/roguegear = 1)
+	additional_items = list(/obj/item/ingot/steel = 1, /obj/item/roguegear/bronze = 1)
 	hammers_per_item = 15
-	craftdiff = 4
+	skill_level = 4
 	i_type = "Prosthetics"
 
 /datum/artificer_recipe/steel/prosthetic/arm_right
@@ -332,15 +339,63 @@
 	name = "Steel Right Leg (+1 Steel, +1 Cog)"
 	created_item = /obj/item/bodypart/r_leg/prosthetic/steel
 
+// --------- GUNS -----------
+
+/datum/artificer_recipe/guns
+	i_type = "Firearms"
+
+/datum/artificer_recipe/guns/barrel
+	name = "Gun Barrel (+1 Steel)"
+	required_item = /obj/item/ingot/steel
+	created_item = /obj/item/gunbarrel
+	additional_items = list(/obj/item/ingot/steel = 1)
+	hammers_per_item = 5
+	skill_level = 2
+
+/datum/artificer_recipe/guns/parts
+	name = "Gun Lock (+1 Cog)"
+	required_item = /obj/item/ingot/steel
+	created_item = /obj/item/gunlock
+	additional_items = list(/obj/item/roguegear/bronze = 1)
+	hammers_per_item = 5
+	skill_level = 3
+
+/datum/artificer_recipe/guns/stock
+	name = "Gun Stock"
+	required_item = /obj/item/natural/wood/plank
+	created_item = /obj/item/gunstock
+	hammers_per_item = 5
+	skill_level = 2
+
+/datum/artificer_recipe/guns/arquebus
+	name = "Arquebus (+1 Stock, Lock, and Barrel)"
+	required_item = /obj/item/ingot/steel
+	additional_items = list(/obj/item/gunlock = 1,
+							/obj/item/gunstock = 1,
+							/obj/item/gunbarrel = 1)
+	created_item = list(/obj/item/gun/ballistic/arquebus)
+	hammers_per_item = 10
+	skill_level = 4
+
+/datum/artificer_recipe/guns/blunderbuss
+	name = "Blunderbuss (+1 Stock, Lock, and Barrel)"
+	required_item = /obj/item/ingot/steel
+	additional_items = list(/obj/item/gunlock = 1,
+							/obj/item/gunstock = 1,
+							/obj/item/gunbarrel = 1)
+	created_item = list(/obj/item/gun/ballistic/blunderbuss)
+	hammers_per_item = 10
+	skill_level = 4
+
 // --------- IRON -----------
 
 /datum/artificer_recipe/iron/prosthetic //These are the inexpensive alternatives
 	name = "Iron Left Arm (+1 Cog)"
 	created_item = /obj/item/bodypart/l_arm/prosthetic/iron
 	required_item = /obj/item/ingot/iron
-	additional_items = list(/obj/item/natural/wood/plank = 1, /obj/item/roguegear = 1)
+	additional_items = list(/obj/item/natural/wood/plank = 1, /obj/item/roguegear/bronze = 1)
 	hammers_per_item = 4
-	craftdiff = 2
+	skill_level = 2
 	i_type = "Prosthetics"
 
 /datum/artificer_recipe/iron/prosthetic/arm_right
