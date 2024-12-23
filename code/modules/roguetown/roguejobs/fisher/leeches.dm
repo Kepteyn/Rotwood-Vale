@@ -6,12 +6,78 @@
 	icon = 'icons/roguetown/items/surgery.dmi'
 	icon_state = "leech"
 	baitchance = 100
-	fishloot = list(/obj/item/reagent_containers/food/snacks/fish/carp = 5,
-					/obj/item/reagent_containers/food/snacks/fish/eel = 5,
-					/obj/item/reagent_containers/food/snacks/fish/angler = 1)
+	fishloot = list(
+		/obj/item/trash/applecore = 625,
+		/obj/item/trash/pearcore = 625,
+		/obj/item/natural/fibers = 625,
+		/obj/item/grown/log/tree/stick = 625,
+		/obj/item/reagent_containers/food/snacks/fish/carp = 214,
+		/obj/item/reagent_containers/food/snacks/fish/eel = 214,
+		/obj/item/reagent_containers/food/snacks/fish/angler = 214,
+		/obj/item/reagent_containers/food/snacks/fish/shrimp = 214,
+		/obj/item/reagent_containers/food/snacks/fish/clownfish = 214,
+		/obj/item/natural/bundle/stick = 214,
+		/obj/item/natural/stone = 214,
+		/obj/item/clothing/head/roguetown/helmet/tricorn = 45,
+		/obj/item/clothing/head/roguetown/helmet/bandana = 45,
+		/obj/item/clothing/head/roguetown/roguehood = 45,
+		/obj/item/clothing/under/roguetown/loincloth/brown = 45,
+		/obj/item/clothing/shoes/roguetown/sandals = 45,
+		/obj/item/clothing/shoes/roguetown/simpleshoes = 45,
+		/obj/item/clothing/gloves/roguetown/fingerless = 45,
+		/obj/item/clothing/gloves/roguetown/leather = 45,
+		/obj/item/clothing/shoes/roguetown/armor/leather = 45,
+		/obj/item/reagent_containers/syringe = 45,
+		/obj/item/reagent_containers/glass/cup/wooden = 45,
+		/obj/projectile/bullet/reusable/bolt = 45,
+		/obj/item/ammo_casing/caseless/rogue/arrow = 45,
+		/obj/item/roguecoin/copper = 45,
+		/obj/item/leash = 45,
+		/obj/item/customlock = 45,
+		/obj/item/storage/belt/rogue/pouch/coins/poor = 45,
+		/obj/item/shard = 45,
+		/obj/item/natural/feather = 45,
+		/obj/item/natural/cloth = 45,
+		/obj/item/kitchen/spoon = 45,
+		/obj/item/restraints/legcuffs/beartrap = 45,
+		/obj/item/roguecoin/silver = 55,
+		/obj/item/roguecoin/gold = 55,
+		/obj/item/clothing/ring/copper = 55,
+		/obj/item/clothing/ring/topazc = 55,
+		/obj/item/clothing/ring/emeraldc = 55,
+		/obj/item/clothing/ring/sapphirec = 55,
+		/obj/item/clothing/ring/silver = 55,
+		/obj/item/clothing/ring/topazs = 55,
+		/obj/item/clothing/ring/emeralds = 55,
+		/obj/item/storage/belt/rogue/pouch/coins/mid = 7,
+		/obj/item/clothing/ring/rubyc = 7,
+		/obj/item/clothing/ring/quartzc = 7,
+		/obj/item/clothing/ring/rubys = 7,
+		/obj/item/clothing/ring/quartzs = 7,
+		/obj/item/clothing/ring/gold = 7,
+		/obj/item/clothing/ring/emerald = 7,
+		/obj/item/clothing/ring/topaz = 7,
+		/obj/item/clothing/ring/sapphire = 7,
+		/obj/item/clothing/ring/diamondc = 7,
+		/obj/item/clothing/ring/diamonds = 7,
+		/obj/item/clothing/ring/quartz = 7,
+		/obj/item/clothing/ring/ruby = 7,
+		/obj/item/clothing/ring/diamond = 7,
+		/obj/item/roguestatue/gold/loot = 10,
+		/obj/item/clothing/ring/diamondc = 10,
+		/obj/item/clothing/ring/diamonds = 10,
+		/obj/item/clothing/ring/ruby = 10,
+		/obj/item/clothing/ring/diamond = 10)
+		//Approximate Catch Rates:
+		//Very Common: 25.0%
+		//Common: Actual = 14.98%
+		//Rare: Target = 9.9%
+		//Super Rare: 4.95%
+		//Ultra Rare: 0.91% - Exclusive to leeches.
+		//Absolute Rarest: 0.5% - Exclusive to leeches. The real treasures are the friends we made along the way.
 	embedding = list(
 		"embed_chance" = 100,
-		"embedded_unsafe_removal_time" = 0, 
+		"embedded_unsafe_removal_time" = 0,
 		"embedded_pain_chance" = 0,
 		"embedded_fall_chance" = 0,
 		"embedded_bloodloss"= 0,
@@ -30,6 +96,9 @@
 	var/blood_storage = 0
 	/// Maximum amount of blood we can store
 	var/blood_maximum = BLOOD_VOLUME_SURVIVE
+	w_class = WEIGHT_CLASS_SMALL
+	// Completely silent, no do_after and no visible_message
+	var/completely_silent = FALSE
 
 /obj/item/natural/worms/leech/Initialize()
 	. = ..()
@@ -70,7 +139,9 @@
 		if(!get_location_accessible(H, check_zone(user.zone_selected)))
 			to_chat(user, span_warning("Something in the way."))
 			return
-		var/used_time = (70 - (H.mind.get_skill_level(/datum/skill/misc/medicine) * 10))/2
+		var/used_time = (70 - (H.mind.get_skill_level(/datum/skill/misc/treatment) * 10))/2
+		if(completely_silent)
+			used_time = 0
 		if(!do_mob(user, H, used_time))
 			return
 		if(!H)
@@ -78,6 +149,8 @@
 		user.dropItemToGround(src)
 		src.forceMove(H)
 		affecting.add_embedded_object(src, silent = TRUE, crit_message = FALSE)
+		if(completely_silent)
+			return
 		if(M == user)
 			user.visible_message(span_notice("[user] places [src] on [user.p_their()] [affecting]."), span_notice("I place a leech on my [affecting]."))
 		else
@@ -206,5 +279,29 @@
 	else
 		user.visible_message(span_notice("[user] squeezes [src]."),\
 							span_notice("I squeeze [src]. It will now extract blood."))
+
+/obj/item/natural/worms/leech/propaganda
+	name = "accursed leech"
+	desc = "A leech like none other."
+	drainage = 0
+	blood_sucking = 0
+	completely_silent = TRUE
+	embedding = list(
+		"embed_chance" = 100,
+		"embedded_unsafe_removal_time" = 0,
+		"embedded_pain_chance" = 0,
+		"embedded_fall_chance" = 0,
+		"embedded_bloodloss"= 0,
+	)
+
+/obj/item/natural/worms/leech/propaganda/on_embed_life(mob/living/user, obj/item/bodypart/bodypart)
+	. = ..()
+	if(!user)
+		return
+	if(iscarbon(user))
+		var/mob/living/carbon/V = user
+		if(prob(5))
+			V.say(pick("PRAISE ZIZO!", "DEATH TO THE TEN..."))
+		V.add_stress(/datum/stressevent/leechcult)
 
 #undef MAX_LEECH_EVILNESS

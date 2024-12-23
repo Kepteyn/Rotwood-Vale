@@ -72,7 +72,7 @@
 		if(roundvoteend)
 			return TRUE
 		if(!SSvote.mode)
-			SSvote.initiate_vote("endround", pick("Zlod", "Sun King", "Gaia", "Aeon", "Gemini", "Aries"))
+			SSvote.initiate_vote("endround", "Zizo")
 //	if(SSshuttle.emergency && (SSshuttle.emergency.mode == SHUTTLE_ENDGAME))
 //		return TRUE
 	if(headrebdecree)
@@ -120,7 +120,7 @@
 	"Knight",
 	"Merchant",
 	"Gatemaster",
-	"Guard Captain",
+	"Retinue Captain",
 	"Inquisitor",
 	"Village Elder",
 	"Watchman")
@@ -237,7 +237,7 @@
 	"Shepherd",
 	"Monk",
 	"Cleric",
-	"Guard Captain")
+	"Retinue Captain")
 	var/proab
 #ifdef TESTSERVER
 	proab = 100

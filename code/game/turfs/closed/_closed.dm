@@ -8,80 +8,9 @@
 	rad_insulation = RAD_MEDIUM_INSULATION
 	baseturfs = list(/turf/open/floor/rogue/naturalstone, /turf/open/transparent/openspace)
 	var/above_floor
-	var/wallpress = TRUE
+	var/leanable = TRUE
 	var/wallclimb = FALSE
 	var/climbdiff = 0
-
-/turf/closed/MouseDrop_T(atom/movable/O, mob/user)
-	. = ..()
-	if(!wallpress)
-		return
-	if(user == O && isliving(O))
-		var/mob/living/L = O
-		if(isanimal(L))
-			var/mob/living/simple_animal/A = L
-			if (!A.dextrous)
-				return
-		if(L.mobility_flags & MOBILITY_MOVE)
-			wallpress(L)
-			return
-
-/turf/closed/proc/wallpress(mob/living/user)
-	if(user.wallpressed)
-		return
-	if(user.pixelshifted)
-		return
-	if(!(user.mobility_flags & MOBILITY_STAND))
-		return
-	var/dir2wall = get_dir(user,src)
-	if(!(dir2wall in GLOB.cardinals))
-		return
-	user.wallpressed = dir2wall
-	user.update_wallpress_slowdown()
-	user.visible_message(span_info("[user] leans against [src]."))
-	switch(dir2wall)
-		if(NORTH)
-			user.setDir(SOUTH)
-			user.set_mob_offsets("wall_press", _x = 0, _y = 20)
-		if(SOUTH)
-			user.setDir(NORTH)
-			user.set_mob_offsets("wall_press", _x = 0, _y = -10)
-		if(EAST)
-			user.setDir(WEST)
-			user.set_mob_offsets("wall_press", _x = 12, _y = 0)
-		if(WEST)
-			user.setDir(EAST)
-			user.set_mob_offsets("wall_press", _x = -12, _y = 0)
-
-/turf/closed/proc/wallshove(mob/living/user)
-	if(user.wallpressed)
-		return
-	if(!(user.mobility_flags & MOBILITY_STAND))
-		return
-	var/dir2wall = get_dir(user,src)
-	if(!(dir2wall in GLOB.cardinals))
-		return
-	user.wallpressed = dir2wall
-	user.update_wallpress_slowdown()
-	switch(dir2wall)
-		if(NORTH)
-			user.setDir(NORTH)
-			user.set_mob_offsets("wall_press", _x = 0, _y = 20)
-		if(SOUTH)
-			user.setDir(SOUTH)
-			user.set_mob_offsets("wall_press", _x = 0, _y = -10)
-		if(EAST)
-			user.setDir(EAST)
-			user.set_mob_offsets("wall_press", _x = 12, _y = 0)
-		if(WEST)
-			user.setDir(WEST)
-			user.set_mob_offsets("wall_press", _x = -12, _y = 0)
-
-/mob/living/proc/update_wallpress_slowdown()
-	if(wallpressed)
-		add_movespeed_modifier("wallpress", TRUE, 100, override = TRUE, multiplicative_slowdown = 3)
-	else
-		remove_movespeed_modifier("wallpress")
 
 /turf/closed/Bumped(atom/movable/AM)
 	..()
@@ -102,6 +31,8 @@
 		var/turf/open/transparent/openspace/target = get_step_multiz(src, UP)
 		if(istype(target))
 			target.ChangeTurf(above_floor)
+	if(leanable)
+		AddComponent(/datum/component/leanable)
 
 /turf/closed/Destroy()
 	if(above_floor)
@@ -224,24 +155,6 @@
 	to_be_destroyed = FALSE
 	return src
 
-/turf/closed/indestructible/singularity_act()
-	return
-
-/turf/closed/indestructible/oldshuttle
-	name = "strange shuttle wall"
-	icon = 'icons/turf/shuttleold.dmi'
-	icon_state = "block"
-
-/turf/closed/indestructible/sandstone
-	name = "sandstone wall"
-	desc = ""
-	icon = 'icons/turf/walls/sandstone_wall.dmi'
-	icon_state = "sandstone"
-	baseturfs = /turf/closed/indestructible/sandstone
-	smooth = SMOOTH_TRUE
-
-/turf/closed/indestructible/oldshuttle/corner
-	icon_state = "corner"
 
 /turf/closed/indestructible/splashscreen
 	name = ""
@@ -267,111 +180,3 @@
 	icon = 'icons/turf/walls/riveted.dmi'
 	icon_state = "riveted"
 	smooth = SMOOTH_TRUE
-
-/turf/closed/indestructible/syndicate
-	icon = 'icons/turf/walls/plastitanium_wall.dmi'
-	icon_state = "map-shuttle"
-	smooth = SMOOTH_MORE
-
-/turf/closed/indestructible/riveted/uranium
-	icon = 'icons/turf/walls/uranium_wall.dmi'
-	icon_state = "uranium"
-
-/turf/closed/indestructible/abductor
-	icon_state = "alien1"
-
-/turf/closed/indestructible/opshuttle
-	icon_state = "wall3"
-
-/turf/closed/indestructible/fakeglass
-	name = "window"
-	icon_state = "fake_window"
-	opacity = 0
-	smooth = SMOOTH_TRUE
-	icon = 'icons/obj/smooth_structures/reinforced_window.dmi'
-
-/turf/closed/indestructible/fakeglass/Initialize()
-	. = ..()
-	icon_state = null //set the icon state to null, so our base state isn't visible
-	underlays += mutable_appearance('icons/obj/structures.dmi', "grille") //add a grille underlay
-	underlays += mutable_appearance('icons/turf/floors.dmi', "plating") //add the plating underlay, below the grille
-
-/turf/closed/indestructible/opsglass
-	name = "window"
-	icon_state = "plastitanium_window"
-	opacity = 0
-	smooth = SMOOTH_TRUE
-	icon = 'icons/obj/smooth_structures/plastitanium_window.dmi'
-
-/turf/closed/indestructible/opsglass/Initialize()
-	. = ..()
-	icon_state = null
-	underlays += mutable_appearance('icons/obj/structures.dmi', "grille")
-	underlays += mutable_appearance('icons/turf/floors.dmi', "plating")
-
-/turf/closed/indestructible/fakedoor
-	name = "CentCom Access"
-	icon = 'icons/obj/doors/airlocks/centcom/centcom.dmi'
-	icon_state = "fake_door"
-
-/turf/closed/indestructible/rock
-	name = "granite"
-	desc = ""
-	icon = 'icons/turf/mining.dmi'
-	icon_state = "rock2"
-
-/turf/closed/indestructible/rock/snow
-	name = "mountainside"
-	desc = ""
-	icon = 'icons/turf/walls.dmi'
-	icon_state = "snowrock"
-	bullet_sizzle = TRUE
-	bullet_bounce_sound = null
-
-/turf/closed/indestructible/rock/snow/ice
-	name = "iced rock"
-	desc = ""
-	icon = 'icons/turf/walls.dmi'
-	icon_state = "icerock"
-
-/turf/closed/indestructible/paper
-	name = "thick paper wall"
-	desc = ""
-	icon = 'icons/turf/walls.dmi'
-	icon_state = "paperwall"
-
-/turf/closed/indestructible/necropolis
-	name = "necropolis wall"
-	desc = ""
-	icon = 'icons/turf/walls.dmi'
-	icon_state = "necro"
-	explosion_block = 50
-	baseturfs = /turf/closed/indestructible/necropolis
-
-/turf/closed/indestructible/necropolis/get_smooth_underlay_icon(mutable_appearance/underlay_appearance, turf/asking_turf, adjacency_dir)
-	underlay_appearance.icon = 'icons/turf/floors.dmi'
-	underlay_appearance.icon_state = "necro1"
-	return TRUE
-
-/turf/closed/indestructible/riveted/boss
-	name = "necropolis wall"
-	desc = ""
-	icon = 'icons/turf/walls/boss_wall.dmi'
-	icon_state = "wall"
-	canSmoothWith = list(/turf/closed/indestructible/riveted/boss, /turf/closed/indestructible/riveted/boss/see_through)
-	explosion_block = 50
-	baseturfs = /turf/closed/indestructible/riveted/boss
-
-/turf/closed/indestructible/riveted/boss/see_through
-	opacity = FALSE
-
-/turf/closed/indestructible/riveted/boss/get_smooth_underlay_icon(mutable_appearance/underlay_appearance, turf/asking_turf, adjacency_dir)
-	underlay_appearance.icon = 'icons/turf/floors.dmi'
-	underlay_appearance.icon_state = "basalt"
-	return TRUE
-
-/turf/closed/indestructible/riveted/hierophant
-	name = "wall"
-	desc = ""
-	icon = 'icons/turf/walls/hierophant_wall.dmi'
-	icon_state = "wall"

@@ -1,9 +1,9 @@
 /mob/living/simple_animal/hostile/retaliate/rogue/spider
 	icon = 'icons/roguetown/mob/monster/spider.dmi'
-	name = "beespider"
-	icon_state = "honeys"
-	icon_living = "honeys"
-	icon_dead = "honeys-dead"
+	name = "spider"
+	icon_state = "spider"
+	icon_living = "spider"
+	icon_dead = "spider-dead"
 	gender = MALE
 	speak_chance = 1
 	turns_per_move = 3
@@ -37,8 +37,12 @@
 	attack_same = 0
 	retreat_health = 0.3
 	attack_sound = list('sound/vo/mobs/spider/attack (1).ogg','sound/vo/mobs/spider/attack (2).ogg','sound/vo/mobs/spider/attack (3).ogg','sound/vo/mobs/spider/attack (4).ogg')
-	aggressive = 1
+	aggressive = TRUE
 	stat_attack = UNCONSCIOUS
+
+	ai_controller = /datum/ai_controller/spider
+	AIStatus = AI_OFF
+	can_have_ai = FALSE
 
 /mob/living/simple_animal/hostile/retaliate/rogue/spider/mutated
 	icon = 'icons/roguetown/mob/monster/spider.dmi'
@@ -53,16 +57,14 @@
 	maxHealth = 130
 
 /mob/living/simple_animal/hostile/retaliate/rogue/spider/Initialize()
-	..()
+	. = ..()
 	gender = MALE
 	if(prob(33))
 		gender = FEMALE
 	update_icon()
 
-/mob/living/simple_animal/hostile/retaliate/rogue/spider/find_food()
-	. = ..()
-	if(!.)
-		return eat_bodies()
+	AddElement(/datum/element/ai_flee_while_injured, 0.75, retreat_health)
+	ai_controller.set_blackboard_key(BB_BASIC_FOODS, food_type)
 
 /mob/living/simple_animal/hostile/retaliate/rogue/spider/AttackingTarget()
 	. = ..()
@@ -79,11 +81,6 @@
 /mob/living/simple_animal/hostile/retaliate/rogue/spider/update_icon()
 	cut_overlays()
 	..()
-	if(stat != DEAD)
-		var/mutable_appearance/eye_lights = mutable_appearance(icon, "honeys-eyes")
-		eye_lights.plane = 19
-		eye_lights.layer = 19
-		add_overlay(eye_lights)
 
 /mob/living/simple_animal/hostile/retaliate/rogue/spider/get_sound(input)
 	switch(input)

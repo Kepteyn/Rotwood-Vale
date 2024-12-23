@@ -17,13 +17,9 @@
 	var/convert_damage_type = BRUTE //Since simplemobs don't have advanced damagetypes, what to convert damage back into.
 
 	var/shapeshift_type
-	var/list/possible_shapes = list(/mob/living/simple_animal/mouse,\
-		/mob/living/simple_animal/pet/dog/corgi,\
-		/mob/living/simple_animal/hostile/carp/ranged/chaos,\
-		/mob/living/simple_animal/bot/secbot/ed209,\
-		/mob/living/simple_animal/hostile/poison/giant_spider/hunter/viper,\
-		/mob/living/simple_animal/hostile/construct/armored)
-
+	var/list/possible_shapes = list(
+		/mob/living/simple_animal/pet/dog/corgi
+	)
 /obj/effect/proc_holder/spell/targeted/shapeshift/cast(list/targets,mob/user = usr)
 	if(src in user.mob_spell_list)
 		user.mob_spell_list.Remove(src)
@@ -59,6 +55,13 @@
 		to_chat(caster, span_warning("You're already shapeshifted!"))
 		return
 
+	if(vitaedrain)
+		var/datum/antagonist/vampirelord/VD = caster.mind.has_antag_datum(/datum/antagonist/vampirelord)
+		if(VD.vitae < vitaedrain)
+			to_chat(caster, span_warning("Not enough vitae. Need [vitaedrain]."))
+			return FALSE
+		VD.handle_vitae(-vitaedrain)
+
 	var/mob/living/shape = new shapeshift_type(caster.loc)
 	H = new(shape,src,caster)
 
@@ -74,16 +77,6 @@
 
 	clothes_req = initial(clothes_req)
 	human_req = initial(human_req)
-
-/obj/effect/proc_holder/spell/targeted/shapeshift/dragon
-	name = "Dragon Form"
-	desc = ""
-	invocation = "RAAAAAAAAWR!"
-	convert_damage = FALSE
-
-
-	shapeshift_type = /mob/living/simple_animal/hostile/megafauna/dragon/lesser
-
 
 /obj/shapeshift_holder
 	name = "Shapeshift holder"

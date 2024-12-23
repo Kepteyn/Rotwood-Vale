@@ -25,8 +25,8 @@
 		/obj/item/storage/belt/rogue/leather/rope = 3,
 		/obj/item/clothing/under/roguetown/tights/vagrant = 4,
 		/obj/item/clothing/gloves/roguetown/leather = 4,
-		/obj/item/clothing/shoes/roguetown/boots = 4,
-		/obj/item/clothing/shoes/roguetown/boots/leather = 4,
+		/obj/item/clothing/shoes/roguetown/armor = 4,
+		/obj/item/clothing/shoes/roguetown/armor/leather = 4,
 
 		// Money
 		/obj/item/roguecoin/copper = 5,
@@ -108,7 +108,7 @@
 
 
 		//food
-		/obj/item/reagent_containers/food/snacks/rogue/crackers = 3,
+		/obj/item/reagent_containers/food/snacks/rogue/foodbase/hardtack_raw = 3,
 		/obj/item/reagent_containers/food/snacks/butterslice = 3,
 		/obj/item/reagent_containers/powder/salt = 3,
 		/obj/item/reagent_containers/food/snacks/egg = 3,

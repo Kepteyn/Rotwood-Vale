@@ -44,14 +44,8 @@
 	STASPD = 10
 	STALUC = 10
 	for(var/S in MOBSTATS)
-		if(prob(33))
-			change_stat(S, 1)
-			if(prob(33))
-				change_stat(S, -1)
-		else
-			change_stat(S, -1)
-			if(prob(33))
-				change_stat(S, 1)
+		var/how_much = pick(-1, 0, 1)
+		change_stat(S, how_much)
 	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
 		if(H.dna.species)
@@ -75,7 +69,8 @@
 				change_stat("speed", -2)
 				change_stat("perception", -1)
 				change_stat("constitution", -2)
-				change_stat("intelligence", 2)
+				change_stat("intelligence", 3)
+				change_stat("fortune", 1)
 		if(HAS_TRAIT(src, TRAIT_LEPROSY))
 			change_stat("strength", -5)
 			change_stat("speed", -5)
@@ -92,6 +87,8 @@
 			change_stat("fortune", -3)
 			H.voice_color = "c71d76"
 			set_eye_color(H, "#c71d76", "#c71d76")
+		if(isseelie(src))	//Check necessary to prevent seelie getting default stats when no other changes apply
+			change_stat("strength", -9)
 
 /mob/living/proc/change_stat(stat, amt, index)
 	if(!stat)
@@ -113,6 +110,9 @@
 	var/newamt = 0
 	switch(stat)
 		if("strength")
+			if(isseelie(src))
+				STASTR = 1
+				return
 			newamt = STASTR + amt
 			if(BUFSTR < 0)
 				BUFSTR = BUFSTR + amt
@@ -151,7 +151,8 @@
 				newamt--
 				BUFPER++
 			STAPER = newamt
-
+			see_override = initial(src.see_invisible) + (STAPER/2.78) // This may be a mistake.
+			update_sight() //Needed.
 			update_fov_angles()
 
 		if("intelligence")

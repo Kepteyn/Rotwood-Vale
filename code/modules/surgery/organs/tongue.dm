@@ -17,7 +17,10 @@
 		/datum/language/hellspeak,
 		/datum/language/beast,
 		/datum/language/orcish,
-		/datum/language/draconic
+		/datum/language/draconic,
+		/datum/language/faexin,
+		/datum/language/canilunzt,
+		/datum/language/felid
 	))
 
 /obj/item/organ/tongue/Initialize(mapload)

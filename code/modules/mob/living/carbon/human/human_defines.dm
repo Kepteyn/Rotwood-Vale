@@ -79,8 +79,10 @@
 	var/datum/physiology/physiology
 
 	var/list/datum/bioware = list()
+	
+	var/necrotarget = FALSE
 
-	var/static/list/can_ride_typecache = typecacheof(list(/mob/living/carbon/human, /mob/living/simple_animal/slime, /mob/living/simple_animal/parrot))
+	var/static/list/can_ride_typecache = typecacheof(list(/mob/living/carbon/human, /mob/living/simple_animal/parrot))
 	var/lastpuke = 0
 	var/last_fire_update
 	var/account_id
@@ -104,9 +106,6 @@
 	var/has_stubble = TRUE
 
 	var/original_name = null
-
-	var/buried = FALSE // Whether the body is buried or not.
-	var/funeral = FALSE // Whether the body has received rites or not.
 
 	var/datum/devotion/devotion = null // Used for cleric_holder for priests
 

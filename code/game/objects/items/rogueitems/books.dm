@@ -10,6 +10,7 @@
 	drop_sound = 'sound/foley/dropsound/book_drop.ogg'
 	force = 5
 	associated_skill = /datum/skill/misc/reading
+	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/book/rogue/getonmobprop(tag)
 	. = ..()
@@ -104,72 +105,61 @@
 /obj/item/book/rogue/update_icon()
 	icon_state = "[base_icon_state]_[open]"
 
+
 /obj/item/book/rogue/secret/ledger
 	name = "catatoma"
 	icon_state = "ledger_0"
 	base_icon_state = "ledger"
 	title = "Catatoma"
-	dat = "To create a shipping order, use a papyrus on me."
+	desc = "A ledger for shipping orders. It can be combined with a papyrus to create a shipping order."
 
 /obj/item/book/rogue/secret/ledger/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/paper/scroll/cargo))
 		if(!open)
-			to_chat(user, span_info("Open me first."))
+			to_chat(user, "<span class='info'>Open me first.</span>")
 			return FALSE
 		var/obj/item/paper/scroll/cargo/C = I
-		if(C.orders.len > 4)
-			to_chat(user, span_warning("Too much order."))
+		if(C.orders.len > 6)
+			to_chat(user, "<span class='warning'>Too much order.</span>")
 			return
-		var/picked_cat = input(user, "Categories", "Shipping Ledger") as null|anything in sortList(SSshuttle.supply_cats)
+		var/picked_cat = input(user, "Categories", "Shipping Ledger") as null|anything in sortList(SSmerchant.supply_cats)
 		if(!picked_cat)
 			testing("yeye")
 			return
 		var/list/pax = list()
-		for(var/pack in SSshuttle.supply_packs)
-			var/datum/supply_pack/PA = SSshuttle.supply_packs[pack]
+		for(var/pack in SSmerchant.supply_packs)
+			var/datum/supply_pack/PA = SSmerchant.supply_packs[pack]
 			if(PA.group == picked_cat)
 				pax += PA
-		var/picked_pack = input(user, "Shipments", "Shipping Ledger") as null|anything in sortList(pax)
+		var/datum/supply_pack/picked_pack = input(user, "Shipments", "Shipping Ledger") as null|anything in sortList(pax)
 		if(!picked_pack)
 			return
-		var/namer = user.name
-		var/rankr = "None"
-		if(ishuman(user))
-			var/mob/living/carbon/human/H = user
-			namer = H.get_authentification_name()
-			rankr = H.get_assignment(hand_first = TRUE)
-		var/datum/supply_order/SO = new (picked_pack, namer, rankr, user.ckey, "None", SSeconomy.get_dep_account(ACCOUNT_CAR))
-		C.orders += SO
+
+		C.orders += picked_pack
 		C.rebuild_info()
 		return
 	if(istype(I, /obj/item/paper/scroll))
 		if(!open)
-			to_chat(user, span_info("Open me first."))
+			to_chat(user, "<span class='info'>Open me first.</span>")
 			return FALSE
 		var/obj/item/paper/scroll/P = I
 		if(P.info)
-			to_chat(user, span_warning("Something is written here already."))
+			to_chat(user, "<span class='warning'>Something is written here already.</span>")
 			return
-		var/picked_cat = input(user, "Categories", "Shipping Ledger") as null|anything in sortList(SSshuttle.supply_cats)
+		var/picked_cat = input(user, "Categories", "Shipping Ledger") as null|anything in sortList(SSmerchant.supply_cats)
 		if(!picked_cat)
 			return
 		var/list/pax = list()
-		for(var/pack in SSshuttle.supply_packs)
-			var/datum/supply_pack/PA = SSshuttle.supply_packs[pack]
+		for(var/pack in SSmerchant.supply_packs)
+			var/datum/supply_pack/PA = SSmerchant.supply_packs[pack]
 			if(PA.group == picked_cat)
 				pax += PA
-		var/picked_pack = input(user, "Shipments", "Shipping Ledger") as null|anything in sortList(pax)
+		var/datum/supply_pack/picked_pack = input(user, "Shipments", "Shipping Ledger") as null|anything in sortList(pax)
 		if(!picked_pack)
 			return
 		var/obj/item/paper/scroll/cargo/C = new(user.loc)
-		var/namer = user.name
-		var/rankr = "None"
-		if(ishuman(user))
-			var/mob/living/carbon/human/H = user
-			namer = H.get_authentification_name()
-			rankr = H.get_assignment(hand_first = TRUE)
-		var/datum/supply_order/SO = new (picked_pack, namer, rankr, user.ckey, "None", SSeconomy.get_dep_account(ACCOUNT_CAR))
-		C.orders += SO
+
+		C.orders += picked_pack
 		C.rebuild_info()
 		user.dropItemToGround(P)
 		qdel(P)
@@ -177,40 +167,50 @@
 	..()
 
 /obj/item/book/rogue/bibble
-	name = "The Book"
-	icon_state = "bibble_0"
-	base_icon_state = "bibble"
-	title = "bible"
-	dat = "gott.json"
+    name = "The Book"
+    icon_state = "bibble_0"
+    base_icon_state = "bibble"
+    title = "bible"
+    dat = "gott.json"
+    var/uses_remaining = 10 // Define uses_remaining
 
 /obj/item/book/rogue/bibble/read(mob/user)
-	if(!open)
-		to_chat(user, span_info("Open me first."))
-		return FALSE
-	if(!user.client || !user.hud_used)
-		return
-	if(!user.hud_used.reads)
-		return
-	if(!user.can_read(src))
-		return
-	if(in_range(user, src) || isobserver(user))
-		user.changeNext_move(CLICK_CD_MELEE)
-		var/m
-		var/list/verses = world.file2list("strings/bibble.txt")
-		m = pick(verses)
-		if(m)
-			user.say(m)
+    if(!open)
+        to_chat(user, span_info("Open me first."))
+        return FALSE
+    if(!user.client || !user.hud_used)
+        return
+    if(!user.hud_used.reads)
+        return
+    if(!user.can_read(src))
+        return
+    if(in_range(user, src) || isobserver(user))
+        user.changeNext_move(CLICK_CD_MELEE)
+        var/m
+        var/list/verses = world.file2list("strings/bibble.txt")
+        m = pick(verses)
+        if(m)
+            user.say(m)
 
 /obj/item/book/rogue/bibble/attack(mob/living/M, mob/user)
-	if(user.mind && user.mind.assigned_role == "Priest")
-		if(!user.can_read(src))
-			to_chat(user, span_warning("I don't understand these scribbly black lines."))
-			return
-		M.apply_status_effect(/datum/status_effect/buff/blessed)
-		M.add_stress(/datum/stressevent/blessed)
-		user.visible_message(span_notice("[user] blesses [M]."))
-		playsound(user, 'sound/magic/bless.ogg', 100, FALSE)
-		return
+    if(user.mind && user.mind.assigned_role == "Priest")
+        if(!user.can_read(src))
+            to_chat(user, span_warning("I don't understand these scribbly black lines."))
+            return
+        if (uses_remaining <= 0)
+            to_chat(user, span_warning("All charges are spent, hope the last poor bastard was worth it."))
+            qdel(src) // Delete the book
+            user << "The book turns to ash in your hands."
+            return
+        if (uses_remaining == 1)
+            to_chat(user, span_notice("This is your last charge. Use it wisely!"))
+        if (M.has_status_effect(/datum/status_effect/debuff/death_weaken))
+            M.remove_status_effect(/datum/status_effect/debuff/death_weaken)
+        M.apply_status_effect(/datum/status_effect/buff/blessed)
+        M.add_stress(/datum/stressevent/blessed)
+        user.visible_message(span_notice("[user] blesses [M]."))
+        playsound(user, 'sound/magic/bless.ogg', 100, FALSE)
+        return
 
 /datum/status_effect/buff/blessed
 	id = "blessed"
@@ -226,13 +226,13 @@
 
 /obj/item/book/rogue/law
 	name = "Tome of Justice"
-	desc = ""
+	desc = "Issued by the Chancery of the Kingdom to serve as the legal framework for the realm."
 	icon_state ="lawtome_0"
 	base_icon_state = "lawtome"
 	bookfile = "law.json"
 
 /obj/item/book/rogue/cooking
-	name = "Tastes Fit For The Lord" 
+	name = "Tastes Fit For The Lord"
 	desc = ""
 	icon_state ="book_0"
 	base_icon_state = "book"
@@ -380,11 +380,11 @@
 	var/list/book_icons = list(
 	"Sickly green with embossed bronze" = "book8",
 	"White with embossed obsidian" = "book7",
-	"Black with embossed quartz" = "book6",
-	"Blue with embossed ruby" = "book5",
+	"Black with embossed blortz" = "book6",
+	"Blue with embossed rontz" = "book5",
 	"Green with embossed amethyst" = "book4",
-	"Purple with embossed emerald" = "book3",
-	"Red with embossed sapphire" = "book2",
+	"Purple with embossed gemerald" = "book3",
+	"Red with embossed saffira" = "book2",
 	"Brown with embossed gold" = "book1",
 	"Brown without embossed material" = "basic_book")
 	name = "unknown title"
@@ -392,14 +392,14 @@
 	icon_state = "basic_book_0"
 	base_icon_state = "basic_book"
 	override_find_book = TRUE
-	
+
 /obj/item/book/rogue/playerbook/Initialize(loc, in_round_player_generated, var/mob/living/in_round_player_mob, text)
 	. = ..()
 	is_in_round_player_generated = in_round_player_generated
 	if(is_in_round_player_generated)
 		player_book_text = text
 		while(!player_book_author_ckey) // doesn't have to be this, but better than defining a bool.
-			player_book_title = dd_limittext(capitalize(sanitize_hear_message(input(in_round_player_mob, "What title do you want to give the book? (max 42 characters)", "Title", "Unknown"))), MAX_NAME_LEN)	
+			player_book_title = dd_limittext(capitalize(sanitize_hear_message(input(in_round_player_mob, "What title do you want to give the book? (max 42 characters)", "Title", "Unknown"))), MAX_NAME_LEN)
 			player_book_author = "[dd_limittext(sanitize_hear_message(input(in_round_player_mob, "What do you want the author text to be? (max 42 characters)", "Author", "")), MAX_NAME_LEN)]"
 			player_book_icon = book_icons[input(in_round_player_mob, "Choose a book style", "Book Style") as anything in book_icons]
 			player_book_author_ckey = in_round_player_mob.ckey

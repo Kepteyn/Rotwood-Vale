@@ -28,6 +28,7 @@
 /mob/living/carbon/human/species/goblin/hell
 	name = "hell goblin"
 	race = /datum/species/goblin/hell
+
 /mob/living/carbon/human/species/goblin/npc/hell
 	race = /datum/species/goblin/hell
 /mob/living/carbon/human/species/goblin/npc/ambush/hell
@@ -100,7 +101,7 @@
 	name = "goblin"
 	id = "goblin"
 	species_traits = list(NO_UNDERWEAR,NOEYESPRITES)
-	inherent_traits = list(TRAIT_NOROGSTAM,TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_RADIMMUNE)
+	inherent_traits = list(TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_RADIMMUNE)
 	no_equip = list(SLOT_SHIRT, SLOT_WEAR_MASK, SLOT_GLOVES, SLOT_SHOES, SLOT_PANTS, SLOT_S_STORE)
 	nojumpsuit = 1
 	sexes = 1
@@ -278,7 +279,7 @@
 /////
 ////
 ////
-//// OUTFGITS						//////////////////
+//// OUTFITS						//////////////////
 ////
 ///
 

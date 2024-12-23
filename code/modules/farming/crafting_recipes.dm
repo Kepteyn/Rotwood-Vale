@@ -4,7 +4,7 @@
 	reqs = list(/obj/item/grown/log/tree/small = 1)
 	verbage_simple = "build"
 	verbage = "builds"
-	craftdiff = 0
+	skill_level = 0
 	time = 2 SECONDS
 
 /datum/crafting_recipe/roguetown/wheatflour
@@ -14,7 +14,7 @@
 	structurecraft = /obj/structure/fluff/millstone
 	verbage_simple = "mill"
 	verbage = "mills"
-	craftdiff = -2
+	skill_level = -2
 	time = 3
 
 /datum/crafting_recipe/roguetown/oatflour
@@ -24,7 +24,7 @@
 	structurecraft = /obj/structure/fluff/millstone
 	verbage_simple = "mill"
 	verbage = "mills"
-	craftdiff = -2
+	skill_level = -2
 	time = 3
 
 /datum/crafting_recipe/roguetown/structure/plough
@@ -40,7 +40,7 @@
 	name = "dry swampweed"
 	result = /obj/item/reagent_containers/food/snacks/grown/rogue/sweetleafdry
 	reqs = list(/obj/item/reagent_containers/food/snacks/grown/rogue/sweetleaf = 1)
-	structurecraft = /obj/structure/fluff/dryingrack
+	structurecraft = /obj/machinery/tanningrack
 	time = 2 SECONDS
 	verbage_simple = "dry"
 	verbage = "dries"
@@ -56,13 +56,13 @@
 	time = 10 SECONDS
 	verbage_simple = "roll"
 	verbage = "rolls"
-	craftdiff = 0
+	skill_level = 0
 
 /datum/crafting_recipe/roguetown/dryweed
 	name = "dry westleach leaf"
 	result = /obj/item/reagent_containers/food/snacks/grown/rogue/pipeweeddry
 	reqs = list(/obj/item/reagent_containers/food/snacks/grown/rogue/pipeweed = 1)
-	structurecraft = /obj/structure/fluff/dryingrack
+	structurecraft = /obj/machinery/tanningrack
 	time = 2 SECONDS
 	verbage_simple = "dry"
 	verbage = "dries"
@@ -78,4 +78,4 @@
 	time = 10 SECONDS
 	verbage_simple = "roll"
 	verbage = "rolls"
-	craftdiff = 0
+	skill_level = 0

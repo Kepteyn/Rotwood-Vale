@@ -46,14 +46,18 @@
 	SEND_SIGNAL(C, COMSIG_ADD_MOOD_EVENT, "dismembered", /datum/mood_event/dismembered)
 	C.add_stress(/datum/stressevent/dismembered)
 	var/stress2give = /datum/stressevent/viewdismember
+	var/guillotine_execution = FALSE
+
 	if(C)
 		if(C.buckled)
+			if(istype(C.buckled, /obj/structure/guillotine))
+				guillotine_execution = TRUE
 			if(istype(C.buckled, /obj/structure/fluff/psycross))
 				if(C.real_name in GLOB.excommunicated_players)
 					stress2give = /datum/stressevent/viewsinpunish
 	if(stress2give)
 		for(var/mob/living/carbon/CA in hearers(world.view, C))
-			if(CA != C && !HAS_TRAIT(CA, TRAIT_BLIND))
+			if(CA != C && !HAS_TRAIT(CA, TRAIT_BLIND) && !guillotine_execution)
 				if(stress2give == /datum/stressevent/viewdismember)
 					if(HAS_TRAIT(CA, TRAIT_STEELHEARTED))
 						continue
@@ -62,8 +66,7 @@
 						continue
 				CA.add_stress(stress2give)
 	if(grabbedby)
-		qdel(grabbedby)
-		grabbedby = null
+		QDEL_LIST(grabbedby)
 
 	drop_limb()
 	if(dam_type == BURN)
@@ -132,13 +135,6 @@
 		bandage = null
 
 	if(!special)
-		if(was_owner.dna)
-			//some mutations require having specific limbs to be kept.
-			for(var/datum/mutation/human/mutation as anything in was_owner.dna.mutations)
-				if(mutation.limb_req != body_zone)
-					continue
-				was_owner.dna.force_lose(mutation)
-
 		for(var/obj/item/organ/organ as anything in was_owner.internal_organs) //internal organs inside the dismembered limb are dropped.
 			var/org_zone = check_zone(organ.zone)
 			if(org_zone != body_zone)
@@ -148,6 +144,10 @@
 	if(held_index)
 		was_owner.dropItemToGround(owner.get_item_for_held_index(held_index), force = TRUE)
 		was_owner.hand_bodyparts[held_index] = null
+
+	if(organ_slowdown)
+		was_owner.remove_movespeed_modifier("[src.type]_slow", update = TRUE)
+
 	was_owner.bodyparts -= src
 	owner = null
 
@@ -293,11 +293,6 @@
 
 	qdel(owner.GetComponent(/datum/component/creamed)) //clean creampie overlay
 
-	//Make sure de-zombification happens before organ removal instead of during it
-	var/obj/item/organ/zombie_infection/ooze = owner.getorganslot(ORGAN_SLOT_ZOMBIE)
-	if(istype(ooze))
-		ooze.transfer_to_limb(src, owner)
-
 	name = "[owner.real_name]'s head"
 	. = ..()
 	if(brainmob)
@@ -362,6 +357,8 @@
 		affecting.remove_wound(dismember_wound)
 
 	update_bodypart_damage_state()
+	if(organ_slowdown)
+		C.add_movespeed_modifier("[src.type]_slow", update=TRUE, priority=100, flags=NONE, override=FALSE, multiplicative_slowdown=organ_slowdown, movetypes=GROUND, blacklisted_movetypes=NONE, conflict=FALSE)
 
 	C.updatehealth()
 	C.update_body()
@@ -374,7 +371,6 @@
 	//Transfer some head appearance vars over
 	if(brain)
 		if(brainmob)
-			brainmob.container = null //Reset brainmob head var.
 			brainmob.forceMove(brain) //Throw mob into brain.
 			brain.brainmob = brainmob //Set the brain to use the brainmob
 			brainmob = null //Set head brainmob var to null

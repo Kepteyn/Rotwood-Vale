@@ -14,9 +14,13 @@
 	layer = ABOVE_ALL_MOB_LAYER
 	plane = GAME_PLANE_UPPER
 	var/latched = FALSE
-	var/locked = FALSE
+	locked = FALSE
 	var/base_icon = "pillory_single"
-	var/list/lockid = list()
+	var/list/accepted_id = list()
+	var/keylock = TRUE
+
+/obj/structure/pillory/double/custom
+	keylock = FALSE
 
 /obj/structure/pillory/double
 	icon_state = "pillory_double"
@@ -27,16 +31,16 @@
 	base_icon = "pillory_reinforced"
 
 /obj/structure/pillory/town_square
-	lockid = list("keep_dungeon", "keep_barracks", "town_dungeon", "town_barracks", "bog_dungeon", "bog_barracks", "church")
+	accepted_id = list("keep_dungeon", "keep_barracks", "town_dungeon", "town_barracks", "bog_dungeon", "bog_barracks", "church")
 
 /obj/structure/pillory/reinforced/keep_dungeon
-	lockid = list("keep_dungeon")
+	accepted_id = list("keep_dungeon")
 
 /obj/structure/pillory/reinforced/town_dungeon
-	lockid = list("town_dungeon")
+	accepted_id = list("town_dungeon")
 
 /obj/structure/pillory/reinforced/bog_dungeon
-	lockid = list("bog_dungeon")
+	accepted_id = list("bog_dungeon")
 
 
 /obj/structure/pillory/Initialize()
@@ -63,27 +67,97 @@
 	togglelatch(user)
 	
 /obj/structure/pillory/attackby(obj/item/P, mob/user, params)
+	if(istype(P, /obj/item/customlock/finished))
+		var/obj/item/customlock/finished/K = P
+		if(keylock)
+			to_chat(user, span_warning("[src] already has a lock."))
+		else
+			keylock = TRUE
+			accepted_id = list(K.lockhash)
+			to_chat(user, span_notice("You add [K] to [P]."))
+			qdel(P)
+		return
 	if(user in buckled_mobs)
 		to_chat(user, span_warning("I can't reach the lock!"))
 		return
-	if(!latched)
+	if(!latched && keylock)
 		to_chat(user, span_warning("It's not latched shut!"))
 		return
-	if(istype(P, /obj/item/roguekey))
-		var/obj/item/roguekey/K = P
-		if(K.lockid in lockid)
+	if(istype(P, /obj/item/key))
+		var/obj/item/key/K = P
+		if (!keylock)
+			to_chat(user, span_warning("\The [src] lacks a lock."))
+			return
+		if(K.lockid in accepted_id)
 			togglelock(user)
 			return
 		else
 			to_chat(user, span_warning("Wrong key."))
 			playsound(src, 'sound/foley/doors/lockrattle.ogg', 100)
 			return
-	if(istype(P, /obj/item/keyring))
-		var/obj/item/keyring/K = P
-		for(var/obj/item/roguekey/KE in K.keys)
-			if(KE.lockid in lockid)
+	if(istype(P, /obj/item/storage/keyring))
+		var/obj/item/storage/keyring/K = P
+		for(var/obj/item/key/KE in K.contents)
+			if(KE.lockid in accepted_id)
 				togglelock(user)
 				return
+	if(istype(P, /obj/item/lockpick))
+		trypicklock(P, user)
+		return
+
+/obj/structure/pillory/proc/trypicklock(obj/item/I, mob/user)
+	if(!latched)
+		to_chat(user, "<span class='warning'>This cannot be picked while it is unlatched.</span>")
+		return
+	if(!keylock)
+		return
+	else
+		var/lockprogress = 0
+		var/locktreshold = 100
+
+		var/mob/living/L = user
+
+		var/pickskill = user.mind.get_skill_level(/datum/skill/misc/lockpicking)
+		var/perbonus = L.STAPER/2
+		var/luckbonus = L.STALUC/4
+		var/picktime = 70
+		var/pickchance = 35
+		var/moveup = 10
+
+		picktime -= (pickskill * 10)
+		picktime = clamp(picktime, 10, 70)
+
+		moveup += (pickskill * 3)
+		moveup = clamp(moveup, 10, 30)
+
+		pickchance += pickskill * 10
+		pickchance += perbonus
+		pickchance += luckbonus
+		pickchance = clamp(pickchance, 1, 95)
+
+		while(!QDELETED(I) &&(lockprogress < locktreshold))
+			if(!do_after(user, picktime, target = src))
+				break
+			if(prob(pickchance))
+				lockprogress += moveup
+				playsound(src.loc, pick('sound/items/pickgood1.ogg','sound/items/pickgood2.ogg'), 5, TRUE)
+				to_chat(user, "<span class='warning'>Click...</span>")
+				if(L.mind)
+					var/amt2raise = L.STAINT
+					var/boon = L.STALUC/4
+					L.mind.adjust_experience(/datum/skill/misc/lockpicking, amt2raise + boon)
+				if(lockprogress >= locktreshold)
+					to_chat(user, "<span class='deadsay'>The locking mechanism gives.</span>")
+					togglelock(user)
+					break
+				else
+					continue
+			else
+				playsound(loc, 'sound/items/pickbad.ogg', 40, TRUE)
+				I.take_damage(1)
+				to_chat(user, "<span class='warning'>Clack.</span>")
+				continue
+		return
 
 /obj/structure/pillory/proc/togglelatch(mob/living/user, silent)
 	user.changeNext_move(CLICK_CD_MELEE)
@@ -121,11 +195,15 @@
 		to_chat(usr, span_warning("Unlock it first!"))
 		return FALSE
 
-	if (!istype(M, /mob/living/carbon/human))
+	if ((!istype(M, /mob/living/carbon/human)) || HAS_TRAIT(M, TRAIT_TINY))
 		to_chat(usr, span_warning("It doesn't look like [M.p_they()] can fit into this properly!"))
 		return FALSE // Can't hold non-humanoids
 
-	return ..(M, force, FALSE)
+	for(var/obj/item/grabbing/G in M.grabbedby)
+		if(G.grab_state == 1)
+			return ..(M, force, FALSE)
+	to_chat(usr, span_warning("I must grab them more forcefully to put them in the pillory."))
+	return FALSE
 
 /obj/structure/pillory/post_buckle_mob(mob/living/M)
 	if (!istype(M, /mob/living/carbon/human))
@@ -145,6 +223,7 @@
 						H.set_mob_offsets("bed_buckle", _x = 0, _y = PILLORY_HEAD_OFFSET)
 				icon_state = "[base_icon]-over"
 				update_icon()
+				H.setDir(SOUTH) //Makes the person always face south, in case someone constructed the pillory on the wrong direction
 			else
 				unbuckle_all_mobs()
 		else

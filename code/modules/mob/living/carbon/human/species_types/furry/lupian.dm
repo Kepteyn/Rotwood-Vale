@@ -9,8 +9,20 @@
 	They are resilient, cunning and fight ready creachures capable of surviving the north thanks to their rugged pelts, \
 	sharp teeth and deep-rooted spirit of community. They are very dutiful individuals and make fantastic and fearsome \
 	warriors to those who earn their loyalty. Thanks to their pack minded nature they are slow to trust the other races \
-	but form deep connections with those they do. In recent years they have been driven from the forests by unrest and pressed \
-	into cohabitation with races they'd deem lesser."
+	but form deep connections with those they do. In recent years they have been driven from the forests by unrest and the \
+	inevitable spread of the rot and pressed into cohabitation with races they'd deem lesser."
+	expanded_desc = "Lupians live under elective monarchies, forms of feudalism where the king of a pack is chosen from, and by, the military council. \
+	The leader of the pack is a philosopher king, a paragon of virtue and one who should inspire awe and loyalty among the population \
+	while the real power is held by the military leadership. Should a king fail his people it is not uncommon for the entire kingdom \
+	to fall into disarray as law and order begin to break down, for many Lupians see it a disgrace to themselves to follow a king who \
+	appears weak. Similarly, most Lupians uphold an image of pride and toughness, it is only in the presence of someone who appears \
+	stronger do they bend the knee. To become a leader is a constant challenge to maintain. \
+	<br><br> \
+	Vakran was once the largest of the pack-nations, the capital of Lupian civilization. After the King sequestered himself away under \
+	insurmountable stress and went into hiding, it was revealed weeks later that he was poisoned by one of his sons. This plunged the \
+	nation states under the Vakran name into chaos. Vassals left, either becoming free or aligning themselves with the neighboring \
+	Frostfell or Felsaad, while others faced internal strife, civils wars between those who believed the Vakran name still held strong, \
+	and those who saw the crown tainted, even the military council decimated itself between duels and the pitting of coups."
 	skin_tone_wording = "Pack"
 	species_traits = list(
 		MUTCOLORS,
@@ -23,10 +35,9 @@
 	use_skintones = 1
 	attack_verb = "slash"
 	liked_food = GROSS | MEAT | FRIED
-	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
 	possible_ages = ALL_AGES_LIST
-	limbs_icon_m = 'icons/mob/species/male.dmi'
-	limbs_icon_f = 'icons/mob/species/female.dmi'
+	limbs_icon_m = 'icons/roguetown/mob/bodies/m/mt.dmi'
+	limbs_icon_f = 'icons/roguetown/mob/bodies/f/fm.dmi'
 	dam_icon = 'icons/roguetown/mob/bodies/dam/dam_male.dmi'
 	dam_icon_f = 'icons/roguetown/mob/bodies/dam/dam_female.dmi'
 	soundpack_m = /datum/voicepack/male
@@ -35,7 +46,7 @@
 		OFFSET_ID = list(0,1), OFFSET_GLOVES = list(0,1), OFFSET_WRISTS = list(0,1),\
 		OFFSET_CLOAK = list(0,1), OFFSET_FACEMASK = list(0,1), OFFSET_HEAD = list(0,1), \
 		OFFSET_FACE = list(0,1), OFFSET_BELT = list(0,1), OFFSET_BACK = list(0,1), \
-		OFFSET_NECK = list(0,1), OFFSET_MOUTH = list(0,1), OFFSET_PANTS = list(0,1), \
+		OFFSET_NECK = list(0,1), OFFSET_MOUTH = list(0,1), OFFSET_PANTS = list(0,0), \
 		OFFSET_SHIRT = list(0,1), OFFSET_ARMOR = list(0,1), OFFSET_HANDS = list(0,1), OFFSET_UNDIES = list(0,1), \
 		OFFSET_ID_F = list(0,-1), OFFSET_GLOVES_F = list(0,0), OFFSET_WRISTS_F = list(0,0), OFFSET_HANDS_F = list(0,0), \
 		OFFSET_CLOAK_F = list(0,0), OFFSET_FACEMASK_F = list(0,-1), OFFSET_HEAD_F = list(0,-1), \
@@ -44,12 +55,12 @@
 		OFFSET_SHIRT_F = list(0,0), OFFSET_ARMOR_F = list(0,0), OFFSET_UNDIES_F = list(0,0), \
 		)
 	specstats = list(
-		"strength" = 1, 
-		"perception" = -1, 
-		"intelligence" = 1, 
-		"constitution" = 0, 
-		"endurance" = 1, 
-		"speed" = -1, 
+		"strength" = 1,
+		"perception" = -1,
+		"intelligence" = 1,
+		"constitution" = 0,
+		"endurance" = 1,
+		"speed" = -1,
 		"fortune" = 0
 		)
 	enflamed_icon = "widefire"
@@ -97,6 +108,9 @@
 		/datum/body_marking_set/tiger_dark,
 	)
 	body_markings = list(
+		/datum/body_marking/flushed_cheeks,
+		/datum/body_marking/eyeliner,
+		/datum/body_marking/wolf,
 		/datum/body_marking/plain,
 		/datum/body_marking/belly,
 		/datum/body_marking/bellyslim,
@@ -121,7 +135,11 @@
 		/datum/descriptor_choice/prominent_three,
 		/datum/descriptor_choice/prominent_four,
 	)
-	
+	languages = list(
+		/datum/language/common,
+		/datum/language/canilunzt
+	)
+
 /datum/species/lupian/check_roundstart_eligible()
 	return TRUE
 
@@ -136,7 +154,7 @@
 	. = ..()
 	UnregisterSignal(C, COMSIG_MOB_SAY)
 
-/datum/species/lupian/get_skin_list() 
+/datum/species/lupian/get_skin_list()
 	return list(
 		"Vakran" = "271f1b",
 		"Lanarain" = "271f1c",

@@ -5,22 +5,46 @@
 	crate_name = "merchant guild's crate"
 	crate_type = /obj/structure/closet/crate/chest/merchant
 
-
 /datum/supply_pack/rogue/luxury/sigs
 	name = "Pipe Weed Zig"
 	cost = 3
 	contains = list(/obj/item/clothing/mask/cigarette/rollie/nicotine)
 
+/datum/supply_pack/rogue/luxury/coolersigs
+	name = "Swamp Weed Zig"
+	cost = 8
+	contains = list(/obj/item/clothing/mask/cigarette/rollie/cannabis)
+
+/datum/supply_pack/rogue/luxury/perfume
+	name = "Perfume"
+	cost = 10 //steward can get these in bulk for 12 per
+	contains = list(/obj/item/perfume/random)
+
+/datum/supply_pack/rogue/luxury/ozium
+	name = "Ozium"
+	cost = 5
+	contains = list(/obj/item/reagent_containers/powder/ozium)
+
 /datum/supply_pack/rogue/luxury/moondust
 	name = "Moon Dust"
-	cost = 5
+	cost = 30
 	contains = list(/obj/item/reagent_containers/powder/moondust)
 
 /datum/supply_pack/rogue/luxury/spice
 	name = "Spice"
-	cost = 50
+	cost = 20
 	contains = list(/obj/item/reagent_containers/powder/spice)
 
+/*/datum/supply_pack/rogue/luxury/westspice
+	name = "Western Herbs"
+	cost = 50
+	contains = list(/obj/item/reagent_containers/food/snacks/grown/westspice)
+
+/datum/supply_pack/rogue/luxury/eastspice
+	name = "Eastern Spices"
+	cost = 200
+	contains = list(/obj/item/reagent_containers/food/snacks/grown/eastspice)
+*/
 /datum/supply_pack/rogue/luxury/mbox
 	name = "Music Box"
 	cost = 500
@@ -67,11 +91,16 @@
 	contains = list(/obj/item/scrying)
 
 /datum/supply_pack/rogue/luxury/listenst
-	name = "Emerald Choker"
-	cost = 250
+	name = "Gemerald Choker"
+	cost = 200 //nerfs steward gaming
 	contains = list(/obj/item/listenstone)
 
 /datum/supply_pack/rogue/luxury/riddleofsteel
 	name = "Riddle of Steel"
-	cost = 400
+	cost = 200 //earlier freelance smith powerspikes and nerfs steward gaming
 	contains = list(/obj/item/riddleofsteel)
+
+/datum/supply_pack/rogue/luxury/lovepotion
+	name = "Love Potion"
+	cost = 300
+	contains = list(/obj/item/lovepotion)

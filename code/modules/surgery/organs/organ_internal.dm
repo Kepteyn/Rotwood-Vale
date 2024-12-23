@@ -46,7 +46,6 @@
 	/// Type of organ DNA that this organ will create.
 	var/organ_dna_type = /datum/organ_dna
 
-
 /obj/item/organ/proc/Insert(mob/living/carbon/M, special = 0, drop_if_replaced = TRUE)
 	if(!iscarbon(M) || owner == M)
 		return
@@ -94,6 +93,8 @@
 /obj/item/organ/proc/on_death()	//runs decay when outside of a person
 	if(organ_flags & (ORGAN_SYNTHETIC | ORGAN_FROZEN))
 		return
+	if(istype(loc, /obj/structure/closet/crate/chest))
+		return
 	applyOrganDamage(maxHealth * decay_factor)
 
 /obj/item/organ/proc/on_life()	//repair organ damage if the organ is not failing
@@ -116,6 +117,11 @@
 	if(damage > high_threshold)
 		. += span_warning("[src] is starting to look discolored.")
 
+/obj/item/organ/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
+	. = ..()
+	pixel_x = rand(-3, 3)
+	pixel_y = rand(-3, 3)
+	new /obj/effect/decal/cleanable/blood/splatter(get_turf(src))
 
 /obj/item/organ/proc/prepare_eat(mob/living/carbon/human/user)
 	var/obj/item/reagent_containers/food/snacks/organ/S = new

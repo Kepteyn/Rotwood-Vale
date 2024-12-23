@@ -41,7 +41,7 @@
 
 /datum/supply_pack/rogue/seeds/sleaf
 	name = "Sweet Leaf"
-	cost = 30
+	cost = 20
 	contains = list(
 					/obj/item/seeds/sweetleaf,
 					/obj/item/seeds/sweetleaf,
@@ -57,4 +57,41 @@
 					/obj/item/seeds/berryrogue,
 					/obj/item/seeds/berryrogue,
 					/obj/item/seeds/berryrogue/poison,
+				)
+
+/datum/supply_pack/rogue/seeds/beet
+	name = "Sugar Beets"
+	cost = 20
+	contains = list(
+					/obj/item/seeds/beet,
+					/obj/item/seeds/beet,
+					/obj/item/seeds/beet,
+					/obj/item/seeds/beet,
+				)
+
+/datum/supply_pack/rogue/seeds/vegetable
+	name = "Seed Bundle (veg)"
+	cost = 20
+	contains = list(
+					/obj/item/seeds/cabbage,
+					/obj/item/seeds/cabbage,
+					/obj/item/seeds/cabbage,
+					/obj/item/seeds/onion,
+					/obj/item/seeds/onion,
+					/obj/item/seeds/onion,
+					/obj/item/seeds/potato,
+					/obj/item/seeds/potato,
+					/obj/item/seeds/potato,
+				)
+
+/datum/supply_pack/rogue/seeds/orchard
+	name = "Seed Bundle (fruit)"
+	cost = 20
+	contains = list(
+					/obj/item/seeds/berryrogue,
+					/obj/item/seeds/berryrogue,
+					/obj/item/seeds/berryrogue,
+					/obj/item/seeds/apple,
+					/obj/item/seeds/apple,
+					/obj/item/seeds/apple,
 				)

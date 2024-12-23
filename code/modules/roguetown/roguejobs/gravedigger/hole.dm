@@ -61,10 +61,7 @@
 	if(istype(AM, /obj/structure/closet/crate/chest) || istype(AM, /obj/structure/closet/burial_shroud))
 		for(var/mob/living/M in contents)
 			return FALSE
-		for(var/obj/structure/closet/C in contents)
-			if(istype(C, /obj/structure/closet/crate/coffin))
-				return TRUE
-			return FALSE
+	if(istype(AM, /obj/structure/closet/crate/coffin))
 		return TRUE
 	. = ..()
 
@@ -197,9 +194,6 @@
 			user.visible_message(span_notice("[user] stuffs [O] into [src]."), \
 							 	 span_notice("I stuff [O] into [src]."), \
 							 	 span_hear("I hear a loud bang."))
-			var/mob/living/L = O
-			if(!issilicon(L))
-				L.Paralyze(40)
 			O.forceMove(T)
 			user_buckle_mob(O, user)
 	else
@@ -218,24 +212,13 @@
 	if(!opened || !can_close(user))
 		return FALSE
 	take_contents()
-	for(var/mob/A in contents)
-		if((A.stat) && (istype(A, /mob/living/carbon/human)))
-			var/mob/living/carbon/human/B = A
-			B.buried = TRUE
-	for(var/obj/structure/closet/crate/coffin/C in contents)
-		for(var/mob/living/carbon/human/D in C.contents)
-			D.buried = TRUE
 	opened = FALSE
 //	update_icon()
 	return TRUE
 
 /obj/structure/closet/dirthole/dump_contents()
-	for(var/mob/A in contents)
-		if((!A.stat) && (istype(A, /mob/living/carbon/human)))
-			var/mob/living/carbon/human/B = A
-			B.buried = FALSE
 	..()
-	
+
 /obj/structure/closet/dirthole/open(mob/living/user)
 	if(opened)
 		return
@@ -266,28 +249,26 @@
 	update_abovemob()
 
 /obj/structure/closet/dirthole/Initialize()
-	abovemob = mutable_appearance('icons/turf/roguefloor.dmi', "grave_above")
-	abovemob.layer = ABOVE_MOB_LAYER
-	update_icon()
-	var/turf/open/floor/rogue/dirt/T = loc
-	if(istype(T))
-		mastert = T
-		T.holie = src
-		if(T.muddy)
-			if(!(locate(/obj/item/natural/worms) in T))
-				if(prob(55))
-					if(prob(20))
-						if(prob(5))
-							new /obj/item/natural/worms/grubs(T)
-						else
-							new /obj/item/natural/worms/leech(T)
-					else
-						new /obj/item/natural/worms(T)
-		else
-			if(!(locate(/obj/item/natural/stone) in T))
-				if(prob(23))
-					new /obj/item/natural/stone(T)
-	return ..()
+    abovemob = mutable_appearance('icons/turf/roguefloor.dmi', "grave_above")
+    abovemob.layer = ABOVE_MOB_LAYER
+    update_icon()
+    var/turf/open/floor/rogue/dirt/T = loc
+    if(istype(T))
+        mastert = T
+        T.holie = src
+        if(T.muddy)
+            if(prob(55))
+                if(prob(20))
+                    if(prob(30))
+                        new /obj/item/natural/worms/grubs(T)
+                    else
+                        new /obj/item/natural/worms/leech(T)
+                else
+                    new /obj/item/natural/worms(T)
+        else
+            if(prob(23))
+                new /obj/item/natural/stone(T)
+    return ..()
 
 /obj/structure/closet/dirthole/Destroy()
 	QDEL_NULL(abovemob)

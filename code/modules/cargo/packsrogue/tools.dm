@@ -25,12 +25,17 @@
 */
 /datum/supply_pack/rogue/tools/chains
 	name = "Chains"
-	cost = 15
+	cost = 60 //3 iron
 	contains = list(
 					/obj/item/rope/chain,
 					/obj/item/rope/chain,
 					/obj/item/rope/chain,
 				)
+
+/datum/supply_pack/rogue/tools/lockpicks
+	name = "Lockpicks"
+	cost = 30
+	contains = list(/obj/item/lockpickring/mundane)
 
 /datum/supply_pack/rogue/tools/sacks
 	name = "Sacks"
@@ -43,7 +48,7 @@
 
 /datum/supply_pack/rogue/tools/paper
 	name = "Paper"
-	cost = 3
+	cost = 16
 	contains = list(
 					/obj/item/paper/scroll,
 					/obj/item/paper/scroll,
@@ -103,14 +108,14 @@
 				)
 
 /datum/supply_pack/rogue/tools/prarml
-	name = "Proesthetic Arm (L)"
+	name = "Prosthetic Left Wooden Arm"
 	cost = 40
-	contains = list(/obj/item/bodypart/l_arm/rproesthetic)
+	contains = list(/obj/item/bodypart/l_arm/prosthetic/wood)
 
 /datum/supply_pack/rogue/tools/prarmr
-	name = "Proesthetic Arm (R)"
+	name = "Prosthetic Right Wooden Arm"
 	cost = 40
-	contains = list(/obj/item/bodypart/r_arm/rproesthetic)
+	contains = list(/obj/item/bodypart/r_arm/prosthetic/wood)
 
 /datum/supply_pack/rogue/tools/waterskin
 	name = "Waterskin"
@@ -124,19 +129,21 @@
 
 /datum/supply_pack/rogue/tools/keyrings
 	name = "Keyrings"
-	cost = 8
-	contains = list(/obj/item/keyring,
-					/obj/item/keyring,
-					/obj/item/keyring)
+	cost = 20
+	contains = list(/obj/item/storage/keyring,
+					/obj/item/storage/keyring,
+					/obj/item/storage/keyring)
 
 /datum/supply_pack/rogue/tools/needles
 	name = "Needles"
-	cost = 15
+	cost = 20
 	contains = list(/obj/item/needle,
+					/obj/item/needle,
+					/obj/item/needle,
 					/obj/item/needle,
 					/obj/item/needle)
 
 /datum/supply_pack/rogue/tools/shopkeyy
 	name = "Spare Shopkey"
 	cost = 10
-	contains = list(/obj/item/roguekey/shop)
+	contains = list(/obj/item/key/shop)

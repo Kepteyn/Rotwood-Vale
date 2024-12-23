@@ -7,10 +7,10 @@
 	total_positions = 1
 	spawn_positions = 1
 
-	allowed_races = RACES_TOLERATED_UP
+	allowed_races = RACES_SHUNNED_UP
 	allowed_ages = list(AGE_MIDDLEAGED, AGE_OLD)
 
-	tutorial = "Servitude unto death; That is your motto. Having nurtured royalty for years, you are nothing short of the King's majordomo, commanding over the rest of the house staff."
+	tutorial = "Servitude unto death; That is your motto. Having nurtured royalty for years, you are nothing short of the Duke's majordomo, commanding over the rest of the house staff."
 
 	outfit = /datum/outfit/job/roguetown/butler
 	display_order = JDO_BUTLER
@@ -24,7 +24,7 @@
 		H.mind.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/reading, 2, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/craft/cooking, 3, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/misc/medicine, 2, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/misc/treatment, 2, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/sewing, 2, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/sneaking, 3, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/stealing, 3, TRUE)
@@ -38,15 +38,24 @@
 		shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt
 		shoes = /obj/item/clothing/shoes/roguetown/shortboots
 		belt = /obj/item/storage/belt/rogue/leather
-		beltr = /obj/item/keyring/servant
+		beltr = /obj/item/storage/keyring/servant
 		beltl = /obj/item/storage/belt/rogue/pouch/coins/poor
 		armor = /obj/item/clothing/suit/roguetown/armor/leather/vest/black
 		head = /obj/item/clothing/head/roguetown/fancyhat
 	else
+		switch(H.patron?.type)
+			if(/datum/patron/divine/eora) //Eoran loadouts
+				armor = /obj/item/clothing/suit/roguetown/shirt/dress/gen/sexy/black
+				pants = pick(/obj/item/clothing/under/roguetown/tights/stockings/silk/black, /obj/item/clothing/under/roguetown/tights/stockings/fishnet/black)
+			else
+				armor = /obj/item/clothing/suit/roguetown/shirt/dress/gen
+				pants = pick(/obj/item/clothing/under/roguetown/tights/stockings/black, /obj/item/clothing/under/roguetown/tights/stockings/white) //Added stockings for the maids
+
+		pants = /obj/item/clothing/under/roguetown/tights/stockings/silk/white
 		armor = /obj/item/clothing/suit/roguetown/shirt/dress/gen/black
 		shoes = /obj/item/clothing/shoes/roguetown/simpleshoes
 		cloak = /obj/item/clothing/cloak/apron/waist
 		belt = /obj/item/storage/belt/rogue/leather
-		beltr = /obj/item/keyring/servant
+		beltr = /obj/item/storage/keyring/servant
 		beltl = /obj/item/storage/belt/rogue/pouch/coins/poor
 

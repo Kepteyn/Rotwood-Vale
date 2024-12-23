@@ -79,8 +79,6 @@
 #define DEFAULT_BODYPART_ICON_ROBOTIC 'icons/mob/augmentation/augments.dmi'
 
 #define MONKEY_BODYPART "monkey"
-#define ALIEN_BODYPART "alien"
-#define LARVA_BODYPART "larva"
 #define DEVIL_BODYPART "devil"
 /*see __DEFINES/inventory.dm for bodypart bitflag defines*/
 
@@ -378,8 +376,6 @@
 #define MIRROR_PRIDE  (1<<2)
 //Race swap wizard event
 #define RACE_SWAP     (1<<3)
-//ERT spawn template (avoid races that don't function without correct gear)
-#define ERT_SPAWN     (1<<4)
 //xenobio black crossbreed
 #define SLIME_EXTRACT (1<<5)
 //Wabbacjack staff projectiles
@@ -460,13 +456,16 @@
 #define SKIN_COLOR_SKULL_SEEKER "292413"
 
 //TIEFLING SKIN TONES
-#define SKIN_COLOR_CASTILLIAN "cc5757"
-#define SKIN_COLOR_MYSTERIOUS "ff0000"
-#define SKIN_COLOR_SUCCUBUS "d2042d"
-#define SKIN_COLOR_INCUBUS "a23737"
-#define SKIN_COLOR_MEPHISTOPHELES "9197C5"
 #define SKIN_COLOR_ZARIEL "DBA960"
+#define SKIN_COLOR_LEVISTUS "5B5F96"
+#define SKIN_COLOR_GLASYA "cc5757"
+#define SKIN_COLOR_ASMODEUS "8F3F50"
+#define SKIN_COLOR_BAALZEBUL "991F1D"
+#define SKIN_COLOR_MEPHISTOPHELES "9197C5"
+#define SKIN_COLOR_FIERNA "C62D4C"
 #define SKIN_COLOR_DISPATER "B289C6"
+#define SKIN_COLOR_NYMSEA "A8619E"
+#define SKIN_COLOR_MAMMON "E0CED8"
 
 //ARGONIAN SKIN TONES
 #define SKIN_COLOR_AQUARELA "ffff88"
@@ -499,3 +498,12 @@
 #define WHITEBROWN_FUR "c69b83"
 #define DARKBROWN_FUR "3b2e27"
 #define BLACK_FUR	 "271f1a"
+
+//SEELIE SKIN TONES
+#define SKIN_COLOR_WATER "abcbff"
+#define SKIN_COLOR_SOIL "ad7c58"
+#define SKIN_COLOR_ROCK "594638"
+#define SKIN_COLOR_AIR "fce5c2"
+#define SKIN_COLOR_FIRE "ff6e6e"
+#define SKIN_COLOR_FLORA "6afc74"
+#define SKIN_COLOR_ELECTRIC "faec8e"

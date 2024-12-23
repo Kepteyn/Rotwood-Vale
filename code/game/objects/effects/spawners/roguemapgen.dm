@@ -1,4 +1,6 @@
+// why the fuck??
 /obj/effect/spawner/roguemap/Initialize(mapload)
+	. = ..()
 	START_PROCESSING(SSmapgen, src)
 
 /obj/effect/spawner/roguemap
@@ -32,6 +34,12 @@
 	icon_state = "tree"
 	name = "Tree spawner"
 	probby = 80
+	spawned = list(/obj/structure/flora/roguetree)
+
+/obj/effect/spawner/roguemap/mobspawner
+	icon_state = "mobspawner"
+	name = "mob spawner"
+	probby = 50
 	spawned = list(/obj/structure/flora/roguetree)
 
 /obj/effect/spawner/roguemap/treeorbush

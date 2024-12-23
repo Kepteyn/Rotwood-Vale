@@ -31,7 +31,7 @@
 	skinned_type = /obj/item/stack/sheet/animalhide/human
 	disliked_food = NONE
 	liked_food = NONE
-	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
+	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | RACE_SWAP | SLIME_EXTRACT
 	limbs_icon_m = 'icons/roguetown/mob/bodies/m/md.dmi'
 	limbs_icon_f = 'icons/roguetown/mob/bodies/f/fd.dmi'
 	dam_icon = 'icons/roguetown/mob/bodies/dam/dam_male.dmi'
@@ -53,12 +53,12 @@
 		OFFSET_SHIRT_F = list(0,0), OFFSET_ARMOR_F = list(0,0), OFFSET_UNDIES = list(0,-4), OFFSET_UNDIES_F = list(0,-4), \
 		)
 	specstats = list(
-		"strength" = 1, 
-		"perception" = -1, 
-		"intelligence" = 0, 
-		"constitution" = 2, 
-		"endurance" = 2, 
-		"speed" = -3, 
+		"strength" = 1,
+		"perception" = -1,
+		"intelligence" = 0,
+		"constitution" = 2,
+		"endurance" = 2,
+		"speed" = -3,
 		"fortune" = 0
 		)
 	enflamed_icon = "widefire"
@@ -146,10 +146,3 @@
 
 /datum/species/dwarf/mountain/random_surname()
 	return " [pick(world.file2list("strings/rt/names/dwarf/dwarmlast.txt"))]"
-
-//this accent is HORRIBLE right now, someone please fix this shit
-// oh yeah here we go again 85 to 23
-// changed my mind, if the accent were to return it should just be on a single subset of dwarves.
-/datum/species/dwarf/mountain/get_accent(mob/living/carbon/human/H)
-	return strings("dwarf_replacement.json", "dwarf")
-

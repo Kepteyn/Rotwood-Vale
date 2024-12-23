@@ -28,7 +28,6 @@
 	disliked_food = NONE
 	liked_food = NONE
 	possible_ages = ALL_AGES_LIST
-	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
 	limbs_icon_m = 'icons/roguetown/mob/bodies/m/met.dmi'
 	limbs_icon_f = 'icons/roguetown/mob/bodies/f/fm.dmi'
 	dam_icon = 'icons/roguetown/mob/bodies/dam/dam_male.dmi'
@@ -49,12 +48,12 @@
 		OFFSET_SHIRT_F = list(0,0), OFFSET_ARMOR_F = list(0,0), OFFSET_UNDIES_F = list(0,0), \
 		)
 	specstats = list(
-		"strength" = -2, 
-		"perception" = 1, 
-		"intelligence" = 2, 
-		"constitution" = -2, 
-		"endurance" = 0, 
-		"speed" = 2, 
+		"strength" = -2,
+		"perception" = 1,
+		"intelligence" = 2,
+		"constitution" = -2,
+		"endurance" = 0,
+		"speed" = 2,
 		"fortune" = 0
 		)
 	enflamed_icon = "widefire"
@@ -85,6 +84,8 @@
 		/datum/customizer/organ/vagina/human,
 		)
 	body_markings = list(
+		/datum/body_marking/flushed_cheeks,
+		/datum/body_marking/eyeliner,
 	)
 
 /datum/species/elf/wood/get_span_language(datum/language/message_language)
@@ -163,5 +164,3 @@
 /datum/species/elf/wood/random_surname()
 	return " [pick(world.file2list("strings/rt/names/elf/elfwlast.txt"))]"
 
-/datum/species/elf/wood/get_accent(mob/living/carbon/human/H)
-	return strings("russian_replacement.json", "russian")

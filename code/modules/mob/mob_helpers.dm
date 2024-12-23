@@ -302,7 +302,7 @@
 /**
   * change a mob's act-intent.
   *
-  * Input the intent as a string such as "help" or use "right"/"left
+  * Input the intent as a /datum/intent, or the strings "left" or "right"
   */
 /mob/verb/a_intent_change(input as text)
 	set name = "a-intent"
@@ -556,11 +556,11 @@
 	if(isliving(src))
 		L = src
 	var/client/client = L.client
-	if(L.IsSleeping())
+	if(L.IsSleeping() || L.surrendering)
 		if(cmode)
 			playsound_local(src, 'sound/misc/comboff.ogg', 100)
 			SSdroning.play_area_sound(get_area(src), client)
-			cmode = FALSE
+			set_cmode(FALSE)
 		if(hud_used)
 			if(hud_used.cmode_button)
 				hud_used.cmode_button.update_icon()
@@ -568,11 +568,11 @@
 	if(cmode)
 		playsound_local(src, 'sound/misc/comboff.ogg', 100)
 		SSdroning.play_area_sound(get_area(src), client)
-		cmode = FALSE
-		if(client && HAS_TRAIT(src, TRAIT_SCREENSHAKE))
-			animate(client, pixel_y)
+		set_cmode(FALSE)
+		if(client && HAS_TRAIT(src, TRAIT_SCHIZO_AMBIENCE) && !HAS_TRAIT(src, TRAIT_SCREENSHAKE))
+			animate(client, pixel_y) // stops screenshake if you're not on 4th wonder yet.
 	else
-		cmode = TRUE
+		set_cmode(TRUE)
 		playsound_local(src, 'sound/misc/combon.ogg', 100)
 		if(L.cmode_music)
 			SSdroning.play_combat_music(L.cmode_music, client)
@@ -582,6 +582,15 @@
 	if(hud_used)
 		if(hud_used.cmode_button)
 			hud_used.cmode_button.update_icon()
+
+/mob/proc/set_cmode(var/new_cmode)
+	if(cmode == new_cmode)
+		return
+	cmode = new_cmode
+	if(new_cmode)
+		SEND_SIGNAL(src, COMSIG_MOB_CMODE_ENABLED, src)
+	else
+		SEND_SIGNAL(src, COMSIG_MOB_CMODE_DISABLED, src)
 
 /mob
 	var/last_aimhchange = 0
@@ -714,39 +723,7 @@
 		return FALSE
 	if(!istype(M))
 		return FALSE
-	if(issilicon(M))
-		if(iscyborg(M)) //For cyborgs, returns 1 if the cyborg has a law 0 and special_role. Returns 0 if the borg is merely slaved to an AI traitor.
-			return FALSE
-		else if(isAI(M))
-			var/mob/living/silicon/ai/A = M
-			if(A.laws && A.laws.zeroth && A.mind && A.mind.special_role)
-				return TRUE
-		return FALSE
 	if(M.mind && M.mind.special_role)//If they have a mind and special role, they are some type of traitor or antagonist.
-		switch(SSticker.mode.config_tag)
-			if("revolution")
-				if(is_revolutionary(M))
-					return 2
-			if("cult")
-				if(M.mind in SSticker.mode.cult)
-					return 2
-			if("nuclear")
-				if(M.mind.has_antag_datum(/datum/antagonist/nukeop,TRUE))
-					return 2
-			if("changeling")
-				if(M.mind.has_antag_datum(/datum/antagonist/changeling,TRUE))
-					return 2
-			if("wizard")
-				if(iswizard(M))
-					return 2
-			if("apprentice")
-				if(M.mind in SSticker.mode.apprentices)
-					return 2
-			if("monkey")
-				if(isliving(M))
-					var/mob/living/L = M
-					if(L.diseases && (locate(/datum/disease/transformation/jungle_fever) in L.diseases))
-						return 2
 		return TRUE
 	if(M.mind && LAZYLEN(M.mind.antag_datums)) //they have an antag datum!
 		return TRUE

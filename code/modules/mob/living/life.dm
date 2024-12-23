@@ -8,9 +8,6 @@
 	if (client)
 		var/turf/T = get_turf(src)
 		if(!T)
-			for(var/obj/effect/landmark/error/E in GLOB.landmarks_list)
-				forceMove(E.loc)
-				break
 			var/msg = "[ADMIN_LOOKUPFLW(src)] was found to have no .loc with an attached client, if the cause is unknown it would be wise to ask how this was accomplished."
 			message_admins(msg)
 			send2irc_adminless_only("Mob", msg, R_ADMIN)
@@ -45,15 +42,13 @@
 			for(var/datum/wound/wound as anything in get_wounds())
 				wound.heal_wound(1)
 
-		handle_diseases()// DEAD check is in the proc itself; we want it to spread even if the mob is dead, but to handle its disease-y properties only if you're not.
-
 		if (QDELETED(src)) // diseases can qdel the mob via transformations
 			return
 
 		//Random events (vomiting etc)
 		handle_random_events()
 		//Handle temperature/pressure differences between body and environment
-		var/datum/gas_mixture/environment = loc.return_air()
+		var/datum/gas_mixture/environment = loc?.return_air()
 		if(environment)
 			handle_environment(environment)
 
@@ -76,11 +71,9 @@
 	if(stat != DEAD)
 		return 1
 
-/mob/living
-	var/last_deadlife
-
 /mob/living/proc/DeadLife()
 	set invisibility = 0
+	set waitfor = FALSE
 	if (notransform)
 		return
 	if(!loc)
@@ -101,9 +94,6 @@
 
 /mob/living/proc/handle_mutations_and_radiation()
 	radiation = 0 //so radiation don't accumulate in simple animals
-	return
-
-/mob/living/proc/handle_diseases()
 	return
 
 /mob/living/proc/handle_random_events()

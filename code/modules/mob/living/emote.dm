@@ -2,7 +2,7 @@
 /* EMOTE DATUMS */
 /datum/emote/living
 	mob_type_allowed_typecache = /mob/living
-	mob_type_blacklist_typecache = list(/mob/living/simple_animal/slime, /mob/living/brain)
+	mob_type_blacklist_typecache = list(/mob/living/brain)
 
 /datum/emote/living/blush
 	key = "blush"
@@ -27,6 +27,11 @@
 	if(isliving(user))
 		var/mob/living/L = user
 		var/area/C = get_area(user)
+
+		if(HAS_TRAIT(usr, TRAIT_ATHEISM_CURSE))
+			to_chat(usr, span_danger("Praying is for fools."))
+			return
+
 		var/msg = input("Whisper your prayer:", "Prayer") as text|null
 		if(msg)
 			L.whisper(msg)
@@ -247,10 +252,6 @@
 	key = ""
 	key_third_person = ""
 	message = "gasps out their last breath."
-	message_robot = "shudders violently for a moment before falling still, its eyes slowly darkening."
-	message_AI = "screeches, its screen flickering as its systems slowly halt."
-	message_alien = "lets out a waning guttural screech, and collapses onto the floor..."
-	message_larva = "lets out a sickly hiss of air and falls limply to the floor..."
 	message_monkey = "lets out a faint chimper as it collapses and stops moving..."
 	message_simple =  "falls limp."
 	stat_allowed = UNCONSCIOUS
@@ -473,6 +474,14 @@
 
 	emote("kiss", intentional = TRUE, targetted = TRUE)
 
+/datum/emote/living/kiss/can_run_emote(mob/living/user, status_check = TRUE , intentional)
+	. = ..()
+	if(HAS_TRAIT(user, TRAIT_EORA_CURSE))
+		var/mob/living/carbon/human/H = user
+		to_chat(H, "<span class='warning'>The idea repulses me!</span>")
+		H.cursed_freak_out()
+		return FALSE
+
 /datum/emote/living/kiss/adjacentaction(mob/user, mob/target)
 	. = ..()
 	message_param = initial(message_param) // re
@@ -480,6 +489,13 @@
 		return
 	if(ishuman(user) && ishuman(target))
 		var/mob/living/carbon/human/H = user
+		var/mob/living/carbon/human/E = target
+
+		// cursed is the one being kissed
+		if(HAS_TRAIT(E, TRAIT_EORA_CURSE))
+			to_chat(E, "<span class='warning'>I feel unexplicably repelled!</span>")
+			E.cursed_freak_out()
+
 		var/do_change
 		if(target.loc == user.loc)
 			do_change = TRUE
@@ -491,7 +507,6 @@
 				message_param = "kisses %t deeply."
 			else if(H.zone_selected == BODY_ZONE_PRECISE_EARS)
 				message_param = "kisses %t on the ear."
-				var/mob/living/carbon/human/E = target
 				if(iself(E) || ishalfelf(E))
 					if(!E.cmode)
 						to_chat(target, span_love("It tickles..."))
@@ -499,6 +514,7 @@
 				message_param = "kisses %t on the brow."
 			else
 				message_param = "kisses %t on \the [parse_zone(H.zone_selected)]."
+
 	playsound(target.loc, pick('sound/vo/kiss (1).ogg','sound/vo/kiss (2).ogg'), 100, FALSE, -1)
 
 
@@ -550,6 +566,27 @@
 	set category = "Emotes"
 
 	emote("hug", intentional = TRUE, targetted = TRUE)
+
+/datum/emote/living/hug/can_run_emote(mob/living/user, status_check = TRUE , intentional)
+	. = ..()
+	if(HAS_TRAIT(user, TRAIT_EORA_CURSE))
+		var/mob/living/carbon/human/H = user
+		to_chat(H, "<span class='warning'>The idea repulses me!</span>")
+		H.cursed_freak_out()
+		return FALSE
+
+/datum/emote/living/hug/adjacentaction(mob/user, mob/target)
+	. = ..()
+	if(!user || !target)
+		return
+	if(ishuman(target))
+		var/mob/living/carbon/human/H = target
+
+		// cursed is the one being hugged
+		if(HAS_TRAIT(H, TRAIT_EORA_CURSE))
+			to_chat(H, "<span class='warning'>I feel unexplicably repelled!</span>")
+			H.cursed_freak_out()
+			return
 
 /datum/emote/living/holdbreath
 	key = "hold"
@@ -1112,7 +1149,7 @@
 #ifdef MATURESERVER
 	message_param = "%t"
 #endif
-	//mute_time = 1 - RATWOOD CHANGE, I don't want spammers.
+
 /datum/emote/living/custom/can_run_emote(mob/user, status_check, intentional)
 	. = ..() && intentional
 
@@ -1164,69 +1201,6 @@
 
 /datum/emote/living/help
 	key = "help"
-
-/datum/emote/living/help/run_emote(mob/user, params, type_override, intentional)
-/*	var/list/keys = list()
-	var/list/message = list("Available emotes, you can use them with say \"*emote\": ")
-
-	for(var/key in GLOB.emote_list)
-		for(var/datum/emote/P in GLOB.emote_list[key])
-			if(P.key in keys)
-				continue
-			if(P.can_run_emote(user, status_check = FALSE , intentional = TRUE))
-				keys += P.key
-
-	keys = sortList(keys)
-
-	for(var/emote in keys)
-		if(LAZYLEN(message) > 1)
-			message += ", [emote]"
-		else
-			message += "[emote]"
-
-	message += "."
-
-	message = jointext(message, "")
-
-	to_chat(user, message)*/
-
-/datum/emote/beep
-	key = "beep"
-	key_third_person = "beeps"
-	message = "beeps."
-	message_param = "beeps at %t."
-	sound = 'sound/blank.ogg'
-	mob_type_allowed_typecache = list(/mob/living/brain, /mob/living/silicon)
-/*
-/datum/emote/living/circle
-	key = "circle"
-	key_third_person = "circles"
-	restraint_check = TRUE
-
-/datum/emote/living/circle/run_emote(mob/user, params, type_override, intentional)
-	. = ..()
-	var/obj/item/circlegame/N = new(user)
-	if(user.put_in_hands(N))
-		to_chat(user, span_notice("I make a circle with your hand."))
-	else
-		qdel(N)
-		to_chat(user, span_warning("I don't have any free hands to make a circle with."))
-
-/datum/emote/living/slap
-	key = "slap"
-	key_third_person = "slaps"
-	restraint_check = TRUE
-
-/datum/emote/living/slap/run_emote(mob/user, params, type_override, intentional)
-	. = ..()
-	if(!.)
-		return
-	var/obj/item/slapper/N = new(user)
-	if(user.put_in_hands(N))
-		to_chat(user, span_notice("I ready your slapping hand."))
-	else
-		to_chat(user, span_warning("You're incapable of slapping in your current state."))
-*/
 
 /datum/emote/living/shake
 	key = "shake"

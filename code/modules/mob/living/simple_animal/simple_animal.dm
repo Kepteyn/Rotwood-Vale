@@ -111,8 +111,7 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 	var/breedchildren = 3
 
 	///Simple_animal access.
-	///Innate access uses an internal ID card.
-	var/obj/item/card/id/access_card = null
+	var/list/lock_hashes
 	///In the event that you want to have a buffing effect on the mob, but don't want it to stack with other effects, any outside force that applies a buff to a simple mob should at least set this to 1, so we have something to check against.
 	var/buffed = 0
 	///If the mob can be spawned with a gold slime core. HOSTILE_SPAWN are spawned with plasma, FRIENDLY_SPAWN are spawned with blood.
@@ -168,7 +167,7 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 	var/swinging = FALSE
 
 	buckle_lying = FALSE
-	cmode = 1
+	cmode = TRUE
 
 	var/remains_type
 
@@ -280,8 +279,10 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 	if(stat != DEAD)
 		if(health <= 0)
 			death()
+			SEND_SIGNAL(src, COMSIG_MOB_STATCHANGE, DEAD)
 			return
 	med_hud_set_status()
+	SEND_SIGNAL(src, COMSIG_MOB_STATCHANGE, stat)
 	if(footstep_type)
 		AddComponent(/datum/component/footstep, footstep_type)
 
@@ -415,13 +416,13 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 			if((butcher_results || guaranteed_butcher_results) && held_item.get_sharpness() && held_item.wlength == WLENGTH_SHORT)
 				var/used_time = 210
 				if(user.mind)
-					used_time -= (user.mind.get_skill_level(/datum/skill/labor/butchering) * 30)
+					used_time -= (user.mind.get_skill_level(/datum/skill/craft/hunting) * 30)
 				visible_message("[user] begins to butcher [src].")
 				playsound(src, 'sound/foley/gross.ogg', 100, FALSE)
 				if(do_after(user, used_time, target = src))
 					gib()
 					if(user.mind)
-						user.mind.add_sleep_experience(/datum/skill/labor/butchering, user.STAINT * 4)
+						user.mind.add_sleep_experience(/datum/skill/craft/hunting, user.STAINT * 4)
 	..()
 
 /mob/living/simple_animal/gib()
@@ -513,7 +514,7 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 		..()
 
 /mob/living/simple_animal/proc/CanAttack(atom/the_target)
-	if(see_invisible < the_target.invisibility)
+	if(see_invisible < the_target.invisibility) //Makes sneaking useful vs mobs now!
 		return FALSE
 	if(ismob(the_target))
 		var/mob/M = the_target
@@ -522,10 +523,6 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 	if (isliving(the_target))
 		var/mob/living/L = the_target
 		if(L.stat == DEAD)
-			return FALSE
-	if (ismecha(the_target))
-		var/obj/mecha/M = the_target
-		if (M.occupant)
 			return FALSE
 	return TRUE
 
@@ -670,9 +667,6 @@ mob/living/simple_animal/handle_fire()
 			return
 	sync_lighting_plane_alpha()
 
-/mob/living/simple_animal/get_idcard(hand_first)
-	return access_card
-
 /mob/living/simple_animal/can_hold_items()
 	return dextrous
 
@@ -700,13 +694,6 @@ mob/living/simple_animal/handle_fire()
 		return ..()
 	if(!hand_index)
 		hand_index = (active_hand_index % held_items.len)+1
-	var/obj/item/held_item = get_active_held_item()
-	if(held_item)
-		if(istype(held_item, /obj/item/twohanded))
-			var/obj/item/twohanded/T = held_item
-			if(T.wielded == 1)
-				to_chat(usr, span_warning("My other hand is too busy holding [T]."))
-				return FALSE
 	var/oindex = active_hand_index
 	active_hand_index = hand_index
 	if(hud_used)
@@ -819,14 +806,14 @@ mob/living/simple_animal/handle_fire()
 						do_footstep = FALSE
 			if(user.mind)
 				var/amt = user.mind.get_skill_level(/datum/skill/misc/riding)
-				if(amt)
+				if(amt && !istype(src, /mob/living/simple_animal/hostile/retaliate/rogue/bigrat))
 					riding_datum.vehicle_move_delay -= 5
 				else
 					riding_datum.vehicle_move_delay -= 3
 			if(loc != oldloc)
 				var/obj/structure/mineral_door/MD = locate() in loc
 				if(MD && !MD.ridethrough)
-					if(isliving(user))
+					if(isliving(user) && !isseelie(user))
 						var/mob/living/L = user
 						unbuckle_mob(L)
 						L.Paralyze(50)

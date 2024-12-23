@@ -4,17 +4,20 @@
 	icon = 'icons/roguetown/clothing/neck.dmi'
 	mob_overlay_icon = 'icons/roguetown/clothing/onmob/neck.dmi'
 	bloody_icon_state = "bodyblood"
+	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/clothing/neck/roguetown/coif
 	name = "coif"
 	icon_state = "coif"
 	item_state = "coif"
-	flags_inv = HIDEEARS|HIDEHAIR
+	desc = "A coif made either of leather or cloth that is comfortable enough to sleep in that protects the head, ears and neck, while providing no protection from arrows and bolts and sadly enough, too soft to prevent chops from decapitating."
+	flags_inv = HIDEHAIR
 	slot_flags = ITEM_SLOT_NECK|ITEM_SLOT_HEAD
 	blocksound = SOFTHIT
 	body_parts_covered = NECK|HAIR|EARS|HEAD
 	armor = list("blunt" = 33, "slash" = 12, "stab" = 22, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
-	prevent_crits = list(BCLASS_CUT, BCLASS_BLUNT)
+	max_integrity = 125
+	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_BLUNT)
 	adjustable = CAN_CADJUST
 	toggle_icon_state = TRUE
 	sewrepair = TRUE
@@ -33,7 +36,7 @@
 				H.update_inv_head()
 		else if(adjustable == CADJUSTED)
 			ResetAdjust(user)
-			flags_inv = HIDEEARS|HIDEHAIR
+			flags_inv = HIDEHAIR
 			if(user)
 				if(ishuman(user))
 					var/mob/living/carbon/H = user
@@ -46,18 +49,19 @@
 	name = "chain coif"
 	icon_state = "chaincoif"
 	item_state = "chaincoif"
-	flags_inv = HIDEEARS|HIDEHAIR
+	desc = "A steel chain coif, composed of interlinked metal rings that barely absorb impacts from arrows and bolts that protects the head, ears and neck, and is sadly too uncomfortable to sleep in."
+	flags_inv = HIDEHAIR
+	resistance_flags = FIRE_PROOF
 	armor = list("blunt" = 30, "slash" = 60, "stab" = 45, "bullet" = 10, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
-
 	max_integrity = 200
 	resistance_flags = FIRE_PROOF
 	slot_flags = ITEM_SLOT_NECK|ITEM_SLOT_HEAD
 	body_parts_covered = NECK|HAIR|EARS|HEAD
-	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT)
+	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_ASSASSIN)
 	adjustable = CAN_CADJUST
 	toggle_icon_state = TRUE
 	blocksound = CHAINHIT
-	anvilrepair = /datum/skill/craft/armorsmithing
+	anvilrepair = /datum/skill/craft/blacksmithing
 	smeltresult = /obj/item/ingot/steel
 
 /obj/item/clothing/neck/roguetown/chaincoif/AdjustClothes(mob/user)
@@ -74,7 +78,7 @@
 				H.update_inv_head()
 		else if(adjustable == CADJUSTED)
 			ResetAdjust(user)
-			flags_inv = HIDEEARS|HIDEHAIR
+			flags_inv = HIDEHAIR
 			if(user)
 				if(ishuman(user))
 					var/mob/living/carbon/H = user
@@ -84,22 +88,30 @@
 
 /obj/item/clothing/neck/roguetown/chaincoif/iron
 	icon_state = "ichaincoif"
-	anvilrepair = /datum/skill/craft/armorsmithing
+	anvilrepair = /datum/skill/craft/blacksmithing
+	desc = "An iron chain coif, composed of interlinked metal rings, that barely absorb impacts from arrows that protects the head, ears and neck, and is sadly too uncomfortable to sleep in."
 	smeltresult = /obj/item/ingot/iron
 	max_integrity = 150
 
+/obj/item/clothing/neck/roguetown/chaincoif/ironb
+	icon_state = "ichaincoif"
+	anvilrepair = /datum/skill/craft/blacksmithing
+	desc = "An iron chain coif, composed of interlinked metal rings, that barely absorb impacts from arrows that protects the head, ears and neck, and is sadly too uncomfortable to sleep in. blackened iron."
+	smeltresult = /obj/item/ingot/iron
+	color = "#151615"
+	max_integrity = 150
+
 /obj/item/clothing/neck/roguetown/bervor
-	name = "bervor"
-	desc = "A steel bervor designed to protect the neck."
+	name = "bevor"
+	desc = "A steel bevor that protects the lower part of the head, that being the neck, mouth and nose."
 	icon_state = "bervor"
 	armor = list("blunt" = 90, "slash" = 100, "stab" = 80, "bullet" = 100, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
-	anvilrepair = /datum/skill/craft/armorsmithing
+	anvilrepair = /datum/skill/craft/blacksmithing
 	smeltresult = /obj/item/ingot/steel
-
 	max_integrity = 300
 	resistance_flags = FIRE_PROOF
 	slot_flags = ITEM_SLOT_NECK
-	body_parts_covered = NECK|EARS|MOUTH|NOSE
+	body_parts_covered = NECK|MOUTH|NOSE
 	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_TWIST)
 	blocksound = PLATEHIT
 
@@ -109,7 +121,7 @@
 	icon_state = "gorget"
 	armor = list("blunt" = 90, "slash" = 100, "stab" = 80, "bullet" = 100, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 	smeltresult = /obj/item/ingot/iron
-	anvilrepair = /datum/skill/craft/armorsmithing
+	anvilrepair = /datum/skill/craft/blacksmithing
 	max_integrity = 150
 	resistance_flags = FIRE_PROOF
 	slot_flags = ITEM_SLOT_NECK
@@ -117,27 +129,57 @@
 	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_TWIST)
 	blocksound = PLATEHIT
 
-/obj/item/clothing/neck/roguetown/gorget/prisoner/Initialize()
-	. = ..()
-	name = "cursed collar"
-	ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT)
 
-/obj/item/clothing/neck/roguetown/gorget/prisoner/dropped(mob/living/carbon/human/user)
-	. = ..()
-	if(QDELETED(src))
-		return
-	qdel(src)
+/obj/item/clothing/neck/roguetown/gorget/oring
+	name = "ringed gorget"
+	desc = "An iron gorget to protect the neck, this one has an odd ring mounted on the front."
+	leashable = TRUE
+	icon_state = "ironcollargorget"
+
+/obj/item/clothing/neck/roguetown/gorget/steel
+	name ="steel gorget"
+	desc = "A steel gorget to protect the neck."
+	smeltresult = /obj/item/ingot/steel
+	max_integrity = 300
+	icon_state = "sgorget"
+
+/obj/item/clothing/neck/roguetown/gorget/steel/oring
+	desc = "A steel gorget to protect the neck, this one has an odd ring mounted on the front."
+	name ="ringed steel gorget"
+	leashable = TRUE
+	icon_state = "steelcollargorget"
+
+/obj/item/clothing/neck/roguetown/leather
+	name = "hardened leather gorget"
+	desc = "Sturdy, durable, flexible. Will protect your neck from some good lumbering."
+	icon_state = "lgorget"
+	armor = list("blunt" = 70, "slash" = 60, "stab" = 30, "bullet" = 20, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	max_integrity = 150
+	slot_flags = ITEM_SLOT_NECK
+	body_parts_covered = NECK
+	prevent_crits = list(BCLASS_CUT, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_TWIST) //This one will help against chopping
+	blocksound = SOFTHIT
+	sewrepair = TRUE
+	salvage_amount = 1
+	salvage_result = /obj/item/natural/hide/cured
+
+/obj/item/clothing/neck/roguetown/gorget/alt
+	name = "vreccale"
+	desc = "Nature knows not of mercy."
+	icon_state = "iwolfcollar"
+	leashable = TRUE
 
 /obj/item/clothing/neck/roguetown/psicross
 	name = "psycross"
 	desc = ""
 	icon_state = "psicross"
+	mob_overlay_icon = 'icons/roguetown/clothing/onmob/neck.dmi'
 	//dropshrink = 0.75
 	resistance_flags = FIRE_PROOF
 	slot_flags = ITEM_SLOT_NECK|ITEM_SLOT_HIP|ITEM_SLOT_WRISTS
 	sellprice = 10
 	experimental_onhip = TRUE
-	anvilrepair = /datum/skill/craft/armorsmithing
+	anvilrepair = /datum/skill/craft/blacksmithing
 
 /obj/item/clothing/neck/roguetown/psicross/astrata
 	name = "amulet of Astrata"
@@ -162,6 +204,22 @@
 /obj/item/clothing/neck/roguetown/psicross/pestra
 	name = "amulet of Pestra"
 	desc = ""
+	icon_state = "pestra"
+
+/obj/item/clothing/neck/roguetown/psicross/ravox
+	name = "amulet of Ravox"
+	desc = ""
+	icon_state = "ravox"
+
+/obj/item/clothing/neck/roguetown/psicross/malum
+	name = "amulet of Malum"
+	icon_state = "malum"
+	desc = ""
+	
+/obj/item/clothing/neck/roguetown/psicross/eora
+	name = "amulet of Eora"
+	desc = ""
+	icon_state = "eora"
 
 /obj/item/clothing/neck/roguetown/psicross/wood
 	name = "wooden psycross"
@@ -195,7 +253,7 @@
 		if(W && W.transformed == TRUE)
 			to_chat(H, span_userdanger("I can't equip the silver, it is my BANE!"))
 			H.Knockdown(20)
-			H.Paralyze(20)	
+			H.Paralyze(20)
 
 /obj/item/clothing/neck/roguetown/psicross/silver/mob_can_equip(mob/living/M, mob/living/equipper, slot, disable_warning = FALSE, bypass_equip_delay_self = FALSE)
 	. = ..()
@@ -236,9 +294,10 @@
 	item_state = "talkstone"
 	//dropshrink = 0.75
 	resistance_flags = FIRE_PROOF
+	leashable = TRUE
 	allowed_race = CLOTHED_RACES_TYPES
 	sellprice = 98
-	anvilrepair = /datum/skill/craft/armorsmithing
+	anvilrepair = /datum/skill/craft/blacksmithing
 
 /obj/item/clothing/neck/roguetown/horus
 	name = "eye of horuz"
@@ -247,7 +306,7 @@
 	//dropshrink = 0.75
 	resistance_flags = FIRE_PROOF
 	sellprice = 30
-	anvilrepair = /datum/skill/craft/armorsmithing
+	anvilrepair = /datum/skill/craft/blacksmithing
 
 /obj/item/clothing/neck/roguetown/shalal
 	name = "desert rider medal"
@@ -256,4 +315,60 @@
 	//dropshrink = 0.75
 	resistance_flags = FIRE_PROOF
 	sellprice = 15
-	anvilrepair = /datum/skill/craft/armorsmithing
+	anvilrepair = /datum/skill/craft/blacksmithing
+
+/obj/item/clothing/neck/roguetown/collar
+	name = "rope collar"
+	desc = "This is for debug and item inheritance. If you are seeing this, bug a coder!"
+	icon = 'modular/icons/obj/items/leashes_collars.dmi'
+	mob_overlay_icon = 'modular/icons/mob/collars_leashes.dmi'
+	icon_state = "collar_rope"
+	color = "#d7bb9f"
+	allowed_race = CLOTHED_RACES_TYPES
+	allowed_sex = list(MALE,FEMALE)
+	leashable = TRUE
+	do_sound_bell = FALSE
+	slot_flags = ITEM_SLOT_NECK
+	salvage_amount = 1
+	salvage_result = /obj/item/rope
+
+/obj/item/clothing/neck/roguetown/collar/leather
+	name = "leather collar"
+	desc = "A comfortable collar made of leather."
+	icon_state = "leathercollar"
+	color = null
+	slot_flags = ITEM_SLOT_NECK
+	salvage_amount = 1
+	salvage_result = /obj/item/natural/hide/cured
+
+/obj/item/clothing/neck/roguetown/collar/leather/cursed/Initialize(mapload)
+	. = ..()
+	name = "cursed collar"
+	resistance_flags = FIRE_PROOF
+	ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT)
+	clothing_flags = ITEM_SLOT_NECK
+	icon = 'modular/icons/obj/items/leashes_collars.dmi'
+	mob_overlay_icon = 'modular/icons/mob/collars_leashes.dmi'
+	icon_state = "leathercollar"
+
+/obj/item/clothing/neck/roguetown/collar/leather/cursed/dropped(mob/living/carbon/human/user)
+	. = ..()
+	if(QDELETED(src))
+		return
+	qdel(src)
+
+/obj/item/clothing/neck/roguetown/collar/leather/bell
+	name = "jingly leather collar"
+	desc = "A comfortable collar made of leather, this one has a jingly little catbell!"
+	icon_state = "catbellcollar"
+	slot_flags = ITEM_SLOT_NECK
+	do_sound_bell = TRUE
+	bell = TRUE
+	salvage_result = list(/obj/item/natural/hide/cured = 1, /obj/item/catbell = 1)
+
+/obj/item/clothing/neck/roguetown/collar/leather/bell/cow
+	name = "jingly leather collar"
+	desc = "A comfortable collar made of leather, this one has a jingly little cowbell!"
+	icon_state = "cowbellcollar"
+	slot_flags = ITEM_SLOT_NECK
+	salvage_result = list(/obj/item/natural/hide/cured = 1, /obj/item/catbell/cow = 1)

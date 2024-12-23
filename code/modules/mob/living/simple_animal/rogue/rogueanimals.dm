@@ -96,6 +96,7 @@
 				qdel(F)
 				food = max(food + 30, 100)
 				return TRUE
+
 	for(var/obj/item/F in foundfood)
 		if(is_type_in_list(F, food_type))
 			var/turf/T = get_turf(F)
@@ -111,6 +112,8 @@
 	if(stat)
 		return
 	for(var/mob/living/eattarg in around)
+		if(!(eattarg in enemies)) //Makes a tamed rous not eat people on the floor unless instigated.
+			return
 		if(eattarg.stat != CONSCIOUS)
 			foundfood += eattarg
 			L = eattarg
@@ -152,7 +155,7 @@
 	return FALSE
 
 /mob/living/simple_animal/hostile/retaliate/rogue/Initialize()
-	..()
+	. = ..()
 	if(milkies)
 		udder = new()
 	if(tame)
@@ -177,9 +180,8 @@
 	..()
 
 /mob/living/simple_animal/hostile/retaliate/rogue/Destroy()
-	qdel(udder)
-	udder = null
-	..()
+	QDEL_NULL(udder)
+	return ..()
 
 /mob/living/simple_animal/hostile/retaliate/rogue/Life()
 	. = ..()
@@ -208,9 +210,11 @@
 				growth_prog += 0.5
 				if(growth_prog >= 100)
 					if(isturf(loc))
+						//Spawn the adult & make it tamed if we are. Note that we do NOT transfer damage, reagents, or any state of the animal...
 						var/mob/living/simple_animal/A = new adult_growth(loc)
 						if(tame)
 							A.tame = TRUE
+							A.tamed() //We unfortunately have to do this because by this point Initialize has already ran.
 						qdel(src)
 						return
 			else
@@ -232,7 +236,7 @@
 
 /mob/living/simple_animal/hostile/retaliate/rogue/attackby(obj/item/O, mob/user, params)
 	if(!stat && istype(O, /obj/item/reagent_containers/glass))
-		if(udder)
+		if(udder && tame)
 			udder.milkAnimal(O, user)
 			return 1
 	else
@@ -264,3 +268,43 @@
 		stop_automated_movement = TRUE
 		Goto(user,move_to_delay)
 		addtimer(CALLBACK(src, PROC_REF(return_action)), 3 SECONDS)
+
+/obj/item/gudder
+
+/obj/item/gudder/Initialize()
+	create_reagents(100)
+	reagents.add_reagent(/datum/reagent/consumable/milk, rand(0,20))
+	. = ..()
+
+/obj/item/gudder/proc/generateMilk()
+	reagents.add_reagent(/datum/reagent/consumable/milk, 1)
+
+/obj/item/gudder/proc/milkAnimal(obj/O, mob/living/user = usr)
+	var/obj/item/reagent_containers/glass/G = O
+	if(G.reagents.total_volume >= G.volume)
+		to_chat(user, span_warning("[O] is full."))
+		return
+	if(!reagents.has_reagent(/datum/reagent/consumable/milk, 5))
+		to_chat(user, span_warning("The udder is dry. Wait a bit longer..."))
+		user.changeNext_move(10)
+		return
+	if(do_after(user, 1 SECONDS, target = src))
+		reagents.trans_to(O, rand(5,10))
+		user.visible_message(span_notice("[user] milks [src] using \the [O]"))
+		playsound(O, pick('sound/vo/mobs/cow/milking (1).ogg', 'sound/vo/mobs/cow/milking (2).ogg'), 100, TRUE, -1)
+		user.Immobilize(1 SECONDS)
+		user.changeNext_move(1 SECONDS)
+
+
+/mob/living/simple_animal/hostile/retaliate/rogue/UnarmedAttack(atom/A)
+	. = ..()
+	if(!is_type_in_list(A, food_type))
+		return
+
+	if(!src.CanReach(A))
+		return
+
+	face_atom(A)
+	playsound(src,'sound/misc/eat.ogg', rand(30,60), TRUE)
+	qdel(A)
+	food = max(food + 30, 100)

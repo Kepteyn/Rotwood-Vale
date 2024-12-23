@@ -17,13 +17,16 @@ GLOBAL_LIST_EMPTY(antagonists)
 	var/can_hijack = HIJACK_NEUTRAL //If these antags are alone on shuttle hijack happens.
 	var/antag_hud_type
 	var/antag_hud_name
-	var/list/confess_lines
+	var/list/confess_lines //RT: Lines said when tortured by an inquisitor.
 
 	//Antag panel properties
 	var/show_in_antagpanel = TRUE	//This will hide adding this antag type in antag panel, use only for internal subtypes that shouldn't be added directly but still show if possessed by mind
 	var/antagpanel_category = "Uncategorized"	//Antagpanel will display these together, REQUIRED
 	var/show_name_in_check_antagonists = FALSE //Will append antagonist name in admin listings - use for categories that share more than one antag type
+	
+	//RT: Whether or not this antag increases your votepwr in the end vote
 	var/increase_votepwr = TRUE
+	var/rogue_enabled = FALSE
 
 /datum/antagonist/New()
 	GLOB.antagonists += src
@@ -82,17 +85,6 @@ GLOBAL_LIST_EMPTY(antagonists)
 	var/datum/atom_hud/antag/hud = GLOB.huds[antag_hud_type]
 	hud.leave_hud(mob_override)
 	set_antag_hud(mob_override, null)
-
-// Handles adding and removing the clumsy mutation from clown antags. Gets called in apply/remove_innate_effects
-/datum/antagonist/proc/handle_clown_mutation(mob/living/mob_override, message, removing = TRUE)
-	var/mob/living/carbon/human/H = mob_override
-	if(H && istype(H) && H.mind.assigned_role == "Clown")
-		if(removing) // They're a clown becoming an antag, remove clumsy
-			H.dna.remove_mutation(CLOWNMUT)
-			if(!silent && message)
-				to_chat(H, span_boldnotice("[message]"))
-		else
-			H.dna.add_mutation(CLOWNMUT) // We're removing their antag status, add back clumsy
 
 //Assign default team and creates one for one of a kind team antagonists
 /datum/antagonist/proc/create_team(datum/team/team)

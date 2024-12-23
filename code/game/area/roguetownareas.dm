@@ -2,18 +2,18 @@ GLOBAL_LIST_EMPTY(chosen_music)
 
 GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town,/area/rogue/outdoors/town,/area/rogue/under/town)) //hey
 
+/area/start
+	name = "start area"
+	icon_state = "start"
+	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
+	has_gravity = STANDARD_GRAVITY
+
 /area/rogue
 	name = "roguetown"
 	icon_state = "rogue"
 	has_gravity = STANDARD_GRAVITY
 	ambientsounds = null
-	always_unpowered = TRUE
-	poweralm = FALSE
-	power_environ = TRUE
-	power_equip = TRUE
-	power_light = TRUE
 	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
-	requires_power = FALSE
 //	var/previous_ambient = ""
 
 /area/rogue/indoors
@@ -31,12 +31,20 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 	plane = INDOOR_PLANE
 	converted_type = /area/rogue/outdoors
 
+/area/rogue/indoors/banditcamp
+	name = "bandit camp indoors"
+
 /area/rogue/indoors/cave
 	name = "latejoin cave"
 	icon_state = "cave"
 	ambientsounds = AMB_GENCAVE
 	ambientnight = AMB_GENCAVE
 	soundenv = 8
+
+/area/rogue/outdoors/banditcamp
+	name = "bandit camp outdoors"
+
+
 
 /area/rogue/indoors/cave/late/can_craft_here()
 	return FALSE
@@ -97,7 +105,8 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 	ambush_mobs = list(
 				/mob/living/simple_animal/hostile/retaliate/rogue/bigrat = 30,
 				/mob/living/carbon/human/species/skeleton/npc/ambush = 10,
-				/mob/living/carbon/human/species/goblin/npc/ambush/hell = 20)
+				/mob/living/carbon/human/species/goblin/npc/ambush/hell = 20,
+				/mob/living/carbon/human/species/deadite/npc/ambush = 40)
 	droning_sound = 'sound/music/area/decap.ogg'
 	droning_sound_dusk = null
 	droning_sound_night = null
@@ -120,7 +129,8 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 				/turf/open/floor/rogue/grass)
 	ambush_mobs = list(
 				/mob/living/simple_animal/hostile/retaliate/rogue/wolf = 30,
-				/mob/living/carbon/human/species/skeleton/npc/ambush = 50)
+				/mob/living/carbon/human/species/skeleton/npc/ambush = 50,
+				/mob/living/carbon/human/species/deadite/npc/ambush = 50)
 	first_time_text = "ROCKHILL BASIN"
 	droning_sound = 'sound/music/area/field.ogg'
 	droning_sound_dusk = 'sound/music/area/septimus.ogg'
@@ -132,6 +142,20 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 	droning_sound_dusk = 'sound/music/area/septimus.ogg'
 	droning_sound_night = 'sound/music/area/sleeping.ogg'
 
+/area/rogue/outdoors/druidgrove
+	name = "Druid Grove"
+	icon_state = "druidgrove"
+	soundenv = 19
+	first_time_text = "DRUID GROVE"
+	droning_sound = 'sound/music/area/druid.ogg'
+	droning_sound_dusk = 'sound/music/area/druid.ogg'
+	droning_sound_night = 'sound/music/area/druid.ogg'
+	converted_type = /area/rogue/indoors/shelter/druidgrove
+/area/rogue/indoors/shelter/druidgrove
+	icon_state = "druidgrove"
+	droning_sound = 'sound/music/area/druid.ogg'
+	droning_sound_dusk = 'sound/music/area/druid.ogg'
+	droning_sound_night = 'sound/music/area/druid.ogg'
 
 /area/rogue/outdoors/woods
 	name = "wilderness"
@@ -151,7 +175,8 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 	ambush_mobs = list(
 				/mob/living/simple_animal/hostile/retaliate/rogue/wolf = 40,
 				/mob/living/carbon/human/species/skeleton/npc/ambush = 10,
-				/mob/living/carbon/human/species/goblin/npc/ambush = 30)
+				/mob/living/carbon/human/species/goblin/npc/ambush = 30,
+				/mob/living/carbon/human/species/deadite/npc/ambush = 40)
 	first_time_text = "THE MURDERWOOD"
 	converted_type = /area/rogue/indoors/shelter/woods
 /area/rogue/indoors/shelter/woods
@@ -194,7 +219,8 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 				/mob/living/simple_animal/hostile/retaliate/rogue/wolf = 40,
 				/mob/living/simple_animal/hostile/retaliate/rogue/bigrat = 60,
 				/mob/living/simple_animal/hostile/retaliate/rogue/spider = 40,
-				/mob/living/carbon/human/species/goblin/npc/ambush/cave = 30)
+				/mob/living/carbon/human/species/goblin/npc/ambush/cave = 30,
+				/mob/living/carbon/human/species/deadite/npc/ambush = 50)
 	first_time_text = "THE TERRORBOG"
 	converted_type = /area/rogue/indoors/shelter/bog
 
@@ -252,7 +278,8 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 				/mob/living/simple_animal/hostile/retaliate/rogue/bigrat = 30,
 				/mob/living/carbon/human/species/goblin/npc/ambush/cave = 20,
 				/mob/living/carbon/human/species/skeleton/npc/ambush = 10,
-				/mob/living/simple_animal/hostile/retaliate/rogue/minotaur = 5)
+				/mob/living/simple_animal/hostile/retaliate/rogue/minotaur = 5,
+				/mob/living/carbon/human/species/deadite/npc/ambush = 30)
 	converted_type = /area/rogue/outdoors/caves
 /area/rogue/outdoors/caves
 	icon_state = "caves"
@@ -277,7 +304,8 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 	ambush_mobs = list(
 				/mob/living/carbon/human/species/skeleton/npc = 10,
 				/mob/living/simple_animal/hostile/retaliate/rogue/bigrat = 30,
-				/mob/living/carbon/human/species/goblin/npc/sea = 20)
+				/mob/living/carbon/human/species/goblin/npc/sea = 20,
+				/mob/living/carbon/human/species/deadite/npc/ambush = 30)
 	converted_type = /area/rogue/outdoors/caves
 
 /area/rogue/under/cavewet/bogcaves
@@ -327,7 +355,8 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 				/mob/living/simple_animal/hostile/retaliate/rogue/bigrat = 30,
 				/mob/living/carbon/human/species/skeleton/npc = 10,
 				/mob/living/carbon/human/species/goblin/npc/hell = 20,
-				/mob/living/simple_animal/hostile/retaliate/rogue/minotaur = 5)
+				/mob/living/simple_animal/hostile/retaliate/rogue/minotaur = 5,
+				/mob/living/carbon/human/species/deadite/npc/ambush = 10)
 	droning_sound = 'sound/music/area/decap.ogg'
 	droning_sound_dusk = null
 	droning_sound_night = null
@@ -433,13 +462,13 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 /area/rogue/indoors/town/bath
 	name = "Baths"
 	icon_state = "bath"
-	droning_sound = 'sound/music/area/bath.ogg'
+	droning_sound = 'sound/music/jukeboxes/tav4.ogg'
 	droning_sound_dusk = null
 	droning_sound_night = null
 	converted_type = /area/rogue/outdoors/exposed/bath
 /area/rogue/outdoors/exposed/bath
 	icon_state = "bath"
-	droning_sound = 'sound/music/area/bath.ogg'
+	droning_sound = 'sound/music/jukeboxes/tav4.ogg'
 
 /area/rogue/indoors/town/garrison
 	name = "Garrison"
@@ -532,6 +561,13 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 	droning_sound_dusk = null
 	droning_sound_night = null
 
+/area/rogue/indoors/town/academy
+	name = "academy"
+	icon_state = "academy"
+	droning_sound = 'sound/music/area/academy.ogg'
+	droning_sound_dusk = null
+	droning_sound_night = null
+
 ///// outside
 
 /area/rogue/outdoors/town
@@ -577,6 +613,22 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 	droning_sound_night = 'sound/music/area/sleeping.ogg'
 	soundenv = 17
 	converted_type = /area/rogue/indoors/shelter/town/roofs
+
+/area/rogue/outdoors/town/harbor
+	name = "harbor"
+	icon_state = "harbor"
+	droning_sound = 'sound/music/area/harbor.ogg'
+	droning_sound_dusk = null
+	droning_sound_night = null
+	first_time_text = "Rockhill Harbor"
+	converted_type = /area/rogue/indoors/shelter/town/harbor
+	
+/area/rogue/indoors/shelter/town/harbor
+	icon_state = "harbor"
+	droning_sound = 'sound/music/area/harbor.ogg'
+	droning_sound_dusk = null
+	droning_sound_night = null
+
 /area/rogue/indoors/shelter/town/roofs
 	icon_state = "roofs"
 	droning_sound = 'sound/music/area/field.ogg'
@@ -665,6 +717,25 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 /area/rogue/outdoors/exposed/under/basement
 	icon_state = "basement"
 	droning_sound = 'sound/music/area/catacombs.ogg'
+	droning_sound_dusk = null
+	droning_sound_night = null
+
+//Not really a town area, but whatever.
+/area/rogue/under/town/goblin
+	name = "goblin encampment"
+	icon_state = "decap"
+	ambientsounds = AMB_BASEMENT
+	ambientnight = AMB_BASEMENT
+	spookysounds = SPOOKY_DUNGEON
+	spookynight = SPOOKY_DUNGEON
+	droning_sound = 'sound/music/area/decap.ogg'
+	droning_sound_dusk = null
+	droning_sound_night = null
+	first_time_text = "THE ENCAMPMENT"
+	converted_type = /area/rogue/outdoors/exposed/under/goblins
+/area/rogue/outdoors/exposed/under/goblins
+	icon_state = "decap"
+	droning_sound = 'sound/music/area/decap.ogg'
 	droning_sound_dusk = null
 	droning_sound_night = null
 

@@ -4,6 +4,8 @@
 	outfit = /datum/outfit/job/roguetown/fablefield/goliard
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = RACES_SHUNNED_UP
+	show_wanderer_examine = FALSE
+	show_foreign_examine = TRUE
 
 /datum/outfit/job/roguetown/fablefield/goliard
 	allowed_patrons = list(/datum/patron/divine/xylix)
@@ -12,7 +14,7 @@
 	..()
 	head = /obj/item/clothing/head/roguetown/bardhat
 	neck = /obj/item/storage/belt/rogue/pouch/coins/mid
-	shoes = /obj/item/clothing/shoes/roguetown/boots
+	shoes = /obj/item/clothing/shoes/roguetown/armor
 	pants = /obj/item/clothing/under/roguetown/tights/random
 	shirt = /obj/item/clothing/suit/roguetown/shirt/shortshirt
 	gloves = /obj/item/clothing/gloves/roguetown/fingerless
@@ -54,6 +56,8 @@
 	outfit = /datum/outfit/job/roguetown/fablefield/troubadour
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = RACES_SHUNNED_UP
+	show_wanderer_examine = FALSE
+	show_foreign_examine = TRUE
 
 /datum/outfit/job/roguetown/fablefield/troubadour
 	allowed_patrons = list(/datum/patron/divine/xylix)
@@ -62,7 +66,7 @@
 	..()
 	head = /obj/item/clothing/head/roguetown/bardhat
 	neck = /obj/item/storage/belt/rogue/pouch/coins/poor
-	shoes = /obj/item/clothing/shoes/roguetown/boots
+	shoes = /obj/item/clothing/shoes/roguetown/armor
 	pants = /obj/item/clothing/under/roguetown/tights/random
 	shirt = /obj/item/clothing/suit/roguetown/shirt/shortshirt
 	gloves = /obj/item/clothing/gloves/roguetown/fingerless

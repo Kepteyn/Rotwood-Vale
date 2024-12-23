@@ -43,55 +43,51 @@
 			A.on_life(src)
 
 	if(!IS_IN_STASIS(src))
-		if(.) //not dead
-			for(var/datum/mutation/human/HM in dna.mutations) // Handle active genes
-				HM.on_life()
-
-		if(mode == AI_OFF)
-			handle_vamp_dreams()
-			if(IsSleeping())
-				if(health > 0)
-					if(has_status_effect(/datum/status_effect/debuff/sleepytime))
-						remove_status_effect(/datum/status_effect/debuff/sleepytime)
-						remove_stress(/datum/stressevent/sleepytime)
+		handle_vamp_dreams()
+		if(IsSleeping())
+			if(health > 0)
+				if(has_status_effect(/datum/status_effect/debuff/sleepytime))
+					remove_status_effect(/datum/status_effect/debuff/sleepytime)
+					remove_stress(/datum/stressevent/sleepytime)
+					if(mind)
+						mind.sleep_adv.advance_cycle()
+					var/datum/game_mode/chaosmode/C = SSticker.mode
+					if(istype(C))
 						if(mind)
-							mind.sleep_adv.advance_cycle()
-						var/datum/game_mode/chaosmode/C = SSticker.mode
-						if(istype(C))
-							if(mind)
-								if(!mind.antag_datums || !mind.antag_datums.len)
-									allmig_reward++
-									to_chat(src, span_danger("Nights Survived: \Roman[allmig_reward]"))
-									if(C.allmig)
-										if(allmig_reward > 3)
-											adjust_triumphs(1)
-			if(HAS_TRAIT(src, TRAIT_LEPROSY))
-				if(!mob_timers["leper_bleed"] || mob_timers["leper_bleed"] + 6 MINUTES < world.time)
-					if(prob(10))
-						to_chat(src, span_warning("My skin opens up and bleeds..."))
-						mob_timers["leper_bleed"] = world.time
-						var/obj/item/bodypart/part = pick(bodyparts)
-						if(part)
-							part.add_wound(/datum/wound/slash)
-				adjustToxLoss(0.3)
-			//heart attack stuff
-			handle_heart()
-			handle_liver()
-			update_rogfat()
-			update_rogstam()
-			if(charflaw && !charflaw.ephemeral)
-				charflaw.flaw_on_life(src)
-			if(health <= 0)
-				adjustOxyLoss(0.5)
-			if(!client && !HAS_TRAIT(src, TRAIT_NOSLEEP))
-				if(mob_timers["slo"])
-					if(world.time > mob_timers["slo"] + 90 SECONDS)
-						Sleeping(100)
-				else
-					mob_timers["slo"] = world.time
+							if(!mind.antag_datums || !mind.antag_datums.len)
+								allmig_reward++
+								to_chat(src, span_danger("Nights Survived: \Roman[allmig_reward]"))
+								if(C.allmig)
+									if(allmig_reward > 3)
+										adjust_triumphs(1)
+		if(HAS_TRAIT(src, TRAIT_LEPROSY))
+			if(!mob_timers["leper_bleed"] || mob_timers["leper_bleed"] + 6 MINUTES < world.time)
+				if(prob(10))
+					to_chat(src, span_warning("My skin opens up and bleeds..."))
+					mob_timers["leper_bleed"] = world.time
+					var/obj/item/bodypart/part = pick(bodyparts)
+					if(part)
+						part.add_wound(/datum/wound/slash)
+			adjustToxLoss(0.3)
+		//heart attack stuff
+		handle_curses()
+		handle_heart()
+		handle_liver()
+		update_rogfat()
+		update_rogstam()
+		if(charflaw && !charflaw.ephemeral)
+			charflaw.flaw_on_life(src)
+		if(health <= 0)
+			adjustOxyLoss(0.3)
+		if(mode == AI_OFF && !client && !HAS_TRAIT(src, TRAIT_NOSLEEP))
+			if(mob_timers["slo"])
+				if(world.time > mob_timers["slo"] + 90 SECONDS)
+					Sleeping(100)
 			else
-				if(mob_timers["slo"])
-					mob_timers["slo"] = null
+				mob_timers["slo"] = world.time
+		else
+			if(mob_timers["slo"])
+				mob_timers["slo"] = null
 
 		if(dna?.species)
 			dna.species.spec_life(src) // for mutantraces
@@ -146,39 +142,6 @@
 /mob/living/carbon/human/handle_mutations_and_radiation()
 	if(!dna || !dna.species.handle_mutations_and_radiation(src))
 		..()
-
-/mob/living/carbon/human/breathe()
-	if(!dna.species.breathe(src))
-		..()
-
-/mob/living/carbon/human/check_breath(datum/gas_mixture/breath)
-
-	var/L = getorganslot(ORGAN_SLOT_LUNGS)
-
-	if(!L)
-		if(health >= crit_threshold)
-			adjustOxyLoss(HUMAN_MAX_OXYLOSS + 1)
-		else if(!HAS_TRAIT(src, TRAIT_NOCRITDAMAGE))
-			adjustOxyLoss(HUMAN_CRIT_MAX_OXYLOSS)
-
-		failed_last_breath = 1
-
-		var/datum/species/S = dna.species
-
-		if(S.breathid == "o2")
-			throw_alert("not_enough_oxy", /atom/movable/screen/alert/not_enough_oxy)
-		else if(S.breathid == "tox")
-			throw_alert("not_enough_tox", /atom/movable/screen/alert/not_enough_tox)
-		else if(S.breathid == "co2")
-			throw_alert("not_enough_co2", /atom/movable/screen/alert/not_enough_co2)
-		else if(S.breathid == "n2")
-			throw_alert("not_enough_nitro", /atom/movable/screen/alert/not_enough_nitro)
-
-		return FALSE
-	else
-		if(istype(L, /obj/item/organ/lungs))
-			var/obj/item/organ/lungs/lun = L
-			lun.check_breath(breath,src)
 
 /mob/living/carbon/human/handle_environment(datum/gas_mixture/environment)
 	dna.species.handle_environment(environment, src)

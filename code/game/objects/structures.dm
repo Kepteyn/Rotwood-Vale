@@ -13,6 +13,7 @@
 	var/mob/living/structureclimber
 	var/broken = 0 //similar to machinery's stat BROKEN
 	var/hammer_repair
+	var/leanable = FALSE
 //	move_resist = MOVE_FORCE_STRONG
 
 /obj/structure/Initialize()
@@ -26,7 +27,8 @@
 	if(redstone_id)
 		GLOB.redstone_objs += src
 		. = INITIALIZE_HINT_LATELOAD
-	GLOB.cameranet.updateVisibility(src)
+	if(leanable)
+		AddComponent(/datum/component/leanable)
 
 /obj/structure/Bumped(atom/movable/AM)
 	..()
@@ -43,7 +45,6 @@
 
 
 /obj/structure/Destroy()
-	GLOB.cameranet.updateVisibility(src)
 	if(isturf(loc))
 		for(var/mob/living/user in loc)
 			if(climb_offset)
@@ -69,14 +70,14 @@
 
 /obj/structure/Crossed(atom/movable/AM)
 	. = ..()
-	if(isliving(AM) && !AM.throwing)
+	if(isliving(AM) && !AM.throwing && !isseelie(AM))	//Need to look into a wing check here for wingless seelie
 		var/mob/living/user = AM
 		if(climb_offset)
 			user.set_mob_offsets("structure_climb", _x = 0, _y = climb_offset)
 
 /obj/structure/Uncrossed(atom/movable/AM)
 	. = ..()
-	if(isliving(AM) && !AM.throwing)
+	if(isliving(AM) && !AM.throwing && !isseelie(AM))	//Need to look into a wing check here for wingless seelie
 		var/mob/living/user = AM
 		if(climb_offset)
 			user.reset_offsets("structure_climb")
@@ -99,8 +100,6 @@
 			climb_structure(user)
 			return
 	if(!istype(O, /obj/item) || user.get_active_held_item() != O)
-		return
-	if(iscyborg(user))
 		return
 	if(!user.dropItemToGround(O))
 		return

@@ -14,15 +14,6 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 	if(!mob)
 		return
 
-	if(CONFIG_GET(flag/usewhitelist))
-		if(whitelisted() != 1)
-			to_chat(src, span_danger("I can't use that."))
-			return
-
-	if(get_playerquality(ckey) <= -5)
-		to_chat(src, span_danger("I can't use that."))
-		return
-
 	if(!holder)
 		if(!GLOB.ooc_allowed)
 			to_chat(src, span_danger("OOC is globally muted."))
@@ -82,7 +73,7 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 		var/real_key = C.holder ? "([key])" : ""
 		if(C.prefs.chat_toggles & CHAT_OOC)
 			msg_to_send = "<font color='[color2use]'><EM>[keyname][real_key]:</EM></font> <font color='[chat_color]'><span class='message linkify'>[msg]</span></font>"
-			if(holder)
+			if(holder && (C.prefs.toggles & TOGGLE_BLUE_OOC))
 				msg_to_send = "<font color='[color2use]'><EM>[keyname][real_key]:</EM></font> <font color='#4972bc'><span class='message linkify'>[msg]</span></font>"
 			to_chat(C, msg_to_send)
 
@@ -114,15 +105,6 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 		return
 
 	if(!mob)
-		return
-
-	if(CONFIG_GET(flag/usewhitelist))
-		if(whitelisted() != 1)
-			to_chat(src, span_danger("I can't use that."))
-			return
-
-	if(get_playerquality(ckey) <= -5)
-		to_chat(src, span_danger("I can't use that."))
 		return
 
 	if(!holder)
@@ -181,7 +163,7 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 				continue
 
 			msg_to_send = "<font color='[color2use]'><EM>[keyname][real_key]:</EM></font> <font color='[chat_color]'><span class='message linkify'>[msg]</span></font>"
-			if(holder)
+			if(holder && (C.prefs.toggles & TOGGLE_BLUE_OOC))
 				msg_to_send = "<font color='[color2use]'><EM>[keyname][real_key]:</EM></font> <font color='#4972bc'><span class='message linkify'>[msg]</span></font>"
 
 			to_chat(C, msg_to_send)
@@ -298,9 +280,20 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 	testing("[CheckJoinDate(ckey)]")
 */
 /mob/dead/new_player/verb/togglobb()
-	set name = "SilenceLobbyMusic"
+	set name = "ToggleLobbyMusic"
 	set category = "Options"
-	stop_sound_channel(CHANNEL_LOBBYMUSIC)
+	usr.client.prefs.toggles ^= SOUND_LOBBY
+	usr.client.prefs.save_preferences()
+	if(usr.client.prefs.toggles & SOUND_LOBBY)
+		to_chat(usr, "You will now hear music in the lobby.")
+		if(isnewplayer(usr))
+			usr.client.playtitlemusic()
+	else
+		to_chat(usr, "You will no longer hear music in the lobby.")
+		usr.stop_sound_channel(CHANNEL_LOBBYMUSIC)
+	SSblackbox.record_feedback("nested tally", "preferences_verb", 1, list("Toggle Lobby Music", "[usr.client.prefs.toggles & SOUND_LOBBY ? "Enabled" : "Disabled"]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+/datum/verbs/menu/Settings/Sound/toggletitlemusic/Get_checked(client/C)
+	return C.prefs.toggles & SOUND_LOBBY
 
 /proc/CheckJoinDate(ckey)
 	var/list/http = world.Export("http://byond.com/members/[ckey]?format=text")
@@ -569,6 +562,16 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 		pct += delta
 		winset(src, "mainwindow.split", "splitter=[pct]")
 
+
+/client/verb/runm()
+	set name = "Run Mode"
+	set desc = "Changes if you run continually or if you stop running when you turn"
+	set category = "Options"
+	prefs.toggles ^= RUN_MODE
+	if(prefs.toggles & RUN_MODE)
+		to_chat(usr, "Running changed (no turning)")
+	else
+		to_chat(usr, "Running changed (turning)")
 
 /client/verb/policy()
 	set name = "Show Policy"

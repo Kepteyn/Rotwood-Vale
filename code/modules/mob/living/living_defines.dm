@@ -32,6 +32,7 @@
 	var/pixelshifted = FALSE
 	var/pixelshift_x = 0
 	var/pixelshift_y = 0
+	var/pixelshift_layer = 0
 
 	var/lying = 0			//number of degrees. DO NOT USE THIS IN CHECKS. CHECK FOR MOBILITY FLAGS INSTEAD!!
 	var/lying_prev = 0		//last value of lying on update_mobility
@@ -46,8 +47,6 @@
 	//Allows mobs to move through dense areas without restriction. For instance, in space or out of holder objects.
 	var/incorporeal_move = FALSE //FALSE is off, INCORPOREAL_MOVE_BASIC is normal, INCORPOREAL_MOVE_SHADOW is for ninjas
 								 //and INCORPOREAL_MOVE_JAUNT is blocked by holy water/salt
-
-	var/list/roundstart_quirks
 
 	var/list/surgeries //a list of surgery steps. generally empty, they're added when the player is performing them.
 
@@ -175,8 +174,8 @@
 	 * if you really need to cancel someone who is sneaking, call update_sneak_invis(TRUE).*/
 	var/rogue_sneaking = FALSE
 	/* Can be used to change the lighting threshholds at which players can sneak.*/
-	var/rogue_sneaking_light_threshhold = 0.15
+	var/rogue_sneaking_light_threshhold = 0.15 //Default. Will be modified later~
 
 
-	/// Default pitch for emotes, on humans this is modified by stats
-	var/voice_pitch = 1
+	/// Voice pitch for audible emotes
+	var/voice_pitch
