@@ -96,8 +96,8 @@
 
 #define NOBLEMEN		(1<<0)
 
-#define LORD		(1<<0)
-#define LADY		(1<<1)
+#define RULER		(1<<0)
+#define CONSORT		(1<<1)
 #define HAND		(1<<2)
 #define STEWARD		(1<<3)
 #define KNIGHT		(1<<4)
@@ -259,7 +259,7 @@
 
 #define JDO_ARCHIVIST 18
 
-#define JDO_CHIEF 19
+#define JDO_MAYOR 19
 #define JDO_GUILDSMITH 20
 #define JDO_APPRENTICE 21
 
@@ -327,13 +327,13 @@
 	/datum/job/roguetown/captain,\
 	/datum/job/roguetown/hand,\
 	/datum/job/roguetown/knight,\
-	/datum/job/roguetown/lady,\
-	/datum/job/roguetown/lord,\
+	/datum/job/roguetown/consort,\
+	/datum/job/roguetown/ruler,\
 	/datum/job/roguetown/steward
 
 #define KING_QUEEN_ROLES \
-	/datum/job/roguetown/lady,\
-	/datum/job/roguetown/lord
+	/datum/job/roguetown/consort,\
+	/datum/job/roguetown/ruler
 
 #define CHURCH_ROLES \
 	/datum/job/roguetown/churchling,\
@@ -362,7 +362,7 @@
 	/datum/job/roguetown/prisonerr
 
 #define YEOMEN_ROLES \
-	/datum/job/roguetown/woodsman,\
+	/datum/job/roguetown/mayor,\
 	/datum/job/roguetown/archivist,\
 	/datum/job/roguetown/architect,\
 	/datum/job/roguetown/barkeep,\
