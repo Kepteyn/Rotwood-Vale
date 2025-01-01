@@ -61,7 +61,7 @@ GLOBAL_LIST_INIT(nonhuman_positions, list(
 
 GLOBAL_LIST_INIT(noble_positions, list(
 	"Duke",
-	"Duchess",
+	"Duke Consort",
 	"Heir",
 	"Retinue Captain",
 	"Royal Marshal",
@@ -108,7 +108,7 @@ GLOBAL_LIST_INIT(yeoman_positions, list(
 	"Architect",
 	"Artificer",
 	"Scribe",
-	"Village Elder",
+	"Mayor",
 	"Harbormaster",
 	"Longshoreman",
 ))
