@@ -165,6 +165,17 @@
 	/datum/species/goblin/moon,\
 )
 
+
+#define RACES_WITH_BEARD_GROWTH list(\
+	/datum/species/human/northern,\
+	/datum/species/human/halfelf,\
+	/datum/species/elf/wood,\
+	/datum/species/dwarf/mountain,\
+	/datum/species/aasimar,\
+	/datum/species/demihuman,\
+	/datum/species/goblinp,\
+)
+
 #define ALL_CLERIC_PATRONS list(\
 	/datum/patron/divine/astrata,\
 	/datum/patron/divine/noc,\
@@ -287,7 +298,6 @@ GLOBAL_LIST_EMPTY(cuckolds)
 #define FAMILY_PARTIAL 2
 
 
-GLOBAL_LIST_EMPTY(sunlights)
 GLOBAL_LIST_EMPTY(head_bounties)
 GLOBAL_LIST_EMPTY(job_respawn_delays)
 
@@ -298,17 +308,35 @@ GLOBAL_LIST_EMPTY(job_respawn_delays)
 	Currently used for classes
 */
 
+//General
 #define CTAG_ALLCLASS		"CAT_ALLCLASS"		// jus a define for allclass to not deal with actively typing strings
-#define CTAG_DISABLED 		"CAT_DISABLED" 		// Disabled, aka don't make it fuckin APPEAR
-#define CTAG_REFUGEE		"CAT_REFUGEE"  		// Refugee classes
-#define CTAG_TOWNER 		"CAT_TOWNER"  		// Villager class - Villagers can use it
-#define CTAG_ANTAG 			"CAT_ANTAG"  		// Antag class - results in an antag
+#define CTAG_DISABLED		"CAT_DISABLED"		// Disabled, aka don't make it fuckin APPEAR
+#define CTAG_CHALLENGE		"CAT_CHALLENGE"		// Challenge class - Meant to be free for everyone
+
+//City
+#define CTAG_TOWNER			"CAT_TOWNER"		// Villager class - Villagers can use it
+#define CTAG_MERCENARY		"CAT_MERCENARY"		// Mercs
+#define CTAG_HENCH			"CAT_HENCH"			// Whitevein Guards
+
+//Courtiers
+#define CTAG_SERVANT		"CAT_SERVANT"		// Maids and butlers
+#define CTAG_CLERK			"CAT_CLERK"			// Clerks
+
+//Garrison
+#define CTAG_BOG			"CAT_BOG"			// Vanguard
+#define CTAG_SQUIRE			"CAT_SQUIRE"		// Squires
+#define CTAG_MAA			"CAT_MAA"			// Man-At-Arms
+
+//Nobles			Eventually all of them will get their subclasses
+#define CTAG_HEIR			"CAT_HEIR"			// Heirs
+
+//Antags
 #define CTAG_BANDIT			"CAT_BANDIT"		// Bandit class - Tied to the bandit antag really
-#define CTAG_CHALLENGE 		"CAT_CHALLENGE"  	// Challenge class - Meant to be free for everyone
-#define CTAG_MERCENARY 		"CAT_MERCENARY" 	// Mercs
-#define CTAG_BOG 			"CAT_BOG"			//Vanguard
-#define CTAG_GOBS 			"CAT_GOBS"			// Goblin Guards
-#define CTAG_HENCH	 		"CAT_HENCH"			// Whitevein Guards
+#define CTAG_ANTAG			"CAT_ANTAG"			// Antag class - results in an antag
+#define CTAG_GOBS			"CAT_GOBS"			// Goblin Guards
+
+//Other
+#define CTAG_REFUGEE		"CAT_REFUGEE"		// Refugee classes
 
 /*
 	Defines for the triumph buy datum categories
@@ -328,16 +356,19 @@ GLOBAL_LIST_EMPTY(job_respawn_delays)
 #define SNACK_DECENT 6
 #define SNACK_POOR 3
 
+//DOUGH
 #define DOUGH_NUTRITION MEAL_MEAGRE
-#define SMALLDOUGH_NUTRITION MEAL_MEAGRE/2
-#define BUTTERDOUGH_NUTRITION DOUGH_NUTRITION+BUTTERSLICE_NUTRITION
-#define BUTTERDOUGHSLICE_NUTRITION BUTTERDOUGH_NUTRITION/2
+#define SMALLDOUGH_NUTRITION MEAL_MEAGRE/2 //7.5
+#define BUTTERDOUGH_NUTRITION DOUGH_NUTRITION+BUTTERSLICE_NUTRITION //17
+#define BUTTERDOUGHSLICE_NUTRITION 8.5 //This should be butterdough_nutrition/2, but for some reason it returns 16 if you do that. So...
+//DAIRY
 #define BUTTER_NUTRITION SNACK_CHUNKY
-#define BUTTERSLICE_NUTRITION BUTTER_NUTRITION/6
+#define BUTTERSLICE_NUTRITION BUTTER_NUTRITION/6 //2
+#define FRESHCHEESE_NUTRITION SNACK_DECENT
+//MEAT
 #define MEATSLAB_NUTRITION SNACK_NUTRITIOUS
 #define SAUSAGE_NUTRITION SNACK_NUTRITIOUS
-#define MINCE_NUTRITION MEATSLAB_NUTRITION/2
-#define FRESHCHEESE_NUTRITION SNACK_DECENT
+#define MINCE_NUTRITION MEATSLAB_NUTRITION/2 //4.5
 
 /*	........   Rotting defines   ................ */
 #define SHELFLIFE_EXTREME 270 MINUTES
