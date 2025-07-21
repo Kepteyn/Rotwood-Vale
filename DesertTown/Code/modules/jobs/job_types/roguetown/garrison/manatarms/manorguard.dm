@@ -1,6 +1,6 @@
 /datum/job/roguetown/manorguard
-	title = "Man at Arms"
-//	map_specific_title = list("Man at Arms", "Mamluk") //0 = rockhill, 1 = zybantium, 2 = etc.
+	title = "Mamluk"
+//	map_specific_title = list("Mamluk", "Mamluk") //0 = rockhill, 1 = zybantium, 2 = etc.
 
 	flag = MANATARMS
 	department_flag = GARRISON
@@ -12,7 +12,7 @@
 	allowed_races = RACES_TOLERATED_UP
 	allowed_ages = list(AGE_ADULT, AGE_MIDDLEAGED, AGE_OLD)
 	tutorial = "Having proven yourself loyal and capable, you are entrusted to defend the Royal Family and their Court, \
-				trained regularly in combat and siege warfare you stand a small chance of surviving the Duke's reign. \
+				trained regularly in combat and siege warfare you stand a small chance of surviving the Sultan's reign. \
 				It's an honor to die as part of His Highness' retinue, the Marshal reminds you every night."
 	display_order = JDO_CASTLEGUARD
 	whitelist_req = TRUE

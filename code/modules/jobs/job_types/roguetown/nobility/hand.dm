@@ -1,5 +1,5 @@
 /datum/job/roguetown/hand
-	title = "Hand"
+	title = "Vizier"
 	flag = HAND
 	department_flag = NOBLEMEN
 	faction = "Station"
@@ -41,7 +41,7 @@
 	if(!player.ckey)
 		return
 	for(var/mob/dead/new_player/duke in GLOB.player_list)
-		if(duke.mind.assigned_role == "Duke")
+		if(duke.mind.assigned_role == "Sultan")
 			if(duke.brohand == player.ckey)
 				return TRUE
 */
@@ -79,8 +79,8 @@
 			H.change_stat("intelligence", 3)
 		else 
 			H.mind.AddSpell(new SPELL_PUSH_SPELL) //Repulse, good for getting people away from the King
-			H.mind.AddSpell(new SPELL_ROUSTAME) //Rous taming still makes sense for a Hand, a 'master of words' vibe. Summoning rats however does not - its undignified
-			H.mind.AddSpell(new SPELL_SLOWDOWN_SPELL_AOE) //Immobilizes for 3 seconds in a 3x3, seems fitting for a Hand to be able to calm the court room when theres chaos
+			H.mind.AddSpell(new SPELL_ROUSTAME) //Rous taming still makes sense for a Vizier, a 'master of words' vibe. Summoning rats however does not - its undignified
+			H.mind.AddSpell(new SPELL_SLOWDOWN_SPELL_AOE) //Immobilizes for 3 seconds in a 3x3, seems fitting for a Vizier to be able to calm the court room when theres chaos
 	ADD_TRAIT(H, TRAIT_NOBLE, TRAIT_GENERIC)
 	if(!isseelie(H)) //Only give heavy armor trait for non-seelie hands
 		ADD_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC)

@@ -10,7 +10,7 @@
 	allowed_races = RACES_TOLERATED_UP
 	allowed_ages = list(AGE_MIDDLEAGED, AGE_OLD)
 	tutorial = "Whether you are a crooked politician or a true benefactor, you are the Mayor of the city of Rockhill and oversees both Lowtown and Hightown, the cityfolk now turn to you for guidance on smaller matters. \
-				The Duke may hold the official title, but with the Sheriff under your command, will you submit to the weight of tradition or reshape the very idea of authority?"
+				The Sultan may hold the official title, but with the Sheriff under your command, will you submit to the weight of tradition or reshape the very idea of authority?"
 	whitelist_req = TRUE
 	outfit = /datum/outfit/job/roguetown/mayor
 	display_order = JDO_MAYOR
@@ -90,6 +90,6 @@
 	var/choice = alert(lord, "The Mayor requests to outlaw someone!\n[requested_outlaw]", "MAYOR OUTLAW REQUEST", "Yes", "No")
 	if(choice != "Yes" || QDELETED(lord) || lord.stat > CONSCIOUS)
 		if(mayor)
-			to_chat(mayor, span_warning("The Duke has denied the request for declaring an outlaw!"))
+			to_chat(mayor, span_warning("The Sultan has denied the request for declaring an outlaw!"))
 		return
 	make_outlaw(requested_outlaw)

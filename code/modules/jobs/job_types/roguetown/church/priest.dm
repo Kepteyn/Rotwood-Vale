@@ -109,35 +109,35 @@ GLOBAL_LIST_EMPTY(heretical_players)
 	for(var/mob/living/carbon/human/HU in get_step(src, src.dir))
 		if(!HU.mind)
 			continue
-		if(HU.mind.assigned_role == "Duke")
+		if(HU.mind.assigned_role == "Sultan")
 			continue
 		if(!HU.head)
 			continue
 		if(!istype(HU.head, /obj/item/clothing/head/roguetown/crown/serpcrown))
 			continue
 
-		//Abdicate previous Duke
+		//Abdicate previous Sultan
 		for(var/mob/living/carbon/human/HL in GLOB.human_list)
 			if(HL.mind)
-				if(HL.mind.assigned_role == "Duke" || HL.mind.assigned_role == "Duke Consort")
+				if(HL.mind.assigned_role == "Sultan" || HL.mind.assigned_role == "Sultan Consort")
 					HL.mind.assigned_role = "Towner" //So they don't get the innate traits of the lord
 			//would be better to change their title directly, but that's not possible since the title comes from the job datum
-			if(HL.job == "Duke")
-				HL.job = "Duke Emeritus"
-			if(HL.job == "Duke Consort")
+			if(HL.job == "Sultan")
+				HL.job = "Sultan Emeritus"
+			if(HL.job == "Sultan Consort")
 				HL.job = "Consort Dowager"
 			SSjob.type_occupations[/datum/job/roguetown/ruler].remove_spells(HL)
 
 		//Coronate new Lord (or Lady)
-		HU.mind.assigned_role = "Duke"
-		HU.job = "Duke"
+		HU.mind.assigned_role = "Sultan"
+		HU.job = "Sultan"
 		SSjob.type_occupations[/datum/job/roguetown/ruler].add_spells(HU)
 
 		switch(HU.gender)
 			if("male")
-				SSticker.rulertype = "Duke"
+				SSticker.rulertype = "Sultan"
 			if("female")
-				SSticker.rulertype = "Duchess"
+				SSticker.rulertype = "Sultana"
 		SSticker.rulermob = HU
 		var/dispjob = mind.assigned_role
 		removeomen(OMEN_NOLORD)

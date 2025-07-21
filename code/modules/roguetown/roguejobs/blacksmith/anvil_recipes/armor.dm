@@ -290,7 +290,7 @@
 
 
 /datum/anvil_recipe/armor/steel/helmetknight
-	name = "Knight's Helmet (+1 Steel)"
+	name = "Cataphract's Helmet (+1 Steel)"
 	req_bar = /obj/item/ingot/steel
 	additional_items = list(/obj/item/ingot/steel)
 	created_item = /obj/item/clothing/head/roguetown/helmet/heavy/knight

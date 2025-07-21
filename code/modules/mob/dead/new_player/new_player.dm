@@ -148,10 +148,10 @@ GLOBAL_LIST_INIT(roleplay_readme, world.file2list("strings/rt/rp_prompt.txt"))
 	if(href_list["sethand"])
 		if(brohand == href_list["sethand"])
 			brohand = null
-			to_chat(src, span_boldwarning("Your Hand is REJECTED, sire."))
+			to_chat(src, span_boldwarning("Your Vizier is REJECTED, sire."))
 			return 1
 		brohand = href_list["sethand"]
-		to_chat(src, span_boldnotice("Your Hand is selected, sire."))
+		to_chat(src, span_boldnotice("Your Vizier is selected, sire."))
 		return 1
 
 	if(href_list["ready"])

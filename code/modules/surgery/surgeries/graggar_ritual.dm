@@ -43,7 +43,7 @@
         chosen_meat = /obj/item/graggarflesh/knight
     else if(H.mind.assigned_role == "Priest")
         chosen_meat = /obj/item/graggarflesh/priest
-    else if(H.mind.assigned_role == "Duke" || H.mind.assigned_role == "Duke consort" || H.mind.assigned_role == "Duchess" || H.mind.assigned_role == "Duchess consort" || H.mind.assigned_role == "Heir" || H.mind.assigned_role == "Heiress")
+    else if(H.mind.assigned_role == "Sultan" || H.mind.assigned_role == "Sultan consort" || H.mind.assigned_role == "Sultana" || H.mind.assigned_role == "Sultana consort" || H.mind.assigned_role == "Heir" || H.mind.assigned_role == "Heiress")
         chosen_meat = /obj/item/graggarflesh/royal
     else
         display_results(user, target, span_notice("[target] is NOT a worthy OPPONENT!"),

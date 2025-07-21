@@ -1,6 +1,6 @@
 /datum/job/roguetown/councillor
-	title = "Councillor"
-//	map_specific_title = list("Councillor", "Sheikh") //0 = rockhill, 1 = zybantium, 2 = etc.
+	title = "Sheikh"
+//	map_specific_title = list("Sheikh", "Sheikh") //0 = rockhill, 1 = zybantium, 2 = etc.
 
 	flag = COUNCILLOR
 	department_flag = NOBLEMEN
@@ -14,7 +14,7 @@
 	tutorial = "You may have inherited this role, bought your way into it, or were appointed by the Marshal themselves; \
 			Regardless of origin, you now serve as an assistant, planner, and juror for the Marshal. \
 			You help him oversee the taxation, construction, and planning of new laws. \
-			You only answer to the Duke, Marshal, Duchess, Heir, or Heiress. However, your main focus is to assist the Marshal with their duties."
+			You only answer to the Sultan, Marshal, Sultana, Heir, or Heiress. However, your main focus is to assist the Marshal with their duties."
 	whitelist_req = FALSE
 	outfit = /datum/outfit/job/roguetown/councillor
 	

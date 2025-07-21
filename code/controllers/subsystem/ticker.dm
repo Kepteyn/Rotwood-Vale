@@ -69,7 +69,7 @@ SUBSYSTEM_DEF(ticker)
 	var/end_state = "undefined"
 	var/job_change_locked = FALSE
 	var/list/royals_readied = list()
-	var/rulertype = "Duke" // reports whether duke or duchess rules
+	var/rulertype = "Sultan" // reports whether duke or duchess rules
 	var/rulermob = null // reports what the ruling mob is.
 	var/failedstarts = 0
 	var/list/manualmodes = list()
@@ -248,7 +248,7 @@ SUBSYSTEM_DEF(ticker)
 
 /datum/controller/subsystem/ticker/proc/checkreqroles()
 	var/list/readied_jobs = list()
-	var/list/required_jobs = list("Duke")
+	var/list/required_jobs = list("Sultan")
 
 	// Start now server button
 	if(start_immediately)
@@ -269,8 +269,8 @@ SUBSYSTEM_DEF(ticker)
 
 #ifndef FASTLOAD
 	var/population = GLOB.clients.len
-	if(!("Duke" in readied_jobs) && (population >= 25))
-		var/list/stuffy = list("Set Duke to 'high' in your class preferences to start the game!", "PLAY Duke NOW!", "A Duke is required to start.", "Pray for a Duke.", "One day, there will be a Duke.", "Just try playing Duke.", "If you don't play Duke, the game will never start.", "We need at least one Duke to start the game.", "We're waiting for you to pick Duke to start.", "Still no Duke is readied..", "I'm going to lose my mind if we don't get a Duke readied up.","No. The game will not start because there is no Duke.")
+	if(!("Sultan" in readied_jobs) && (population >= 25))
+		var/list/stuffy = list("Set Sultan to 'high' in your class preferences to start the game!", "PLAY Sultan NOW!", "A Sultan is required to start.", "Pray for a Sultan.", "One day, there will be a Sultan.", "Just try playing Sultan.", "If you don't play Sultan, the game will never start.", "We need at least one Sultan to start the game.", "We're waiting for you to pick Sultan to start.", "Still no Sultan is readied..", "I'm going to lose my mind if we don't get a Sultan readied up.","No. The game will not start because there is no Sultan.")
 		to_chat(world, span_purple("[pick(stuffy)]"))
 		return FALSE
 #endif

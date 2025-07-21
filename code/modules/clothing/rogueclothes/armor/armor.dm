@@ -870,7 +870,7 @@
 	ignore_sleeves_code = TRUE // No sleeves, otherwise arms will be over the sprite
 
 /obj/item/clothing/suit/roguetown/armor/leather/hand
-	name = "Hand's dress"
+	name = "Vizier's dress"
 	desc = "A soft vest of finest fabric."
 	icon = 'icons/roguetown/clothing/licensed-infraredbaron/armor.dmi'
 	mob_overlay_icon = 'icons/roguetown/clothing/licensed-infraredbaron/onmob/armor.dmi'

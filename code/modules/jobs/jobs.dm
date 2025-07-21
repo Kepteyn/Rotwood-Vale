@@ -61,20 +61,20 @@ GLOBAL_LIST_INIT(nonhuman_positions, list(
 
 // FIRST POSITIONS SUCH AS DUKE OR HEAD BUTLER E.T.C. MUST ALWAYS STAY ON THE TOP OF THE LIST
 GLOBAL_LIST_INIT(noble_positions, list(
-	"Duke",
-	"Duke Consort",
+	"Sultan",
+	"Sultan Consort",
 	"Heir",
 	"Retinue Captain",
 	"Royal Marshal",
 	"Steward",
-	"Knight",
+	"Cataphract",
 ))
 
 GLOBAL_LIST_INIT(courtier_positions, list(
 	"Head Butler",
 	"Court Magos",
 	"Court Physician",
-	"Councillor",
+	"Sheikh",
 	"Jester",
 ))
 
@@ -85,7 +85,7 @@ GLOBAL_LIST_INIT(garrison_positions, list(
 	"Gatemaster",
 	"Vanguard",
 	"Veteran",
-	"Man at Arms",
+	"Mamluk",
 	"Dungeoneer",
 ))
 

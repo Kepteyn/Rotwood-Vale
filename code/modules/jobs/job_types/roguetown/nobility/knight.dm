@@ -1,5 +1,5 @@
 /datum/job/roguetown/knight
-	title = "Knight"
+	title = "Cataphract"
 	flag = KNIGHT
 	department_flag = NOBLEMEN
 	faction = "Station"
@@ -10,7 +10,7 @@
 	allowed_ages = list(AGE_ADULT, AGE_MIDDLEAGED)
 	allowed_patrons = ALL_NON_INHUMEN_PATRONS
 	subclass_cat_rolls = list(CTAG_KNIGHT = 3)
-	tutorial = "A Knight with expert training; \
+	tutorial = "A Cataphract with expert training; \
 	Born into petty nobility and raised as a squire from a young age, now you guard the ducal family, answer to their commands, and act as a last beacon of chivalry in these dark times. \
 	You're wholly dedicated to the standing Regent and their safety. Do not fail."
 	display_order = JDO_KNIGHT

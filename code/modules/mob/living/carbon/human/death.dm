@@ -104,7 +104,7 @@
 				adjust_triumphs(-1)
 
 		switch(job)
-			if("Duke")
+			if("Sultan")
 				//omen gets added separately, after a few minutes
 				for(var/mob/living/carbon/human/HU in GLOB.player_list)
 					if(!HU.stat && is_in_roguetown(HU))
@@ -136,7 +136,7 @@
 	if(!.)
 		return
 	switch(job)
-		if("Duke")
+		if("Sultan")
 			removeomen(OMEN_NOLORD)
 		if("Priest")
 			removeomen(OMEN_NOPRIEST)

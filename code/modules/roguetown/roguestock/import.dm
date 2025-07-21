@@ -88,8 +88,8 @@
 	new /obj/item/perfume/random(src)
 
 /datum/roguestock/import/knight
-	name = "Knight Equipment Crate"
-	desc = "Kit for a Knight."
+	name = "Cataphract Equipment Crate"
+	desc = "Kit for a Cataphract."
 	item_type = /obj/structure/closet/crate/chest/steward/knight
 	export_price = 530 //(15 steel)*35=525 extra keys and gimmicks cost an extra 5 mammons
 	importexport_amt = 1
@@ -110,8 +110,8 @@
 
 
 /datum/roguestock/import/manatarms
-	name = "Man at Arms Equipment Crate"
-	desc = "Kit for a Man at Arms."
+	name = "Mamluk Equipment Crate"
+	desc = "Kit for a Mamluk."
 	item_type = /obj/structure/closet/crate/chest/steward/manatarms
 	export_price = 335 //(8 steel 1 iron)=305 if iron costs 25 and steel costs 35 +5 for extra gimmicks
 	importexport_amt = 1

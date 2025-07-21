@@ -27,7 +27,7 @@
 		if(3)
 			reason = "Debt"
 
-	if(character.mind.assigned_role in GLOB.noble_positions)//Councillors, the Duke, etc.
+	if(character.mind.assigned_role in GLOB.noble_positions)//Councillors, the Sultan, etc.
 		amount = rand(450, 850)
 		switch(rand(1,2))
 			if(1)

@@ -977,7 +977,7 @@ obj/structure/bars/steel
 							priority_announce("Rejoice, for [user.real_name] has united [FirstPerson.real_name] and [SecondPerson.real_name] in marriage!", title = "Holy Union!", sound = 'sound/misc/bell.ogg')
 							var/surname2use = FirstPerson.dna.species.random_surname()
 							var/T
-							var/title = list("Sir", "Dame", "Lord", "Lady", "Knight-Captain", "Duke", "Duchess", "Ser", "Father", "Brother", "Sister")
+							var/title = list("Sir", "Dame", "Lord", "Lady", "Cataphract-Captain", "Sultan", "Sultana", "Ser", "Father", "Brother", "Sister")
 							var/title_removed = FALSE
 							var/index = findtext(FirstPerson.real_name, " ")
 							FirstPerson.original_name = FirstPerson.real_name

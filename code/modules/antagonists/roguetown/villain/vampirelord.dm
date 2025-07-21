@@ -136,7 +136,7 @@ GLOBAL_LIST_EMPTY(vampire_objects)
 	for(var/datum/mind/MF in get_minds("Vampire Spawn"))
 		owner.i_know_person(MF)
 		owner.person_knows_me(MF)
-	for(var/datum/mind/MF in get_minds("Death Knight"))
+	for(var/datum/mind/MF in get_minds("Death Cataphract"))
 		owner.i_know_person(MF)
 		owner.person_knows_me(MF)
 
@@ -159,7 +159,7 @@ GLOBAL_LIST_EMPTY(vampire_objects)
 	for(var/datum/mind/MF in get_minds("Vampire Spawn"))
 		owner.i_know_person(MF)
 		owner.person_knows_me(MF)
-	for(var/datum/mind/MF in get_minds("Death Knight"))
+	for(var/datum/mind/MF in get_minds("Death Cataphract"))
 		owner.i_know_person(MF)
 		owner.person_knows_me(MF)
 
@@ -833,8 +833,8 @@ GLOBAL_LIST_EMPTY(vampire_objects)
 			return
 		var/choice = input(user,"What to do?", "ROGUETOWN") as anything in useoptions|null
 		switch(choice)
-			if("Create Death Knight")
-				if(alert(user, "Create a Death Knight? Cost:5000","","Yes","No") == "Yes")
+			if("Create Death Cataphract")
+				if(alert(user, "Create a Death Cataphract? Cost:5000","","Yes","No") == "Yes")
 					if(C.deathknights.len >= 3)
 						to_chat(user, "You cannot summon any more death knights.")
 						return
@@ -882,14 +882,14 @@ GLOBAL_LIST_EMPTY(vampire_objects)
 
 /mob/proc/death_knight_spawn()
 	SEND_SOUND(src, sound('sound/misc/notice (2).ogg'))
-	var/list/mob/dead/observer/candidates = pollCandidatesForMob("Do you want to play as a Death Knight?", ROLE_VAMPIRE, null, null, 10 SECONDS, src, POLL_IGNORE_NECROMANCER_SKELETON)
+	var/list/mob/dead/observer/candidates = pollCandidatesForMob("Do you want to play as a Death Cataphract?", ROLE_VAMPIRE, null, null, 10 SECONDS, src, POLL_IGNORE_NECROMANCER_SKELETON)
 	if(LAZYLEN(candidates))
 		var/mob/dead/observer/C = pick(candidates)
 		log_game("VAMPIRE LOG: [C.ckey] chosen as new death knight.")
 		var/mob/living/carbon/human/new_knight = new /mob/living/carbon/human/species/human/northern()
 		new_knight.ckey = C.key
     
-		SSjob.EquipRank(new_knight, "Death Knight", TRUE)
+		SSjob.EquipRank(new_knight, "Death Cataphract", TRUE)
 		new_knight.forceMove(usr.loc) // Latejoin will place them in one of the latejoin locations,
 									  // so move the death knight to the vampyre lord AFTER applying the job
 
@@ -903,7 +903,7 @@ GLOBAL_LIST_EMPTY(vampire_objects)
 
 // DEATH KNIGHT ANTAG
 /datum/antagonist/skeleton/knight
-	name = "Death Knight"
+	name = "Death Cataphract"
 	increase_votepwr = FALSE
 	antag_hud_type = ANTAG_HUD_VAMPIRE
 	antag_hud_name = "Vspawn"
@@ -925,7 +925,7 @@ GLOBAL_LIST_EMPTY(vampire_objects)
 	for(var/datum/mind/MF in get_minds("Vampire Spawn"))
 		owner.i_know_person(MF)
 		owner.person_knows_me(MF)
-	for(var/datum/mind/MF in get_minds("Death Knight"))
+	for(var/datum/mind/MF in get_minds("Death Cataphract"))
 		owner.i_know_person(MF)
 		owner.person_knows_me(MF)
 	add_objective(/datum/objective/vlordserve)
@@ -1013,7 +1013,7 @@ GLOBAL_LIST_EMPTY(vampire_objects)
 
 /datum/objective/vampirelord/infiltrate/two/check_completion()
 	var/datum/game_mode/chaosmode/C = SSticker.mode
-	var/list/noblejobs = list("Duke", "Duke Consort", "Heir", "Heiress", "Hand", "Steward")
+	var/list/noblejobs = list("Sultan", "Sultan Consort", "Heir", "Heiress", "Vizier", "Steward")
 	for(var/datum/mind/V in C.vampires)
 		if(V.current.job in noblejobs)
 			return TRUE
@@ -1137,7 +1137,7 @@ GLOBAL_LIST_EMPTY(vampire_objects)
 /obj/structure/vampire/necromanticbook // Used to summon undead to attack town/defend manor.
 	name = "Tome of Souls"
 	icon_state = "tome"
-	var/list/useoptions = list("Create Death Knight", "Steal the Sun")
+	var/list/useoptions = list("Create Death Cataphract", "Steal the Sun")
 	var/sunstolen = FALSE
 
 /obj/structure/vampire/portalmaker
@@ -1206,16 +1206,16 @@ GLOBAL_LIST_EMPTY(vampire_objects)
 	return INITIALIZE_HINT_QDEL
 
 /obj/effect/landmark/start/vampireknight
-	name = "Death Knight"
+	name = "Death Cataphract"
 	icon_state = "arrow"
-	jobspawn_override = list("Death Knight")
+	jobspawn_override = list("Death Cataphract")
 	delete_after_roundstart = FALSE
 	map = "Rockhill"
 
 /obj/effect/landmark/start/vampireknight_byos
-	name = "Death Knight"
+	name = "Death Cataphract"
 	icon_state = "arrow"
-	jobspawn_override = list("Death Knight")
+	jobspawn_override = list("Death Cataphract")
 	delete_after_roundstart = FALSE
 	map = "Build Your Settlement"
 

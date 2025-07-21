@@ -1,6 +1,6 @@
 /datum/job/roguetown/consort
-	title = "Duke Consort"
-	f_title = "Duchess Consort"
+	title = "Sultan Consort"
+	f_title = "Sultana Consort"
 	flag = CONSORT
 	department_flag = NOBLEMEN
 	faction = "Station"
@@ -26,13 +26,13 @@
 	if(!player.ckey)
 		return
 	for(var/mob/dead/new_player/duke in GLOB.player_list)
-		if(duke.mind.assigned_role == "Duke")
+		if(duke.mind.assigned_role == "Sultan")
 			if(duke.client.prefs.gender != player.client.prefs.gender)
 				return TRUE
 
 /datum/job/roguetown/consort_dowager//just used to change the consort title
-	title = "Duke Dowager"
-	f_title = "Duchess Dowager"
+	title = "Sultan Dowager"
+	f_title = "Sultana Dowager"
 	flag = CONSORT
 	department_flag = NOBLEMEN
 	faction = "Station"
@@ -53,9 +53,9 @@
 			index = H.real_name
 		var/prev_real_name = H.real_name
 		var/prev_name = H.name
-		var/honorary = "Duke"
+		var/honorary = "Sultan"
 		if(H.gender == FEMALE)
-			honorary = "Duchess"
+			honorary = "Sultana"
 		H.real_name = "[honorary] [prev_real_name]"
 		H.name = "[honorary] [prev_name]"
 

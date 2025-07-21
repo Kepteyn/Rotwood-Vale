@@ -10,11 +10,11 @@
 	allowed_races = RACES_TOLERATED_UP
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_ages = list(AGE_MIDDLEAGED, AGE_OLD)
-	tutorial = "You served your time gracefully as a Knight of the crown, and now you've grown into a role which many men dream to become. \
+	tutorial = "You served your time gracefully as a Cataphract of the crown, and now you've grown into a role which many men dream to become. \
 				You are the Marshal's chosen, a Banneret, elevated to command His Highness' personal retinue. \
 				Keep your men in line, as for this realm to prosper, the duke must be safe. \
 				The Men at Arms and the Gatemaster are under your direct supervision. \
-				The only men on par with you, as part of the armed retinue and not under your direct command, are your fellow Knights."
+				The only men on par with you, as part of the armed retinue and not under your direct command, are your fellow Cataphracts."
 	display_order = JDO_GUARD_CAPTAIN
 	whitelist_req = FALSE
 
@@ -42,7 +42,7 @@
 			S.name = "captain's cape ([index])"
 		var/prev_real_name = H.real_name
 		var/prev_name = H.name
-		var/honorary = "Knight-Captain"
+		var/honorary = "Cataphract-Captain"
 		H.real_name = "[honorary] [prev_real_name]"
 		H.name = "[honorary] [prev_name]"
 

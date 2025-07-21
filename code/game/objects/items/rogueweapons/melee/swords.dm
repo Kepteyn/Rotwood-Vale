@@ -751,10 +751,10 @@
 
 /obj/item/rogueweapon/sword/rapier/lord
 	force = 20
-	name = "sword of the Mad Duke"
+	name = "sword of the Mad Sultan"
 	desc = "A noble heirloom whose spiraling basket hilt is inlaid with fine cut gems. It bears the burnish of \
 	time, where once sharply defined features have been worn down by so many hands. An old rumor ties this implement \
-	to the siege that smashed the Mad Duke's keep to rubble, and burnt the Duke himself to cinders."
+	to the siege that smashed the Mad Sultan's keep to rubble, and burnt the Sultan himself to cinders."
 	icon_state = "lordrap"
 	sellprice = 300
 	max_integrity = 300

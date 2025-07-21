@@ -86,7 +86,7 @@
 		return
 	var/canread = user.can_read(src, TRUE)
 	var/contents
-	if(SSticker.rulertype == "Duke")
+	if(SSticker.rulertype == "Sultan")
 		contents += "<center>DUKE'S DECREES<BR>"
 	else
 		contents += "<center>DUCHESS' DECREES<BR>"

@@ -158,11 +158,11 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark)
 	delete_after_roundstart = FALSE
 
 /obj/effect/landmark/start/lord
-	name = "Duke"
+	name = "Sultan"
 	icon_state = "arrow"
 
 /obj/effect/landmark/start/knight
-	name = "Knight"
+	name = "Cataphract"
 	icon_state = "arrow"
 
 /obj/effect/landmark/start/sheriff
@@ -198,7 +198,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark)
 	icon_state = "arrow"
 
 /obj/effect/landmark/start/manorguardsman
-	name = "Man at Arms"
+	name = "Mamluk"
 	icon_state = "arrow"
 
 /obj/effect/landmark/start/bogmaster
@@ -214,7 +214,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark)
 	icon_state = "arrow"
 
 /obj/effect/landmark/start/councillor
-	name = "Councillor"
+	name = "Sheikh"
 	icon_state = "arrow"
 
 /obj/effect/landmark/start/veteran
@@ -359,7 +359,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark)
 	icon_state = "arrow"
 
 /obj/effect/landmark/start/lady
-	name = "Duke Consort"
+	name = "Sultan Consort"
 	icon_state = "arrow"
 
 /obj/effect/landmark/start/prince
@@ -387,7 +387,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark)
 	icon_state = "arrow"
 
 /obj/effect/landmark/start/hand
-	name = "Hand"
+	name = "Vizier"
 	icon_state = "arrow"
 
 /obj/effect/landmark/start/hunter
