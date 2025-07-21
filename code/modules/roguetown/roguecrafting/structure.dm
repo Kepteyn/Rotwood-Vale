@@ -133,12 +133,15 @@
 
 /datum/crafting_recipe/roguetown/structure/chair
 	name = "chair (wood) - (small log; COMPETENT)"
-	result = /obj/item/chair/rogue
+	result = /obj/item/chair/rogue/crafted
 	reqs = list(/obj/item/grown/log/tree/small = 1)
 	verbage_simple = "construct"
 	verbage = "constructs"
 	skillcraft = /datum/skill/craft/carpentry
 	skill_level = 2
+
+/obj/item/chair/rogue/crafted
+	sellprice = 6
 
 /datum/crafting_recipe/roguetown/structure/fancychair
 	name = "fancy chair - (small log, silk; PROFICIENT)"
@@ -363,14 +366,18 @@
 	skill_level = 0
 
 /datum/crafting_recipe/roguetown/structure/chest
-	name = "chest - (small log, stick; NONE)"
-	result = /obj/structure/closet/crate/chest
+	name = "chest"
+	result = /obj/structure/closet/crate/chest/crafted
 	reqs = list(/obj/item/grown/log/tree/small = 1,
 				/obj/item/grown/log/tree/stick = 1)
 	verbage_simple = "construct"
 	verbage = "constructs"
 	skillcraft = /datum/skill/craft/carpentry
 	skill_level = 0
+
+/obj/structure/closet/crate/chest/crafted
+	keylock = FALSE
+	sellprice = 6
 
 /datum/crafting_recipe/roguetown/structure/closet
 	name = "closet - (2 small logs; NONE)"

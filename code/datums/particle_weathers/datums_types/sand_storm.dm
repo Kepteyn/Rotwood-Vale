@@ -15,16 +15,12 @@
 	wind                   = 2
 	spin                   = 0 // explicitly set spin to 0 - there is a bug that seems to carry generators over from old particle effects
 
+/obj/structure/sand
+	var/list/diged = list("2" = 0, "1" = 0, "8" = 0, "4" = 0)
+
 /obj/structure/sand/proc/set_diged_ways(dir)
 	diged["[dir]"] = world.time + 1 MINUTES
 	update_overlays()
-
-	transform 			   = null // Rain is directional - so don't make it "3D"
-	//Weather effects, max values
-	maxSpawning            = 250
-	minSpawning            = 50
-	wind                   = 2
-	spin                   = 0 // explicitly set spin to 0 - there is a bug that seems to carry generators over from old particle effects
 
 /datum/particle_weather/rain_gentle
 	name = "Rain"

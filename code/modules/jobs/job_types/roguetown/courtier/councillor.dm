@@ -1,5 +1,7 @@
 /datum/job/roguetown/councillor
 	title = "Sheikh"
+//	map_specific_title = list("Sheikh", "Sheikh") //0 = rockhill, 1 = zybantium, 2 = etc.
+
 	flag = COUNCILLOR
 	department_flag = NOBLEMEN
 	faction = "Station"
