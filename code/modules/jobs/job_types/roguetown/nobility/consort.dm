@@ -66,14 +66,15 @@
 		beltl = /obj/item/storage/keyring/royal
 		neck = /obj/item/storage/belt/rogue/pouch/coins/rich
 		belt = /obj/item/storage/belt/rogue/leather/cloth/lady
-		head = /obj/item/clothing/head/roguetown/duchess_hood
-		backl = /obj/item/clothing/suit/roguetown/armor/leather/duchess
+		head = /obj/item/clothing/head/roguetown/sultana
+		armor = /obj/item/clothing/suit/roguetown/shirt/sultana
 		gloves = /obj/item/clothing/gloves/roguetown/leather/black
 
 		id = /obj/item/clothing/ring/silver
 		shoes = /obj/item/clothing/shoes/roguetown/shortboots
 		pants = /obj/item/clothing/under/roguetown/tights/stockings/silk/white
 		if(H.mind)
+			H.grant_language(/datum/language/zybantine)
 			H.mind.adjust_skillrank(/datum/skill/misc/stealing, 4, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/sneaking, 3, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
@@ -96,7 +97,7 @@
 		ADD_TRAIT(H, TRAIT_EARGRAB, TRAIT_GENERIC)
 
 	else
-		belt = /obj/item/storage/belt/rogue/leather
+		belt = /obj/item/storage/belt/rogue/leather/sultbelt
 		beltr = /obj/item/gun/ballistic/firearm/arquebus_pistol
 		beltl = /obj/item/ammo_holder/bullet/lead
 		r_hand = /obj/item/storage/keyring/royal
@@ -105,10 +106,12 @@
 		id = /obj/item/clothing/ring/active/nomag
 		pants = /obj/item/clothing/under/roguetown/tights/black
 		shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/black
-		armor = /obj/item/clothing/suit/roguetown/armor/leather/duke
+		armor = /obj/item/clothing/suit/roguetown/shirt/sultan
 		shoes = /obj/item/clothing/shoes/roguetown/armor
+		head = /obj/item/clothing/head/roguetown/sultan
 
 		if(H.mind)
+			H.grant_language(/datum/language/zybantine)
 			H.mind.adjust_skillrank(/datum/skill/combat/polearms, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/maces, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/crossbows, 3, TRUE)

@@ -36,6 +36,7 @@
 	neck = /obj/item/storage/belt/rogue/pouch/coins/poor
 	backpack_contents = list(/obj/item/rogueweapon/huntingknife/idagger = 1)
 	if(H.mind)
+		H.grant_language(/datum/language/zybantine)
 		H.mind.AddSpell(new SPELL_CONVERT_ROLE_PROSTITUTE)
 		H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 4, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 4, TRUE)

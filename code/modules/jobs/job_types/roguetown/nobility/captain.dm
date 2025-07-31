@@ -4,8 +4,8 @@
 	department_flag = NOBLEMEN
 	faction = "Station"
 	allowed_patrons = ALL_NON_INHUMEN_PATRONS
-	total_positions = 1
-	spawn_positions = 1
+	total_positions = 0
+	spawn_positions = 0
 
 	allowed_races = RACES_TOLERATED_UP
 	allowed_sexes = list(MALE, FEMALE)

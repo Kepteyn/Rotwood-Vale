@@ -56,6 +56,7 @@
 
 	beltr = /obj/item/storage/keyring/nightman
 	if(H.mind)
+		H.grant_language(/datum/language/zybantine)
 		H.mind.adjust_skillrank(/datum/skill/misc/sneaking, 3, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/stealing, 3, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/swimming, 2, TRUE)
@@ -99,6 +100,7 @@
 
 	beltr = /obj/item/storage/keyring/nightman
 	if(H.mind)
+		H.grant_language(/datum/language/zybantine)
 		H.mind.adjust_skillrank(/datum/skill/misc/sneaking, 2, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/stealing, 1, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/swimming, 1, TRUE)
@@ -143,6 +145,7 @@
 	beltl = /obj/item/rogueweapon/whip
 	if(H.mind)
 		//Worst overall skills since they can kindof wrestle people? But not anybody that matters
+		H.grant_language(/datum/language/zybantine)
 		H.mind.adjust_skillrank(/datum/skill/combat/whipsflails, 2, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 2, TRUE) //I'm the boss of this gym
 		H.mind.adjust_skillrank(/datum/skill/misc/sneaking, 1, TRUE)

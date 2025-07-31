@@ -468,6 +468,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 		#define SPAN_LUPIAN "lupian"
 		#define SPAN_BEAST "beast"
 		#define SPAN_ORC "orc"
+		#define SPAN_ZYBANTINE "zybaneese"
 		#define SPAN_DRACONIC "reptile"
 		#define SPAN_UNDEAD "undead" //nyi
 		#define SPAN_CAT "cat" //nyi

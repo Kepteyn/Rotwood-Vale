@@ -89,14 +89,14 @@ GLOBAL_LIST_EMPTY(lord_titles)
 			honorary = "Sultana"
 		H.real_name = "[honorary] [prev_real_name]"
 		H.name = "[honorary] [prev_name]"
-
 /datum/outfit/job/roguetown/lord/pre_equip(mob/living/carbon/human/H)
 	..()
 
 	if(H.gender == MALE)
-		head = /obj/item/clothing/head/roguetown/crown/serpcrown
+		head = /obj/item/clothing/head/roguetown/sultan
+		mask = /obj/item/clothing/head/roguetown/crown/serpcrown
 		l_hand = /obj/item/rogueweapon/lordscepter
-		belt = /obj/item/storage/belt/rogue/leather
+		belt = /obj/item/storage/belt/rogue/leather/sultbelt
 		beltr = /obj/item/gun/ballistic/firearm/arquebus_pistol
 		beltl = /obj/item/ammo_holder/bullet/lead
 		neck = /obj/item/storage/belt/rogue/pouch/coins/rich
@@ -104,10 +104,11 @@ GLOBAL_LIST_EMPTY(lord_titles)
 		id = /obj/item/clothing/ring/active/nomag	
 		pants = /obj/item/clothing/under/roguetown/tights/black
 		shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/black
-		armor = /obj/item/clothing/suit/roguetown/armor/leather/duke
+		armor = /obj/item/clothing/suit/roguetown/shirt/sultan
 		shoes = /obj/item/clothing/shoes/roguetown/armor
 		
 		if(H.mind)
+			H.grant_language(/datum/language/zybantine)
 			H.mind.adjust_skillrank(/datum/skill/combat/polearms, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/maces, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/crossbows, 3, TRUE)
@@ -146,19 +147,20 @@ GLOBAL_LIST_EMPTY(lord_titles)
 		ADD_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
 
 	else
-		head = /obj/item/clothing/head/roguetown/crown/serpcrown
+		head = /obj/item/clothing/head/roguetown/sultana
+		mask = /obj/item/clothing/head/roguetown/crown/serpcrown
 		l_hand = /obj/item/rogueweapon/lordscepter
-		r_hand = /obj/item/clothing/head/roguetown/duchess_hood
 		beltl = /obj/item/storage/keyring/royal
 		neck = /obj/item/storage/belt/rogue/pouch/coins/rich
 		belt = /obj/item/storage/belt/rogue/leather/cloth/lady
-		backl = /obj/item/clothing/suit/roguetown/armor/leather/duchess
 		gloves = /obj/item/clothing/gloves/roguetown/leather/black
+		armor = /obj/item/clothing/suit/roguetown/shirt/sultana
 
 		id = /obj/item/clothing/ring/active/nomag
 		shoes = /obj/item/clothing/shoes/roguetown/shortboots
 		pants = /obj/item/clothing/under/roguetown/tights/stockings/silk/white
 		if(H.mind)
+			H.grant_language(/datum/language/zybantine)
 			H.mind.adjust_skillrank(/datum/skill/misc/stealing, 4, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/sneaking, 3, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)

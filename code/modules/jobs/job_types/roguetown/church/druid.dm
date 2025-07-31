@@ -36,6 +36,7 @@
 	r_hand = /obj/item/rogueweapon/woodstaff
 	backpack_contents = list(/obj/item/ritualfeather = 1)
 	if(H.mind)
+		H.grant_language(/datum/language/zybantine)
 		H.mind.adjust_skillrank(/datum/skill/combat/polearms, 2, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/sewing, 1, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 4, TRUE)

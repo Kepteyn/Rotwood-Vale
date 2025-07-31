@@ -426,6 +426,51 @@
 	icon_state = "stewarddress"
 	item_state = "stewarddress"
 
+/obj/item/clothing/suit/roguetown/shirt/sultan
+	slot_flags = ITEM_SLOT_SHIRT|ITEM_SLOT_ARMOR
+	name = "sultans robes"
+	desc = "A Zybantine Sultans noble robes."
+	body_parts_covered = CHEST|GROIN|VITALS|LEGS|ARMS
+	boobed = FALSE
+	icon = 'icons/roguetown/clothing/shirts.dmi'
+	mob_overlay_icon = 'icons/roguetown/clothing/onmob/shirts.dmi'
+	sleeved = 'icons/roguetown/clothing/onmob/helpers/sleeves_shirts.dmi'
+	icon_state = "sultan"
+	item_state = "sultan"
+	flags_inv = HIDECROTCH|HIDEBOOB
+	r_sleeve_status = SLEEVE_NORMAL
+	l_sleeve_status = SLEEVE_NORMAL
+
+/obj/item/clothing/suit/roguetown/shirt/sultana
+	slot_flags = ITEM_SLOT_SHIRT|ITEM_SLOT_ARMOR
+	name = "sultanas dress"
+	desc = "A Zybantine Sultanas noble Dress."
+	body_parts_covered = CHEST|GROIN|VITALS|LEGS|ARMS
+	boobed = FALSE
+	icon = 'icons/roguetown/clothing/shirts.dmi'
+	mob_overlay_icon = 'icons/roguetown/clothing/onmob/shirts.dmi'
+	sleeved = 'icons/roguetown/clothing/onmob/helpers/sleeves_shirts.dmi'
+	icon_state = "sultana"
+	item_state = "sultana"
+	flags_inv = HIDECROTCH|HIDEBOOB
+	r_sleeve_status = SLEEVE_NORMAL
+	l_sleeve_status = SLEEVE_NORMAL
+
+/obj/item/clothing/suit/roguetown/shirt/jafar
+	slot_flags = ITEM_SLOT_SHIRT|ITEM_SLOT_ARMOR
+	name = "zybantine magos robes"
+	desc = "A Zybantine magos noble robes."
+	body_parts_covered = CHEST|GROIN|VITALS|LEGS|ARMS
+	boobed = FALSE
+	icon = 'icons/roguetown/clothing/shirts.dmi'
+	mob_overlay_icon = 'icons/roguetown/clothing/onmob/shirts.dmi'
+	sleeved = 'icons/roguetown/clothing/onmob/helpers/sleeves_shirts.dmi'
+	icon_state = "jafar"
+	item_state = "jafar"
+	flags_inv = HIDECROTCH|HIDEBOOB
+	r_sleeve_status = SLEEVE_NORMAL
+	l_sleeve_status = SLEEVE_NORMAL
+
 /obj/item/clothing/suit/roguetown/shirt/shadow
 	slot_flags = ITEM_SLOT_SHIRT|ITEM_SLOT_ARMOR
 	name = "vanguard uniform"
