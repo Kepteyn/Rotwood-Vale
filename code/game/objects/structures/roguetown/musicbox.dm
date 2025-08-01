@@ -33,7 +33,7 @@
 	var/datum/looping_sound/musloop/soundloop
 	var/curfile
 	var/playing = FALSE
-	var/curvol = 70
+	var/curvol = 100
 	var/list/music_tracks
 
 /obj/structure/roguemachine/musicbox/Initialize()
