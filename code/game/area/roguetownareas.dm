@@ -229,7 +229,7 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 				/mob/living/simple_animal/hostile/retaliate/rogue/spider = 40,
 				/mob/living/carbon/human/species/goblin/npc/ambush/cave = 30,
 				/mob/living/carbon/human/species/deadite/npc/ambush = 50)
-	first_time_text = "THE TERRORBOG"
+	first_time_text = "GREAT DUNES"
 	converted_type = /area/rogue/indoors/shelter/bog
 	roughterrain = TRUE
 
