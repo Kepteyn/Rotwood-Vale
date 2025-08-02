@@ -1290,3 +1290,59 @@
 		desc = "Lightweight Armor made of copper by an artificer. It hums with arcane power, enhancing magical prowess."
 	else
 		desc = "Lightweight Armor made of copper by an artificer. It radiates raw strength, reinforcing the wearer's physical might."
+
+//Eastern style clothing by Infrared Baron
+/obj/item/clothing/suit/roguetown/armor/leather/thawb
+	slot_flags = ITEM_SLOT_ARMOR|ITEM_SLOT_SHIRT
+	name = "grey thawb"
+	desc = "A long robe typical in Zybantine."
+	icon = 'icons/roguetown/clothing/licensed-infraredbaron/onmob/easternclothes.dmi'
+	mob_overlay_icon = 'icons/roguetown/clothing/licensed-infraredbaron/onmob/easternclothes.dmi'
+	icon_state = "bluethawb"
+	item_state = "blue_item"
+	body_parts_covered = CHEST|GROIN|LEGS|ARMS|VITALS
+	blocksound = SOFTUNDERHIT
+	blade_dulling = DULLING_BASHCHOP
+	break_sound = 'sound/foley/cloth_rip.ogg'
+	drop_sound = 'sound/foley/dropsound/cloth_drop.ogg'
+	sewrepair = TRUE
+
+/obj/item/clothing/suit/roguetown/armor/leather/thawb/purple
+	slot_flags = ITEM_SLOT_ARMOR|ITEM_SLOT_SHIRT
+	name = "purple thawb"
+	desc = "A long robe typical in Zybantine."
+	icon = 'icons/roguetown/clothing/licensed-infraredbaron/onmob/easternclothes.dmi'
+	mob_overlay_icon = 'icons/roguetown/clothing/licensed-infraredbaron/onmob/easternclothes.dmi'
+	icon_state = "purplethawb"
+	item_state = "purple_item"
+	body_parts_covered = CHEST|GROIN|LEGS|ARMS|VITALS
+	blocksound = SOFTUNDERHIT
+	blade_dulling = DULLING_BASHCHOP
+	break_sound = 'sound/foley/cloth_rip.ogg'
+	drop_sound = 'sound/foley/dropsound/cloth_drop.ogg'
+	sewrepair = TRUE
+
+/obj/item/clothing/suit/roguetown/armor/leather/vest/open
+	name = "open vest"
+	desc = "A vest, open in the middle."
+	icon_state = "openvest"
+	item_state = "openvest"
+	color = null
+	armor = list("blunt" = 15, "slash" = 5, "stab" = 10, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	slot_flags = ITEM_SLOT_ARMOR|ITEM_SLOT_SHIRT
+	body_parts_covered = CHEST|VITALS
+
+/obj/item/clothing/head/roguetown/armor/leather/vest/open/purple
+	color = CLOTHING_PURPLE
+
+/obj/item/clothing/head/roguetown/armor/leather/vest/open/black
+	color = CLOTHING_BLACK
+
+/obj/item/clothing/head/roguetown/armor/leather/vest/open/brown
+	color = "#514339"
+
+/obj/item/clothing/head/roguetown/armor/leather/vest/open/random
+
+/obj/item/clothing/head/roguetown/armor/leather/vest/open/random/Initialize()
+	color = pick("#514339", CLOTHING_BLACK, CLOTHING_PURPLE)
+	..()
