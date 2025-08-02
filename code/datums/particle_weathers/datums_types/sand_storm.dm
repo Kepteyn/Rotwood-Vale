@@ -12,7 +12,7 @@
 
 	//Weather effects, max values
 	maxSpawning            = 2500
-	minSpawning            = 500
+	minSpawning            = 1000
 	wind                   = 2
 	spin                   = 0 // explicitly set spin to 0 - there is a bug that seems to carry generators over from old particle effects
 
