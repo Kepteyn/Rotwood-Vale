@@ -438,9 +438,8 @@
 	color = CLOTHING_BLACK
 
 /obj/item/clothing/under/roguetown/sirwal/plainrandom
-	color = null
 
-/obj/item/clothing/head/roguetown/sirwal/plainrandom/Initialize()
+/obj/item/clothing/under/roguetown/sirwal/plainrandom/Initialize()
 	color = pick("#FFFFFF", "#edc6a5", "#927351", CLOTHING_BLACK)
 	..()
 
@@ -462,9 +461,8 @@
 	color = CLOTHING_YELLOW
 
 /obj/item/clothing/under/roguetown/sirwal/fancy/random
-	color = null
 
-/obj/item/clothing/head/roguetown/sirwal/fancy/random/Initialize()
+/obj/item/clothing/under/roguetown/sirwal/fancy/random/Initialize()
 	color = pick(CLOTHING_BLACK, CLOTHING_BLUE, CLOTHING_PURPLE, CLOTHING_RED, CLOTHING_YELLOW)
 	..()
 

@@ -1291,36 +1291,6 @@
 	else
 		desc = "Lightweight Armor made of copper by an artificer. It radiates raw strength, reinforcing the wearer's physical might."
 
-//Eastern style clothing by Infrared Baron
-/obj/item/clothing/suit/roguetown/armor/leather/thawb
-	slot_flags = ITEM_SLOT_ARMOR|ITEM_SLOT_SHIRT
-	name = "grey thawb"
-	desc = "A long robe typical in Zybantine."
-	icon = 'icons/roguetown/clothing/licensed-infraredbaron/onmob/easternclothes.dmi'
-	mob_overlay_icon = 'icons/roguetown/clothing/licensed-infraredbaron/onmob/easternclothes.dmi'
-	icon_state = "bluethawb"
-	item_state = "blue_item"
-	body_parts_covered = CHEST|GROIN|LEGS|ARMS|VITALS
-	blocksound = SOFTUNDERHIT
-	blade_dulling = DULLING_BASHCHOP
-	break_sound = 'sound/foley/cloth_rip.ogg'
-	drop_sound = 'sound/foley/dropsound/cloth_drop.ogg'
-	sewrepair = TRUE
-
-/obj/item/clothing/suit/roguetown/armor/leather/thawb/purple
-	slot_flags = ITEM_SLOT_ARMOR|ITEM_SLOT_SHIRT
-	name = "purple thawb"
-	desc = "A long robe typical in Zybantine."
-	icon = 'icons/roguetown/clothing/licensed-infraredbaron/onmob/easternclothes.dmi'
-	mob_overlay_icon = 'icons/roguetown/clothing/licensed-infraredbaron/onmob/easternclothes.dmi'
-	icon_state = "purplethawb"
-	item_state = "purple_item"
-	body_parts_covered = CHEST|GROIN|LEGS|ARMS|VITALS
-	blocksound = SOFTUNDERHIT
-	blade_dulling = DULLING_BASHCHOP
-	break_sound = 'sound/foley/cloth_rip.ogg'
-	drop_sound = 'sound/foley/dropsound/cloth_drop.ogg'
-	sewrepair = TRUE
 
 /obj/item/clothing/suit/roguetown/armor/leather/vest/open
 	name = "open vest"
@@ -1332,17 +1302,79 @@
 	slot_flags = ITEM_SLOT_ARMOR|ITEM_SLOT_SHIRT
 	body_parts_covered = CHEST|VITALS
 
-/obj/item/clothing/head/roguetown/armor/leather/vest/open/purple
+/obj/item/clothing/suit/roguetown/armor/leather/vest/open/purple
 	color = CLOTHING_PURPLE
 
-/obj/item/clothing/head/roguetown/armor/leather/vest/open/black
-	color = CLOTHING_BLACK
+/obj/item/clothing/suit/roguetown/armor/leather/vest/open/blue
+	color = "#2f51b8"
 
-/obj/item/clothing/head/roguetown/armor/leather/vest/open/brown
+/obj/item/clothing/suit/roguetown/armor/leather/vest/open/red
+	color = CLOTHING_RED
+
+/obj/item/clothing/suit/roguetown/armor/leather/vest/open/orange
+	color = CLOTHING_ORANGE
+
+/obj/item/clothing/suit/roguetown/armor/leather/vest/open/green
+	color = CLOTHING_GREEN
+
+/obj/item/clothing/suit/roguetown/armor/leather/vest/open/brown
 	color = "#514339"
 
-/obj/item/clothing/head/roguetown/armor/leather/vest/open/random
+/obj/item/clothing/suit/roguetown/armor/leather/vest/open/random
 
-/obj/item/clothing/head/roguetown/armor/leather/vest/open/random/Initialize()
-	color = pick("#514339", CLOTHING_BLACK, CLOTHING_PURPLE)
+/obj/item/clothing/suit/roguetown/armor/leather/vest/open/random/Initialize()
+	color = pick("#514339", "#2f51b8", CLOTHING_RED, CLOTHING_ORANGE, CLOTHING_GREEN, CLOTHING_PURPLE)
 	..()
+
+//Eastern style clothing by Infrared Baron
+/obj/item/clothing/suit/roguetown/armor/leather/thawb
+	slot_flags = ITEM_SLOT_ARMOR|ITEM_SLOT_SHIRT
+	name = "thawb"
+	desc = "A long robe typical in Zybantine."
+	icon = 'icons/roguetown/clothing/licensed-infraredbaron/easternclothes.dmi'
+	mob_overlay_icon = 'icons/roguetown/clothing/licensed-infraredbaron/onmob/easternclothes.dmi'
+	icon_state = "greythawb"
+	item_state = "greythawb"
+	body_parts_covered = CHEST|GROIN|LEGS|ARMS|VITALS
+	blocksound = SOFTUNDERHIT
+	blade_dulling = DULLING_BASHCHOP
+	break_sound = 'sound/foley/cloth_rip.ogg'
+	drop_sound = 'sound/foley/dropsound/cloth_drop.ogg'
+	sewrepair = TRUE
+
+/obj/item/clothing/suit/roguetown/armor/leather/thawb/grey
+	color = "#989898"
+
+/obj/item/clothing/suit/roguetown/armor/leather/thawb/red
+	color = "#9c4744"
+
+/obj/item/clothing/suit/roguetown/armor/leather/thawb/blue
+	color = "#2f51b8"
+
+/obj/item/clothing/suit/roguetown/armor/leather/thawb/brown
+	color = "#846145"
+
+/obj/item/clothing/suit/roguetown/armor/leather/thawb/beige
+	color = "#e9c792"
+
+/obj/item/clothing/suit/roguetown/armor/leather/thawb/black
+	color = CLOTHING_BLACK
+
+/obj/item/clothing/suit/roguetown/armor/leather/thawb/random
+
+/obj/item/clothing/suit/roguetown/armor/leather/thawb/random/Initialize()
+	color = pick("#989898", "#FFFFFF", "#9c4744", "#2f51b8", "#846145", "#e9c792", CLOTHING_BLACK)
+	..()
+
+/obj/item/clothing/suit/roguetown/armor/leather/thawb/bluegrey
+	slot_flags = ITEM_SLOT_ARMOR|ITEM_SLOT_SHIRT
+	name = "grey thawb"
+	icon_state = "bluethawb"
+	item_state = "bluethawb"
+
+/obj/item/clothing/suit/roguetown/armor/leather/thawb/purple
+	slot_flags = ITEM_SLOT_ARMOR|ITEM_SLOT_SHIRT
+	name = "purple thawb"
+	icon_state = "purplethawb"
+	item_state = "purplethawb"
+
