@@ -1,10 +1,10 @@
-#define MUSIC_TAV list("Song 3" = 'sound/music/jukeboxes/tav3.ogg')
+#define MUSIC_TAV list("Song 3" = 'sound/music/jukeboxes/tav3.ogg', "Desert Rider" = 'sound/music/combat_desertrider.ogg', "Giza Boogie" = 'sound/music/combat_giza.ogg', "Zybantian Nights" = 'sound/music/jukeboxes/ShadowJumpers.ogg', "Giza Boogie" = 'sound/music/combat_giza.ogg', "Desert Spice" = 'sound/music/jukeboxes/Spice.ogg', "Trance" = 'sound/music/trancefusion.ogg', "Grenzel" = 'sound/music/combat_grenzelhoft.ogg', "Zybantian March" = 'sound/music/combat_zybantine.ogg')
 
 /datum/looping_sound/musloop
 	mid_sounds = list()
 	mid_length = 99999
-	volume = 50
-	extra_range = 5
+	volume = 100
+	extra_range = 20
 	persistent_loop = TRUE
 	var/stress2give = /datum/stressevent/music
 	channel = CHANNEL_MUSIC
@@ -33,7 +33,7 @@
 	var/datum/looping_sound/musloop/soundloop
 	var/curfile
 	var/playing = FALSE
-	var/curvol = 70
+	var/curvol = 100
 	var/list/music_tracks
 
 /obj/structure/roguemachine/musicbox/Initialize()

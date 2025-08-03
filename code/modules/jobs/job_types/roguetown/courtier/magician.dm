@@ -42,19 +42,21 @@
 /datum/outfit/job/roguetown/magician/pre_equip(mob/living/carbon/human/H)
 	..()
 	neck = /obj/item/clothing/neck/roguetown/talkstone
-	armor = /obj/item/clothing/suit/roguetown/armor/leather/magos
+	head = /obj/item/clothing/head/roguetown/jafar
+	armor = /obj/item/clothing/suit/roguetown/shirt/jafar
 	pants = /obj/item/clothing/under/roguetown/tights/black
 	shoes = /obj/item/clothing/shoes/roguetown/shortboots
-	belt = /obj/item/storage/belt/rogue/leather
+	belt = /obj/item/storage/belt/rogue/leather/jafar
 	beltr = /obj/item/storage/magebag/apprentice
 	beltl = /obj/item/storage/keyring/mage
 	id = /obj/item/clothing/ring/gold
-	r_hand = /obj/item/rogueweapon/woodstaff
+	r_hand = /obj/item/rogueweapon/woodstaff/snakestaff
 	backl = /obj/item/storage/backpack/rogue/satchel
 	backpack_contents = list(/obj/item/lovepotion,/obj/item/reagent_containers/glass/bottle/rogue/poison,/obj/item/book/granter/spellbook/master, /obj/item/rogueweapon/huntingknife/idagger/silver/arcyne)
 	ADD_TRAIT(H, TRAIT_SEEPRICES, "[type]")
 	ADD_TRAIT(H, TRAIT_NOBLE, "[type]")
 	if(H.mind)
+		H.grant_language(/datum/language/zybantine)
 		H.mind.adjust_skillrank(/datum/skill/misc/reading, 6, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/magic/arcane, 5, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/riding, 2, TRUE)
@@ -76,7 +78,7 @@
 		H.mind.adjust_spellpoints(10)
 		if(H.age == AGE_OLD)
 			H.mind.adjust_skillrank(/datum/skill/magic/arcane, 1, TRUE)
-			belt = /obj/item/storage/belt/rogue/leather/plaquegold //golden belt to show how valuable they are to the duke
+			belt = /obj/item/storage/belt/rogue/leather/jafar //golden belt to show how valuable they are to the duke plaquegold
 			H.change_stat("speed", -1)
 			H.change_stat("intelligence", 1)
 			H.change_stat("perception", 1)

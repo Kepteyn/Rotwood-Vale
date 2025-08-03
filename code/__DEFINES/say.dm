@@ -67,6 +67,7 @@
 #define SPAN_FELID "felid"
 #define SPAN_BEAST "beast"
 #define SPAN_ORC "orc"
+#define SPAN_ZYBANTINE "zybaneese"
 #define SPAN_DRACONIC "reptile"
 #define SPAN_FAE "faexin"
 #define SPAN_UNDEAD "undead" //nyi but file found

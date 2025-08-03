@@ -287,6 +287,32 @@
 	dynamic_hair_suffix = "+generic"
 	flags_inv = HIDEEARS
 
+/obj/item/clothing/head/roguetown/sultan
+	name = "sultans turban"
+	desc = "Bask in its noble size and granduer!."
+	icon_state = "sultan"
+	item_state = "sultan"
+	mob_overlay_icon = 'icons/roguetown/clothing/onmob/32x48/head.dmi'
+	dynamic_hair_suffix = "+generic"
+	flags_inv = HIDEEARS
+
+/obj/item/clothing/head/roguetown/sultana
+	name = "sultans headdress"
+	desc = "Silky smooth Zybantine silk headress!."
+	icon_state = "sultana"
+	item_state = "sultana"
+	dynamic_hair_suffix = "+generic"
+	flags_inv = HIDEEARS|HIDEHAIR
+
+/obj/item/clothing/head/roguetown/jafar
+	name = "zybantine magos hat"
+	desc = "Bask in its noble size and granduer!."
+	icon_state = "jafar"
+	item_state = "jafar"
+	mob_overlay_icon = 'icons/roguetown/clothing/onmob/32x48/head.dmi'
+	dynamic_hair_suffix = "+generic"
+	flags_inv = HIDEEARS|HIDEHAIR	
+
 /obj/item/clothing/head/roguetown/strawhat
 	name = "straw hat"
 	desc = "Keeps the sun off your head while toiling the fields."
@@ -386,6 +412,7 @@
 	name = "crown of rockhill"
 	desc = ""
 	icon_state = "serpcrown"
+	slot_flags = ITEM_SLOT_MASK|ITEM_SLOT_HEAD
 	dynamic_hair_suffix = null
 	sellprice = 200
 	resistance_flags = FIRE_PROOF | ACID_PROOF
@@ -481,7 +508,7 @@
 	slot_flags = ITEM_SLOT_HEAD|ITEM_SLOT_HIP
 	name = "helmet"
 	desc = "A helmet that doesn't get any more simple in design."
-	body_parts_covered = HEAD|HAIR|NOSE
+	body_parts_covered = HEAD|HAIR|NOSE|EARS
 	icon_state = "nasal"
 	sleevetype = null
 	sleeved = null
@@ -506,7 +533,7 @@
 	name = "skull cap"
 	desc = "A helmet which covers the top of the head."
 	icon_state = "skullcap"
-	body_parts_covered = HEAD|HAIR
+	body_parts_covered = HEAD|HAIR||EARS
 	max_integrity = 200
 	smeltresult = /obj/item/ingot/iron
 
@@ -515,7 +542,7 @@
 	desc = "A helmet with two horns poking out of the sides."
 	icon_state = "hornedcap"
 	max_integrity = 225
-	body_parts_covered = HEAD|HAIR
+	body_parts_covered = HEAD|HAIR|EARS
 
 /obj/item/clothing/head/roguetown/helmet/winged
 	name = "winged cap"
@@ -525,14 +552,21 @@
 	mob_overlay_icon = 'icons/roguetown/clothing/onmob/64x64/head.dmi'
 	worn_x_dimension = 64
 	worn_y_dimension = 64
-	body_parts_covered = HEAD|HAIR
+	body_parts_covered = HEAD|HAIR|EARS
 
 /obj/item/clothing/head/roguetown/helmet/kettle
 	desc = "A steel helmet which protects the whole of the head."
 	icon_state = "kettle"
 	body_parts_covered = HEAD|HAIR|EARS
 	flags_inv = HIDEEARS
-	body_parts_covered = HEAD|HAIR
+
+/obj/item/clothing/head/roguetown/helmet/mamalukehelm
+	name = "Mamalukes Helm"
+	desc = "A helmet with too much style."
+	icon_state = "mamhelm"
+	max_integrity = 250
+	body_parts_covered = HEAD|HAIR|EARS
+	flags_inv = HIDEEARS|HIDEHAIR
 
 /obj/item/clothing/head/roguetown/helmet/kettle/attackby(obj/item/W, mob/living/user, params)
 	..()
@@ -751,7 +785,7 @@
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
 	armor = list("blunt" = 90, "slash" = 100, "stab" = 80, "bullet" = 100, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_SMASH, BCLASS_TWIST)
-	block2add = FOV_RIGHT|FOV_LEFT
+	block2add = FOV_BEHIND
 	armor_class = ARMOR_CLASS_HEAVY
 	max_integrity = 400
 
@@ -761,8 +795,20 @@
 	icon_state = "guardhelm"
 	emote_environment = 3
 	flags_inv = HIDEEARS|HIDEFACE|HIDEHAIR
-	block2add = FOV_RIGHT|FOV_LEFT
+	block2add = FOV_BEHIND
 	smeltresult = /obj/item/ingot/iron
+
+/obj/item/clothing/head/roguetown/helmet/heavy/cataphract
+	name = "cataphracts helm"
+	desc = "A helmet with a menacing visage."
+	icon_state = "cathelm"
+	item_state = "cathelm"
+	icon = 'icons/roguetown/clothing/32x48.dmi'
+	mob_overlay_icon = 'icons/roguetown/clothing/onmob/32x48/head.dmi'
+	emote_environment = 3
+	flags_inv = HIDEEARS|HIDEFACE|HIDEHAIR
+	block2add = FOV_BEHIND
+	smeltresult = /obj/item/ingot/steel
 
 /obj/item/clothing/head/roguetown/helmet/heavy/gate
 	name = "barred helmet"
@@ -781,7 +827,7 @@
 	item_state = "knight"
 	adjustable = CAN_CADJUST
 	emote_environment = 3
-	block2add = FOV_RIGHT|FOV_LEFT
+	block2add = FOV_BEHIND
 	smeltresult = /obj/item/ingot/steel
 
 /obj/item/clothing/head/roguetown/helmet/heavy/knight/attackby(obj/item/W, mob/living/user, params)
@@ -855,7 +901,7 @@
 	max_integrity = 435
 	emote_environment = 3
 	flags_inv = HIDEEARS|HIDEFACE|HIDEHAIR
-	block2add = FOV_RIGHT|FOV_LEFT
+	block2add = FOV_BEHIND
 	smeltresult = /obj/item/ingot/steel
 
 /obj/item/clothing/head/roguetown/helmet/heavy/bucket/attackby(obj/item/W, mob/living/user, params)
@@ -909,7 +955,7 @@
 	emote_environment = 3
 	flags_inv = HIDEEARS|HIDEFACE|HIDEHAIR
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
-	block2add = FOV_RIGHT|FOV_LEFT
+	block2add = FOV_BEHIND
 	smeltresult = /obj/item/ingot/steel
 
 /obj/item/clothing/head/roguetown/helmet/heavy/pigface/AdjustClothes(mob/user)
@@ -978,7 +1024,7 @@
 	emote_environment = 3
 	body_parts_covered = FULL_HEAD|NECK
 	flags_inv = HIDEEARS|HIDEFACE|HIDEHAIR
-	block2add = FOV_RIGHT|FOV_LEFT
+	block2add = FOV_BEHIND
 	smeltresult = /obj/item/ingot/steel
 /obj/item/clothing/head/roguetown/helmet/heavy/frogmouth/attackby(obj/item/W, mob/living/user, params)
 	..()

@@ -5,8 +5,8 @@
 	department_flag = GOBLIN
 	selection_color = JCOLOR_GOBLIN
 	faction = "Station"
-	total_positions = 1
-	spawn_positions = 1
+	total_positions = 0
+	spawn_positions = 0
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = list(/datum/species/goblinp, /datum/species/halforc)
 	tutorial = "You're the Chief of the local Goblin tribe. A representation of Graggar's rule, you are the biggest and strongest. You ensure the spread of his dominion over others where you can. \

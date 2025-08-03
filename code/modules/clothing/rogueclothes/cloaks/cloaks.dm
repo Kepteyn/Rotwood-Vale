@@ -926,6 +926,18 @@
 	sellprice = 50
 	nodismemsleeves = TRUE
 
+/obj/item/clothing/cloak/catcloak
+	name = "cataphracts cloak"
+	desc = "Noble red cloak of a Zybantine Cataphract"
+	icon_state = "catcloak"
+	body_parts_covered = CHEST|GROIN|VITALS|ARMS
+	sleeved = 'icons/roguetown/clothing/onmob/cloaks.dmi'
+	sleevetype = "shirt"
+	slot_flags = ITEM_SLOT_CLOAK
+	allowed_sex = list(MALE, FEMALE)
+	sellprice = 50
+	nodismemsleeves = TRUE
+
 /obj/item/clothing/cloak/heartfelt
 	name = "red cloak"
 	desc = ""

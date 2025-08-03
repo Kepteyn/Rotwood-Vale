@@ -117,7 +117,7 @@
 	//BANDITS
 	banditgoal = rand(200,400)
 	restricted_jobs = list("Lord",
-	"Knight",
+	"Cataphract",
 	"Merchant",
 	"Gatemaster",
 	"Retinue Captain",
@@ -302,7 +302,7 @@
 	restricted_jobs = list()
 
 /datum/game_mode/chaosmode/proc/pick_werewolves()
-	restricted_jobs = list("Prisoner","Knight","Inquisitor","Shepherd")
+	restricted_jobs = list("Prisoner","Cataphract","Inquisitor","Shepherd")
 	var/num_werewolves = rand(1,3)
 #ifdef TESTSERVER
 	num_werewolves = 100

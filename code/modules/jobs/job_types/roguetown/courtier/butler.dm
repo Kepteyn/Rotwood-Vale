@@ -11,7 +11,7 @@
 	allowed_races = RACES_SHUNNED_UP
 	allowed_ages = list(AGE_MIDDLEAGED, AGE_OLD)
 
-	tutorial = "Servitude unto death; That is your motto. Having nurtured royalty for years, you are nothing short of the Duke's majordomo, commanding over the rest of the house staff."
+	tutorial = "Servitude unto death; That is your motto. Having nurtured royalty for years, you are nothing short of the Sultan's majordomo, commanding over the rest of the house staff."
 
 	outfit = /datum/outfit/job/roguetown/butler
 	display_order = JDO_BUTLER
@@ -22,6 +22,7 @@
 /datum/outfit/job/roguetown/butler/pre_equip(mob/living/carbon/human/H)
 	..()
 	if(H.mind)
+		H.grant_language(/datum/language/zybantine)
 		H.mind.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/reading, 2, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/craft/cooking, 3, TRUE)

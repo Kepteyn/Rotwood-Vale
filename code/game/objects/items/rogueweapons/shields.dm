@@ -185,7 +185,25 @@
 			cut_overlays()
 	else
 		..()
-
+/obj/item/rogueweapon/shield/tower/zybantine
+	name = "Brass shield"
+	desc = "A Sturdy shield from Zybantia."
+	icon_state = "zybshield"
+	force = 20
+	throwforce = 10
+	throw_speed = 1
+	throw_range = 3
+	wlength = WLENGTH_NORMAL
+	resistance_flags = null
+	flags_1 = CONDUCT_1
+	wdefense = 18
+	coverage = 70
+	attacked_sound = list('sound/combat/parry/shield/metalshield (1).ogg','sound/combat/parry/shield/metalshield (2).ogg','sound/combat/parry/shield/metalshield (3).ogg')
+	parrysound = list('sound/combat/parry/shield/metalshield (1).ogg','sound/combat/parry/shield/metalshield (2).ogg','sound/combat/parry/shield/metalshield (3).ogg')
+	max_integrity = 300
+	blade_dulling = DULLING_BASH
+	sellprice = 30
+	
 /obj/item/rogueweapon/shield/heater
 	name = "heater shield"
 	desc = "A sturdy wood and leather shield. Made to not be too encumbering while still providing good protection."

@@ -20,6 +20,13 @@
 	icon_state = "stonestairs"
 	max_integrity = 600
 
+/obj/structure/stairs/desert
+	name = "sand stairs"
+	icon = 'icons/desert_town/sandstairs.dmi'
+	icon_state = "sandstairs"
+	max_integrity = 600
+
+
 //	climb_offset = 10
 	//RTD animate climbing offset so this can be here
 

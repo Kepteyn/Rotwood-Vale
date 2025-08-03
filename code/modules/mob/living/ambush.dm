@@ -1,7 +1,7 @@
 
 /mob/living/proc/ambushable()
 	if(mob_timers["ambushlast"])
-		if(world.time < mob_timers["ambushlast"] + 300 SECONDS)
+		if(world.time < mob_timers["ambushlast"] + 600 SECONDS)
 			return FALSE
 	if(stat)
 		return FALSE

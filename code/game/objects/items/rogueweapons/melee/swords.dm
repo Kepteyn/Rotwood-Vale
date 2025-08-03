@@ -482,19 +482,19 @@
 	damfactor = 1.1
 
 /datum/intent/axe/chop/exe // It's a pretty long one.
-	misscost = 15 // Do not miss or get dodged.
+	misscost = 2 // Do not miss or get dodged.
 	clickcd = 15
 	reach = 2
 
 /datum/intent/axe/chop/exe/onehanded
-	misscost = 20 // Definitely do not miss or get dodged.
+	misscost = 3 // Definitely do not miss or get dodged.
 	clickcd = 20
 
 /datum/intent/sword/thrust/exe
 	clickcd = 16 	// Thrusting this heavy thing is straining.
 	swingdelay = 8	// Think of it as a one two motion.
 	penfactor = 40
-	misscost = 10
+	misscost = 2
 	attack_verb = list("blunty thrusts", "bluntly stabs")
 	hitsound = list('sound/combat/hits/blunt/shovel_hit3.ogg')
 	blade_class = BCLASS_BLUNT
@@ -751,10 +751,10 @@
 
 /obj/item/rogueweapon/sword/rapier/lord
 	force = 20
-	name = "sword of the Mad Duke"
+	name = "sword of the Mad Sultan"
 	desc = "A noble heirloom whose spiraling basket hilt is inlaid with fine cut gems. It bears the burnish of \
 	time, where once sharply defined features have been worn down by so many hands. An old rumor ties this implement \
-	to the siege that smashed the Mad Duke's keep to rubble, and burnt the Duke himself to cinders."
+	to the siege that smashed the Mad Sultan's keep to rubble, and burnt the Sultan himself to cinders."
 	icon_state = "lordrap"
 	sellprice = 300
 	max_integrity = 300

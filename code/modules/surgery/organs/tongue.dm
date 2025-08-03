@@ -21,6 +21,7 @@
 		/datum/language/faexin,
 		/datum/language/canilunzt,
 		/datum/language/felid,
+		/datum/language/zybantine,
 		/datum/language/thievescant,
 	))
 

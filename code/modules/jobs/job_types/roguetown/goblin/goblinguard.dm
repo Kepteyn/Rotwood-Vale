@@ -4,8 +4,8 @@
 	department_flag = GOBLIN
 	selection_color = JCOLOR_GOBLIN
 	faction = "Station"
-	total_positions = 3//From 6
-	spawn_positions = 3//From 6
+	total_positions = 0//From 6
+	spawn_positions = 0//From 6
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = list(/datum/species/goblinp)
 	tutorial = "You're the hand of the Chief. He's an individual of higher power than any mortal. At least, that's what you've been taught. He is the biggest and strongest afterall. \

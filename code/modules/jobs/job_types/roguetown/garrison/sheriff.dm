@@ -3,8 +3,8 @@
 	flag = SHERIFF
 	department_flag = GARRISON
 	faction = "Station"
-	total_positions = 1
-	spawn_positions = 1
+	total_positions = 0
+	spawn_positions = 0
 	selection_color = JCOLOR_SOLDIER
 	allowed_races = RACES_TOLERATED_UP
 	allowed_sexes = list(MALE, FEMALE)
@@ -12,7 +12,7 @@
 	display_order = JDO_SHERIFF
 	tutorial = "Crime has always been a constant of your life, and you always chose the side of justice. \
 	You rose up through the ranks as a watchman, and now rule over them - Ensure that they enforce the laws of this land properly. \
-	While you may work under the Mayor, everyone knows the Duke is the true authority, or is he?"
+	While you may work under the Mayor, everyone knows the Sultan is the true authority, or is he?"
 	whitelist_req = FALSE
 	can_leave_round = FALSE
 	outfit = /datum/outfit/job/roguetown/sheriff

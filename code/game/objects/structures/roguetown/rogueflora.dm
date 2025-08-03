@@ -343,6 +343,16 @@
     )
 
 
+/obj/structure/flora/roguegrass/bush/desert
+	name = "saigahorn"
+	desc = ""
+	icon = 'icons/desert_town/flora.dmi'
+	icon_state = "saigahorn1"
+
+/obj/structure/flora/roguegrass/bush/desert/Initialize()
+	. = ..()
+	icon_state = "saigahorn[rand(1, 3)]"
+
 
 /obj/structure/flora/roguegrass/bush/Initialize()
 	var/area/A = get_area(src)
@@ -404,8 +414,6 @@
 					user.visible_message(span_notice("[user] finds [B] in [src]."))
 					return
 			user.visible_message(span_warning("[user] searches through [src]."))
-			if(looty.len)
-				attack_hand(user)
 #ifdef MATURESERVER
 			if(!looty.len)
 				to_chat(user, span_warning("Picked clean."))

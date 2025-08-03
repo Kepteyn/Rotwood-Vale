@@ -9,6 +9,7 @@
 
 /datum/outfit/job/roguetown/bandit/foresworn/pre_equip(mob/living/carbon/human/H)
 	..()
+	H.grant_language(/datum/language/zybantine)
 	H.mind.adjust_skillrank(/datum/skill/combat/polearms, 3, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/combat/axes, 2, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/combat/maces, 3, TRUE)

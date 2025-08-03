@@ -4,8 +4,8 @@
 	department_flag = GOBLIN
 	selection_color = JCOLOR_GOBLIN
 	faction = "Station"
-	total_positions = 6
-	spawn_positions = 6
+	total_positions = 0
+	spawn_positions = 0
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = list(/datum/species/goblinp)
 	tutorial = "You're the lowest of the low. A goblin among many other goblins. You worship the chief as the representation of Graggar, the biggest and the strongest. \

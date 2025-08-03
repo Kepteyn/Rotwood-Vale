@@ -132,6 +132,21 @@
 	icon_state = "shalal_z"
 	sellprice = 5
 
+/obj/item/storage/belt/rogue/leather/noblesash
+	name = "Zybantine noblesash"
+	icon_state = "noblesash"
+	sellprice = 5
+
+/obj/item/storage/belt/rogue/leather/sultbelt
+	name = "Zybantine Sultans Sash"
+	icon_state = "sultbelt"
+	sellprice = 30
+
+/obj/item/storage/belt/rogue/leather/jafar
+	name = "Zybantine magos Sash"
+	icon_state = "jafar"
+	sellprice = 30
+
 /obj/item/storage/belt/rogue/leather/black
 	name = "black belt"
 	icon_state = "blackbelt"

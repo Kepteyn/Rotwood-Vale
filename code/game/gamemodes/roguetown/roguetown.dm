@@ -97,7 +97,7 @@ var/global/list/roguegamemodes = list("Rebellion", "Vampires and Werewolves", "N
 	var/lord_dead = FALSE
 	for(var/mob/living/carbon/human/H in GLOB.human_list)
 		if(H.mind)
-			if(H.job == "Duke")
+			if(H.job == "Sultan")
 				lord_found = TRUE
 				if(H.stat == DEAD)
 					lord_dead = TRUE
@@ -105,7 +105,7 @@ var/global/list/roguegamemodes = list("Rebellion", "Vampires and Werewolves", "N
 					if(lord_dead)
 						lord_dead = FALSE
 					break
-	if((lord_dead || !lord_found) && SSjob.GetJob("Duke")?.current_positions > 0)
+	if((lord_dead || !lord_found) && SSjob.GetJob("Sultan")?.current_positions > 0)
 		if(!missing_lord_time)
 			missing_lord_time = world.time
 		if(world.time > missing_lord_time + 10 MINUTES)
@@ -217,11 +217,11 @@ var/global/list/roguegamemodes = list("Rebellion", "Vampires and Werewolves", "N
 /datum/game_mode/chaosmode/proc/pick_bandits()
 	//BANDITS
 	banditgoal = rand(200,400)
-	restricted_jobs = list("Duke",
-	"Duke Consort",
+	restricted_jobs = list("Sultan",
+	"Sultan Consort",
 	"Merchant",
 	"Priest",
-	"Knight",
+	"Cataphract",
 	"Goblin Chief",
 	"Goblin Cook",
 	"Goblin Guard",
@@ -294,8 +294,8 @@ var/global/list/roguegamemodes = list("Rebellion", "Vampires and Werewolves", "N
 
 
 /datum/game_mode/chaosmode/proc/pick_aspirants()
-	var/list/possible_jobs_aspirants = list("Heir", "Heiress", "Retinue Captain", "Steward", "Hand", "Knight")
-	var/list/possible_jobs_helpers = list("Retinue Captain", "Heir", "Heiress", "Hand",  "Steward", "Knight")
+	var/list/possible_jobs_aspirants = list("Heir", "Heiress", "Retinue Captain", "Steward", "Vizier", "Cataphract")
+	var/list/possible_jobs_helpers = list("Retinue Captain", "Heir", "Heiress", "Vizier",  "Steward", "Cataphract")
 	var/list/rolesneeded = list("Aspirant","Loyalist","Supporter")
 
 	antag_candidates = get_players_for_role(ROLE_ASPIRANT)
@@ -370,7 +370,7 @@ var/global/list/roguegamemodes = list("Rebellion", "Vampires and Werewolves", "N
 	restricted_jobs = list()
 
 /datum/game_mode/chaosmode/proc/pick_maniac()
-	restricted_jobs = list("Duke", "Duke Consort")
+	restricted_jobs = list("Sultan", "Sultan Consort")
 	antag_candidates = get_players_for_role(ROLE_MANIAC)
 	var/datum/mind/villain = pick_n_take(antag_candidates)
 	if(villain)
@@ -391,11 +391,11 @@ var/global/list/roguegamemodes = list("Rebellion", "Vampires and Werewolves", "N
 
 /datum/game_mode/chaosmode/proc/pick_cultist()
 	var/remaining = 3 // 1 heresiarch, 2 cultists
-	restricted_jobs = list("Duke",
-	"Duke Consort",
+	restricted_jobs = list("Sultan",
+	"Sultan Consort",
 	"Priest",
 	"Bandit",
-	"Knight",
+	"Cataphract",
 	"Retinue Captain",
 	"Gatemaster",
 	"Warden",
@@ -436,13 +436,13 @@ var/global/list/roguegamemodes = list("Rebellion", "Vampires and Werewolves", "N
 /datum/game_mode/chaosmode/proc/pick_lich()
 
 	restricted_jobs = list(
-	"Duke",
-	"Duke Consort",
+	"Sultan",
+	"Sultan Consort",
 	"Dungeoneer",
 	"Inquisitor",
 	"Confessor",
 	"Watchman",
-	"Man at Arms",
+	"Mamluk",
 	"Priest",
 	"Acolyte",
 	"Cleric",
@@ -451,7 +451,7 @@ var/global/list/roguegamemodes = list("Rebellion", "Vampires and Werewolves", "N
 	"Templar",
 	"Vanguard",
 	"Warden",
-	"Knight",
+	"Cataphract",
 	"Mortician",
 	"Mercenary",
 	"Bandit",
@@ -483,13 +483,13 @@ var/global/list/roguegamemodes = list("Rebellion", "Vampires and Werewolves", "N
 /datum/game_mode/chaosmode/proc/pick_vampires()
 	var/vampsremaining = 3
 	restricted_jobs = list(
-	"Duke",
-	"Duke Consort",
+	"Sultan",
+	"Sultan Consort",
 	"Dungeoneer",
 	"Inquisitor",
 	"Confessor",
 	"Watchman",
-	"Man at Arms",
+	"Mamluk",
 	"Priest",
 	"Acolyte",
 	"Cleric",
@@ -498,7 +498,7 @@ var/global/list/roguegamemodes = list("Rebellion", "Vampires and Werewolves", "N
 	"Templar",
 	"Vanguard",
 	"Warden",
-	"Knight",
+	"Cataphract",
 	"Bandit",
 	"Goblin Chief",
 	"Goblin Cook",
@@ -538,13 +538,13 @@ var/global/list/roguegamemodes = list("Rebellion", "Vampires and Werewolves", "N
 /datum/game_mode/chaosmode/proc/pick_werewolves()
 	// Ideally we want Refugees/Towners to roll it
 	restricted_jobs = list(
-	"Duke",
-	"Duke Consort",
+	"Sultan",
+	"Sultan Consort",
 	"Dungeoneer",
 	"Inquisitor",
 	"Confessor",
 	"Watchman",
-	"Man at Arms",
+	"Mamluk",
 	"Priest",
 	"Acolyte",
 	"Cleric",
@@ -553,7 +553,7 @@ var/global/list/roguegamemodes = list("Rebellion", "Vampires and Werewolves", "N
 	"Templar",
 	"Vanguard",
 	"Warden",
-	"Knight",
+	"Cataphract",
 	"Mortician",
 	"Bandit",
 	"Goblin Chief",
